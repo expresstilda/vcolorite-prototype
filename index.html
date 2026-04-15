@@ -410,6 +410,62 @@ p{color:var(--ink-2)}
   .seo-text{padding:48px 20px}
   .seo-text__title{font-size:26px}
 }
+
+/* === MESSENGERS === */
+/* Header: compact round buttons */
+.header-msg{display:flex;gap:8px;align-items:center}
+.header-msg__btn{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s;border:1px solid var(--line);background:#fff}
+.header-msg__btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(15,17,22,.12)}
+.header-msg__btn svg{width:18px;height:18px;display:block}
+.header-msg__btn--tg{background:#229ED9;border-color:#229ED9}
+.header-msg__btn--tg svg{fill:#fff}
+.header-msg__btn--max{background:#FF6632;border-color:#FF6632}
+.header-msg__btn--max svg{fill:#fff}
+
+/* Form: large flat buttons under the submit, on dark bg */
+.form__messengers{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.form__messengers-hint{font-size:13px;color:rgba(255,255,255,.65);text-align:center;margin-bottom:14px;font-weight:500}
+.form__messengers-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.msg-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;border-radius:10px;font-weight:700;font-size:14px;transition:transform .12s,box-shadow .12s;cursor:pointer;color:#fff;border:none}
+.msg-btn svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+.msg-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.msg-btn--tg{background:#229ED9}
+.msg-btn--max{background:#FF6632}
+
+/* === NEW FOOTER === */
+.site-foot{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 24px 28px;font-size:13px}
+.site-foot__grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.site-foot__col{display:flex;flex-direction:column;gap:12px}
+.site-foot__col-title{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
+.site-foot__col a{color:rgba(255,255,255,.72);font-size:14px;font-weight:500;transition:color .12s}
+.site-foot__col a:hover{color:#fff}
+.site-foot__brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;color:#fff;margin-bottom:4px}
+.site-foot__brand-mark{display:inline-flex;align-items:center;gap:2px}
+.site-foot__tagline{color:rgba(255,255,255,.55);font-size:13px;line-height:1.55;max-width:280px;margin-bottom:10px}
+.site-foot__soc{display:flex;gap:8px;margin-top:auto}
+.site-foot__soc a{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;transition:transform .15s,opacity .15s}
+.site-foot__soc a:hover{transform:translateY(-2px)}
+.site-foot__soc a svg{width:18px;height:18px;fill:#fff}
+.site-foot__soc .soc-tg{background:#229ED9}
+.site-foot__soc .soc-max{background:#FF6632}
+.site-foot__addr{font-size:14px;color:rgba(255,255,255,.72);line-height:1.6;font-weight:500}
+.site-foot__addr strong{color:#fff;font-weight:700;display:block;margin-bottom:2px;font-size:14px}
+.site-foot__addr-item{margin-bottom:10px}
+.site-foot__bottom{max-width:1200px;margin:32px auto 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.45)}
+.site-foot__legal{display:flex;gap:18px;flex-wrap:wrap}
+.site-foot__legal a{color:rgba(255,255,255,.55);font-size:12px}
+.site-foot__legal a:hover{color:#fff}
+@media(max-width:900px){
+  .site-foot__grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:640px){
+  .site-foot{padding:48px 20px 24px}
+  .site-foot__grid{grid-template-columns:1fr;gap:32px;padding-bottom:28px}
+  .site-foot__bottom{flex-direction:column;align-items:flex-start;gap:12px}
+  .site-header__cta .btn-primary{display:none}
+  .site-phone small{display:none}
+  .form__messengers-row{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -488,6 +544,10 @@ p{color:var(--ink-2)}
         <a>О компании</a>
       </nav>
       <div class="site-header__cta">
+        <div class="header-msg">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--max" aria-label="Написать в Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
         <div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div>
         <button class="btn btn-primary">Рассчитать</button>
       </div>
@@ -796,6 +856,13 @@ p{color:var(--ink-2)}
           <div class="form__file">📎 Прикрепить фото фасада (необязательно)</div>
           <button class="btn btn-primary btn-lg" style="width:100%">Отправить заявку</button>
           <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+          <div class="form__messengers">
+            <div class="form__messengers-hint">Или напишите нам в мессенджер — ответим за 15 минут</div>
+            <div class="form__messengers-row">
+              <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="msg-btn msg-btn--tg"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg><span>Telegram</span></a>
+              <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="msg-btn msg-btn--max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg><span>Max</span></a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -815,9 +882,52 @@ p{color:var(--ink-2)}
 
   <!-- Footer (kept) -->
   <footer class="site-foot">
-    <div class="site-foot__row">
-      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
-      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    <div class="site-foot__grid">
+      <div class="site-foot__col">
+        <div class="site-foot__brand">
+          <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
+          КОЛОРИТ
+        </div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__soc">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Услуги</div>
+        <a href="#">Объёмные буквы</a>
+        <a href="#">Вывески</a>
+        <a href="#">Таблички</a>
+        <a href="#">Неон</a>
+        <a href="#">3D-печать</a>
+        <a href="#">Согласование</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Компания</div>
+        <a href="#">О компании</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Блог</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Контакты</div>
+        <div class="site-foot__addr">
+          <div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div>
+          <div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div>
+          <div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div>
+          <div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <div>© 2026 ООО «КОЛОРИТ» · ИНН 5036129222 · ОГРН 1135074003261</div>
+      <div class="site-foot__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку ПД</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Карта сайта</a>
+      </div>
     </div>
   </footer>
 </div>
@@ -858,7 +968,7 @@ p{color:var(--ink-2)}
         <a>Блог</a>
         <a>О компании</a>
       </nav>
-      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+      <div class="site-header__cta"><div class="header-msg"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--max" aria-label="Написать в Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
     </div>
   </header>
 
@@ -1058,6 +1168,13 @@ p{color:var(--ink-2)}
           <div class="form__file">📎 Прикрепить фото фасада (очень поможет!)</div>
           <button class="btn btn-primary btn-lg" style="width:100%">Получить визуализацию</button>
           <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+          <div class="form__messengers">
+            <div class="form__messengers-hint">Или напишите нам в мессенджер — ответим за 15 минут</div>
+            <div class="form__messengers-row">
+              <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="msg-btn msg-btn--tg"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg><span>Telegram</span></a>
+              <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="msg-btn msg-btn--max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg><span>Max</span></a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -1091,9 +1208,52 @@ p{color:var(--ink-2)}
   </section>
 
   <footer class="site-foot">
-    <div class="site-foot__row">
-      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
-      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    <div class="site-foot__grid">
+      <div class="site-foot__col">
+        <div class="site-foot__brand">
+          <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
+          КОЛОРИТ
+        </div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__soc">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Услуги</div>
+        <a href="#">Объёмные буквы</a>
+        <a href="#">Вывески</a>
+        <a href="#">Таблички</a>
+        <a href="#">Неон</a>
+        <a href="#">3D-печать</a>
+        <a href="#">Согласование</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Компания</div>
+        <a href="#">О компании</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Блог</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Контакты</div>
+        <div class="site-foot__addr">
+          <div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div>
+          <div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div>
+          <div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div>
+          <div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <div>© 2026 ООО «КОЛОРИТ» · ИНН 5036129222 · ОГРН 1135074003261</div>
+      <div class="site-foot__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку ПД</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Карта сайта</a>
+      </div>
     </div>
   </footer>
 </div>
@@ -1134,7 +1294,7 @@ p{color:var(--ink-2)}
         <a>Блог</a>
         <a>О компании</a>
       </nav>
-      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+      <div class="site-header__cta"><div class="header-msg"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--max" aria-label="Написать в Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
     </div>
   </header>
 
@@ -1296,6 +1456,13 @@ p{color:var(--ink-2)}
           <div class="form__file">📎 Прикрепить фото фасада</div>
           <button class="btn btn-primary btn-lg" style="width:100%">Рассчитать мою вывеску</button>
           <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+          <div class="form__messengers">
+            <div class="form__messengers-hint">Или напишите нам в мессенджер — ответим за 15 минут</div>
+            <div class="form__messengers-row">
+              <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="msg-btn msg-btn--tg"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg><span>Telegram</span></a>
+              <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="msg-btn msg-btn--max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg><span>Max</span></a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -1314,9 +1481,52 @@ p{color:var(--ink-2)}
   </section>
 
   <footer class="site-foot">
-    <div class="site-foot__row">
-      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
-      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    <div class="site-foot__grid">
+      <div class="site-foot__col">
+        <div class="site-foot__brand">
+          <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
+          КОЛОРИТ
+        </div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__soc">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Услуги</div>
+        <a href="#">Объёмные буквы</a>
+        <a href="#">Вывески</a>
+        <a href="#">Таблички</a>
+        <a href="#">Неон</a>
+        <a href="#">3D-печать</a>
+        <a href="#">Согласование</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Компания</div>
+        <a href="#">О компании</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Блог</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Контакты</div>
+        <div class="site-foot__addr">
+          <div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div>
+          <div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div>
+          <div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div>
+          <div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <div>© 2026 ООО «КОЛОРИТ» · ИНН 5036129222 · ОГРН 1135074003261</div>
+      <div class="site-foot__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку ПД</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Карта сайта</a>
+      </div>
     </div>
   </footer>
 </div>
@@ -1357,7 +1567,7 @@ p{color:var(--ink-2)}
         <a>Блог</a>
         <a>О компании</a>
       </nav>
-      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+      <div class="site-header__cta"><div class="header-msg"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--max" aria-label="Написать в Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
     </div>
   </header>
 
@@ -1514,6 +1724,13 @@ p{color:var(--ink-2)}
           <div class="form__file">📎 Прикрепить фото фасада</div>
           <button class="btn btn-primary btn-lg" style="width:100%">Проверить адрес</button>
           <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+          <div class="form__messengers">
+            <div class="form__messengers-hint">Или напишите нам в мессенджер — ответим за 15 минут</div>
+            <div class="form__messengers-row">
+              <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="msg-btn msg-btn--tg"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg><span>Telegram</span></a>
+              <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="msg-btn msg-btn--max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg><span>Max</span></a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -1532,9 +1749,52 @@ p{color:var(--ink-2)}
   </section>
 
   <footer class="site-foot">
-    <div class="site-foot__row">
-      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
-      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    <div class="site-foot__grid">
+      <div class="site-foot__col">
+        <div class="site-foot__brand">
+          <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
+          КОЛОРИТ
+        </div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__soc">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Услуги</div>
+        <a href="#">Объёмные буквы</a>
+        <a href="#">Вывески</a>
+        <a href="#">Таблички</a>
+        <a href="#">Неон</a>
+        <a href="#">3D-печать</a>
+        <a href="#">Согласование</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Компания</div>
+        <a href="#">О компании</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Блог</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Контакты</div>
+        <div class="site-foot__addr">
+          <div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div>
+          <div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div>
+          <div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div>
+          <div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <div>© 2026 ООО «КОЛОРИТ» · ИНН 5036129222 · ОГРН 1135074003261</div>
+      <div class="site-foot__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку ПД</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Карта сайта</a>
+      </div>
     </div>
   </footer>
 </div>
@@ -1575,7 +1835,7 @@ p{color:var(--ink-2)}
         <a>Блог</a>
         <a>О компании</a>
       </nav>
-      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+      <div class="site-header__cta"><div class="header-msg"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="header-msg__btn header-msg__btn--max" aria-label="Написать в Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
     </div>
   </header>
 
@@ -1739,6 +1999,13 @@ p{color:var(--ink-2)}
           <div class="form__file">📎 Прикрепить эскиз / фото</div>
           <button class="btn btn-primary btn-lg" style="width:100%">Рассчитать мой проект</button>
           <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+          <div class="form__messengers">
+            <div class="form__messengers-hint">Или напишите нам в мессенджер — ответим за 15 минут</div>
+            <div class="form__messengers-row">
+              <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="msg-btn msg-btn--tg"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg><span>Telegram</span></a>
+              <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="msg-btn msg-btn--max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg><span>Max</span></a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -1757,9 +2024,52 @@ p{color:var(--ink-2)}
   </section>
 
   <footer class="site-foot">
-    <div class="site-foot__row">
-      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
-      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    <div class="site-foot__grid">
+      <div class="site-foot__col">
+        <div class="site-foot__brand">
+          <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
+          КОЛОРИТ
+        </div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__soc">
+          <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
+          <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
+        </div>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Услуги</div>
+        <a href="#">Объёмные буквы</a>
+        <a href="#">Вывески</a>
+        <a href="#">Таблички</a>
+        <a href="#">Неон</a>
+        <a href="#">3D-печать</a>
+        <a href="#">Согласование</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Компания</div>
+        <a href="#">О компании</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Блог</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div class="site-foot__col">
+        <div class="site-foot__col-title">Контакты</div>
+        <div class="site-foot__addr">
+          <div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div>
+          <div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div>
+          <div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div>
+          <div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <div>© 2026 ООО «КОЛОРИТ» · ИНН 5036129222 · ОГРН 1135074003261</div>
+      <div class="site-foot__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку ПД</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Карта сайта</a>
+      </div>
     </div>
   </footer>
 </div>
