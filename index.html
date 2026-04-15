@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прототип · vcolorite.ru</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root{
+  /* Brand */
+  --brand-red:#DD2A1B;
+  --brand-green:#23AF94;
+  --brand-blue:#00A3D3;
+  --brand-lime:#73C400;
+
+  /* Light theme */
+  --bg:#ffffff;
+  --bg-soft:#f6f7f9;
+  --bg-dark:#0f1116;
+  --ink:#0f1116;
+  --ink-2:#2b2f38;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --accent:#DD2A1B;
+  --accent-soft:#fde8e6;
+
+  /* Prototype panel (dark) */
+  --p-bg:#08080d;
+  --p-card:#111118;
+  --p-border:#1e1e2e;
+  --p-text:#d4d4e8;
+  --p-muted:#6b6b8a;
+  --p-white:#f0f0ff;
+  --p-accent:#818cf8;
+  --p-red:#f87171;
+  --p-green:#34d399;
+  --p-orange:#fbbf24;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--p-bg);font-family:'Manrope',system-ui,sans-serif;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* =================== PROTOTYPE SHELL (dark header) =================== */
+.proto-shell{background:var(--p-bg);color:var(--p-text);border-bottom:1px solid var(--p-border);padding:18px 24px;position:sticky;top:0;z-index:100}
+.proto-shell__row{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.proto-shell__title{display:flex;flex-direction:column;gap:2px}
+.proto-shell__sub{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--p-accent)}
+.proto-shell__h{font-size:20px;font-weight:900;color:var(--p-white)}
+.proto-shell__desc{font-size:11px;color:var(--p-muted);margin-top:2px}
+.proto-nav{display:flex;gap:6px;flex-wrap:wrap}
+.proto-nav__btn{padding:9px 16px;font-size:12px;font-weight:700;background:var(--p-card);color:var(--p-muted);border:1px solid var(--p-border);border-radius:8px;transition:all .15s;font-family:inherit}
+.proto-nav__btn:hover{background:var(--p-border);color:var(--p-text)}
+.proto-nav__btn.active{background:var(--p-accent);color:#fff;border-color:var(--p-accent)}
+.proto-nav__btn span{opacity:.6;font-weight:500;margin-left:4px}
+
+/* Changes legend bar */
+.legend{background:#0b0b12;border-bottom:1px solid var(--p-border);padding:10px 24px;font-size:11px;color:var(--p-muted)}
+.legend__row{max-width:1200px;margin:0 auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.legend__row strong{color:var(--p-white);font-weight:800;letter-spacing:.06em;font-size:10px;text-transform:uppercase}
+.legend__item{display:inline-flex;align-items:center;gap:6px}
+.legend__dot{width:10px;height:10px;border-radius:2px}
+.legend__dot.new{background:var(--p-green)}
+.legend__dot.changed{background:var(--p-orange)}
+.legend__dot.kept{background:var(--p-muted)}
+
+/* =================== WEBSITE (light) =================== */
+.page{display:none;background:var(--bg)}
+.page.active{display:block}
+
+/* Site header (real site chrome for context) */
+.site-header{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 24px;position:relative}
+.site-header__row{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:.01em}
+.site-logo__mark{display:inline-flex;align-items:center;gap:2px}
+.dot-brand{width:14px;height:14px;border-radius:50%}
+.dot-brand.r{background:var(--brand-red)}
+.dot-brand.g{background:var(--brand-green)}
+.dot-brand.b{background:var(--brand-blue)}
+.dot-brand.l{background:var(--brand-lime)}
+.site-nav{display:flex;gap:26px;font-size:14px;font-weight:600;color:var(--ink-2);align-items:center}
+.site-nav > a,.site-nav > .nav-item > a{cursor:pointer;position:relative;padding:6px 0}
+.site-nav a:hover{color:var(--brand-red)}
+.nav-item{position:relative}
+.nav-item > a::after{content:"▾";font-size:10px;margin-left:5px;opacity:.6}
+.nav-item:hover > a{color:var(--brand-red)}
+.nav-drop{position:absolute;top:100%;left:-20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;box-shadow:0 20px 50px rgba(15,17,22,.14);display:none;z-index:20;min-width:520px}
+.nav-item:hover .nav-drop{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.nav-drop__col{display:flex;flex-direction:column;gap:8px;min-width:140px}
+.nav-drop__title{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.nav-drop a{display:block;padding:6px 0;color:var(--ink);font-size:13px;font-weight:600;white-space:nowrap}
+.nav-drop a:hover{color:var(--brand-red)}
+.nav-drop a b{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:1px}
+.site-header__cta{display:flex;align-items:center;gap:14px}
+.site-phone{font-size:15px;font-weight:800;color:var(--ink)}
+.site-phone small{display:block;font-size:11px;color:var(--muted);font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;transition:transform .12s,box-shadow .12s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--brand-red);color:#fff;box-shadow:0 4px 14px rgba(221,42,27,.25)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(221,42,27,.35)}
+.btn-secondary{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:var(--bg-soft)}
+.btn-lg{padding:16px 28px;font-size:15px;border-radius:12px}
+
+/* Block marker — shows "NEW/CHANGED/KEPT" for client */
+.block{position:relative;scroll-margin-top:120px}
+.block__marker{position:absolute;left:50%;top:-1px;transform:translateX(-50%);background:var(--p-green);color:#06140f;font-size:9px;font-weight:900;letter-spacing:.1em;padding:3px 10px;border-radius:0 0 6px 6px;text-transform:uppercase;z-index:2}
+.block__marker.changed{background:var(--p-orange);color:#1a1405}
+.block__marker.kept{background:#9ca3af;color:#1f2328}
+.block__comment{max-width:1200px;margin:0 auto;padding:0 24px;margin-top:-6px;margin-bottom:14px}
+.block__comment-inner{display:inline-flex;gap:8px;align-items:flex-start;background:#fff7ed;border-left:3px solid #f59e0b;color:#78350f;font-size:12px;font-weight:600;padding:8px 12px;border-radius:0 6px 6px 0;max-width:860px}
+.block__comment-inner.new{background:#ecfdf5;border-left-color:#10b981;color:#064e3b}
+.block__comment-inner strong{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;opacity:.85}
+
+.section{padding:72px 24px;position:relative}
+.section-tight{padding:56px 24px}
+.container{max-width:1200px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-red);margin-bottom:12px}
+h1,h2,h3,h4{color:var(--ink);font-weight:900;letter-spacing:-.015em;line-height:1.15}
+h1{font-size:48px}
+h2{font-size:36px}
+h3{font-size:22px}
+p{color:var(--ink-2)}
+.lead{font-size:17px;color:var(--ink-2);max-width:640px}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);padding:64px 24px 80px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-120px;top:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(221,42,27,.08),transparent 60%);pointer-events:none}
+.hero__grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative}
+.hero h1{font-size:52px;line-height:1.08}
+.hero h1 mark{background:none;color:var(--brand-red)}
+.hero .sub{margin-top:18px;font-size:18px;color:var(--ink-2);max-width:520px}
+.hero .ctas{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .sla{margin-top:16px;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.hero .sla::before{content:"";width:8px;height:8px;background:var(--brand-green);border-radius:50%;box-shadow:0 0 0 4px rgba(35,175,148,.2)}
+.hero__visual{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:#0f1116;box-shadow:0 24px 60px rgba(15,17,22,.18);border:1px solid var(--line)}
+.hero__visual .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#cbd5e1;font-size:13px;font-weight:600;background:
+  linear-gradient(135deg,#0f1116 0%,#1e2230 100%);
+}
+.hero__visual .ph em{font-style:normal;font-size:11px;color:#94a3b8;margin-top:6px;letter-spacing:.05em;text-transform:uppercase}
+.hero__visual .badge{position:absolute;top:14px;left:14px;background:#fff;color:var(--ink);font-size:11px;font-weight:800;padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.hero__visual .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand-red);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ---------- PROOF BAR ---------- */
+.proof{background:var(--ink);color:#fff;padding:28px 24px}
+.proof__row{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;align-items:center}
+.proof__item{display:flex;flex-direction:column;gap:2px;padding-left:16px;border-left:2px solid rgba(255,255,255,.15)}
+.proof__item:first-child{border-left:none;padding-left:0}
+.proof__n{font-size:28px;font-weight:900;line-height:1}
+.proof__n .u{font-size:16px;opacity:.75;font-weight:800}
+.proof__l{font-size:12px;opacity:.7;font-weight:500;margin-top:4px}
+
+/* ---------- PRODUCTS / PRICE TILES ---------- */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .18s;position:relative;overflow:hidden}
+.tile:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 16px 40px rgba(15,17,22,.08)}
+.tile__img{aspect-ratio:16/11;background:#0f1116;border-radius:10px;margin:-6px -6px 8px;position:relative;overflow:hidden}
+.tile__img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;font-weight:600;background:linear-gradient(135deg,#0f1116 0%,#1e2230 100%)}
+.tile__title{font-size:18px;font-weight:800}
+.tile__price{font-size:14px;color:var(--muted);font-weight:600}
+.tile__price b{color:var(--brand-red);font-size:20px;font-weight:900}
+.tile__desc{font-size:13px;color:var(--muted);line-height:1.5}
+.tile__link{margin-top:auto;font-size:13px;font-weight:800;color:var(--brand-red);display:inline-flex;align-items:center;gap:4px;padding-top:8px}
+.tile__link::after{content:"→";transition:transform .18s}
+.tile:hover .tile__link::after{transform:translateX(3px)}
+
+/* ---------- PORTFOLIO ---------- */
+.portfolio{background:var(--bg-soft)}
+.portfolio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.pf-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:all .18s}
+.pf-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(15,17,22,.08)}
+.pf-card__img{aspect-ratio:4/3;background:#0f1116;position:relative;overflow:hidden}
+.pf-card__img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:12px;font-weight:600;background:linear-gradient(135deg,#1e2230 0%,#0f1116 100%);flex-direction:column;gap:4px;text-align:center;padding:12px}
+.pf-card__img .ph em{font-style:normal;font-size:10px;opacity:.7;letter-spacing:.05em;text-transform:uppercase}
+.pf-card__body{padding:18px;display:flex;flex-direction:column;gap:6px}
+.pf-card__tag{font-size:10px;font-weight:800;color:var(--brand-red);text-transform:uppercase;letter-spacing:.1em}
+.pf-card__title{font-size:16px;font-weight:800}
+.pf-card__meta{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;margin-top:6px;padding-top:10px;border-top:1px solid var(--line)}
+.pf-card__meta b{color:var(--ink);font-weight:800}
+.portfolio__cta{text-align:center;margin-top:28px}
+
+/* ---------- IDENTIFY (FOR WHO) ---------- */
+.identify__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:36px}
+.id-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center;transition:all .15s;cursor:pointer}
+.id-card:hover{border-color:var(--brand-red);background:var(--accent-soft)}
+.id-card__ico{width:52px;height:52px;border-radius:12px;background:var(--accent-soft);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.id-card__t{font-size:14px;font-weight:800;margin-bottom:4px}
+.id-card__d{font-size:11px;color:var(--muted);line-height:1.4}
+
+/* ---------- PRICING (what affects) ---------- */
+.price-explain{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.pe-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px}
+.pe-card__n{font-size:20px;font-weight:900;color:var(--brand-red);min-width:32px;font-family:'JetBrains Mono',monospace}
+.pe-card__t{font-size:15px;font-weight:800;margin-bottom:4px}
+.pe-card__d{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ---------- TRUST ---------- */
+.trust{background:var(--bg-soft)}
+.trust__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.trust-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.trust-card__ico{width:46px;height:46px;border-radius:10px;background:var(--accent-soft);color:var(--brand-red);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.trust-card__t{font-size:15px;font-weight:800;margin-bottom:6px}
+.trust-card__d{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ---------- QUIZ (production) ---------- */
+.quiz{background:linear-gradient(135deg,var(--brand-red) 0%,#b4190e 100%);color:#fff;position:relative;overflow:hidden}
+.quiz::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 60%);pointer-events:none}
+.quiz::after{content:"";position:absolute;bottom:-200px;left:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 60%);pointer-events:none}
+.quiz .container{position:relative}
+.quiz h2{color:#fff;font-size:40px;max-width:780px}
+.quiz p{color:rgba(255,255,255,.88)}
+.quiz__lead{font-size:17px;max-width:640px;margin-top:14px}
+
+.qbox{margin-top:36px;background:#fff;border-radius:22px;padding:36px 40px;color:var(--ink);box-shadow:0 30px 80px rgba(15,17,22,.25);position:relative;overflow:hidden}
+
+/* Progress */
+.qprogress{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.qprogress__bar{flex:1;height:6px;background:#f1f2f5;border-radius:999px;overflow:hidden;position:relative}
+.qprogress__fill{position:absolute;inset:0;width:0%;background:linear-gradient(90deg,var(--brand-red),#ff4d3d);border-radius:999px;transition:width .45s cubic-bezier(.4,0,.2,1)}
+.qprogress__label{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.04em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.qprogress__label b{color:var(--ink);font-weight:900}
+
+/* Step wrapper — for animation */
+.qstep{animation:qfade .38s cubic-bezier(.4,0,.2,1)}
+.qstep.back{animation:qfadeBack .38s cubic-bezier(.4,0,.2,1)}
+@keyframes qfade{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes qfadeBack{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+
+.qstep__eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-red);margin-bottom:10px}
+.qstep__q{font-size:26px;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:22px;letter-spacing:-.01em}
+.qstep__sub{font-size:14px;color:var(--muted);margin-top:-14px;margin-bottom:22px;max-width:560px}
+
+/* Option grid */
+.qopts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.qopts.cols-3{grid-template-columns:repeat(3,1fr)}
+.qopt{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14px;font-weight:700;color:var(--ink-2);text-align:left;transition:all .15s cubic-bezier(.4,0,.2,1);cursor:pointer;display:flex;align-items:center;gap:12px;line-height:1.35;font-family:inherit;min-height:58px}
+.qopt:hover{border-color:var(--brand-red);color:var(--brand-red);transform:translateY(-1px);box-shadow:0 6px 18px rgba(221,42,27,.12)}
+.qopt.active{border-color:var(--brand-red);background:var(--accent-soft);color:var(--brand-red)}
+.qopt__mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);flex-shrink:0;position:relative;transition:all .15s}
+.qopt:hover .qopt__mark,.qopt.active .qopt__mark{border-color:var(--brand-red)}
+.qopt.active .qopt__mark::after{content:"";position:absolute;inset:3px;background:var(--brand-red);border-radius:50%}
+
+/* Nav row */
+.qnav{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.qback{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;padding:8px 12px;border-radius:8px;transition:all .15s;font-family:inherit}
+.qback:hover{color:var(--brand-red);background:var(--bg-soft)}
+.qback:disabled{opacity:0;pointer-events:none}
+.qhint{font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.qhint::before{content:"🔒"}
+
+/* Final form */
+.qform{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qform__row{display:flex;flex-direction:column}
+.qform__row.full{grid-column:1/-1}
+.qform__label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.qform__field{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:13px 15px;font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:border .15s;font-weight:500}
+.qform__field:focus{border-color:var(--brand-red)}
+.qform__field.error{border-color:#ef4444;background:#fef2f2}
+.qform__err{font-size:11px;color:#ef4444;margin-top:4px;font-weight:700}
+.qform__file{grid-column:1/-1;border:2px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-size:13px;cursor:pointer;transition:all .15s}
+.qform__file:hover{border-color:var(--brand-red);color:var(--brand-red);background:var(--accent-soft)}
+.qform__file.filled{border-color:var(--brand-green);color:var(--brand-green);border-style:solid}
+.qform__check{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--muted);cursor:pointer;line-height:1.5}
+.qform__check input{margin-top:2px;width:16px;height:16px;accent-color:var(--brand-red);cursor:pointer}
+.qform__check a{color:var(--brand-red);text-decoration:underline}
+.qform__submit{grid-column:1/-1;margin-top:6px}
+.qform__submit .btn{width:100%}
+.qform__microbenefit{grid-column:1/-1;font-size:13px;color:var(--ink-2);background:var(--bg-soft);padding:14px 16px;border-radius:10px;border-left:3px solid var(--brand-red);margin-bottom:6px}
+
+/* Success screen */
+.qsuccess{text-align:center;padding:24px 0}
+.qsuccess__ico{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:#ecfdf5;color:var(--brand-green);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900}
+.qsuccess__title{font-size:28px;font-weight:900;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
+.qsuccess__desc{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 22px;line-height:1.6}
+.qsuccess__summary{background:var(--bg-soft);border-radius:12px;padding:18px 22px;max-width:520px;margin:0 auto 22px;text-align:left}
+.qsuccess__summary-title{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.qsuccess__summary-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.qsuccess__summary-row:last-child{border-bottom:none}
+.qsuccess__summary-row span:first-child{color:var(--muted)}
+.qsuccess__summary-row span:last-child{color:var(--ink);font-weight:700;text-align:right}
+
+@media(max-width:760px){
+  .qbox{padding:24px 20px;border-radius:18px}
+  .quiz h2{font-size:28px}
+  .qstep__q{font-size:20px}
+  .qopts{grid-template-columns:1fr;gap:8px}
+  .qopts.cols-3{grid-template-columns:1fr}
+  .qopt{padding:14px 16px;min-height:54px}
+  .qform{grid-template-columns:1fr}
+}
+
+/* ---------- REVIEWS ---------- */
+.reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.rev-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.rev-card__stars{color:#fbbf24;font-size:14px;margin-bottom:10px;letter-spacing:2px}
+.rev-card__text{font-size:14px;color:var(--ink-2);line-height:1.6;margin-bottom:14px}
+.rev-card__who{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
+.rev-card__ava{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--brand-red)}
+.rev-card__name{font-size:13px;font-weight:800}
+.rev-card__meta{font-size:11px;color:var(--muted)}
+.reviews__cta{text-align:center;margin-top:24px;font-size:13px;color:var(--muted)}
+.reviews__cta a{color:var(--brand-red);font-weight:700;border-bottom:1px dashed var(--brand-red)}
+
+/* ---------- PROCESS (steps) ---------- */
+.process__row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:36px;position:relative}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;position:relative}
+.step__n{font-size:11px;font-weight:800;color:var(--brand-red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.step__t{font-size:16px;font-weight:800;margin-bottom:6px}
+.step__d{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:860px;margin:36px auto 0}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:18px 22px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.faq-q::after{content:"+";color:var(--brand-red);font-weight:900;font-size:22px;margin-left:16px;flex-shrink:0}
+.faq-item.open .faq-q::after{content:"−"}
+.faq-a{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.6;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* ---------- NEXT STEP (form) ---------- */
+.next{background:var(--ink);color:#fff}
+.next h2{color:#fff}
+.next p{color:rgba(255,255,255,.75)}
+.next__grid{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.next__points{display:flex;flex-direction:column;gap:14px}
+.next__point{display:flex;gap:12px;font-size:14px}
+.next__point::before{content:"✓";color:var(--brand-green);font-weight:900;font-size:16px;line-height:1.4;flex-shrink:0}
+.form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:28px;backdrop-filter:blur(10px)}
+.form__label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;display:block}
+.form__field{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:14px 16px;color:#fff;font-family:inherit;font-size:14px;margin-bottom:16px;outline:none;transition:border .15s}
+.form__field:focus{border-color:var(--brand-red)}
+.form__field::placeholder{color:rgba(255,255,255,.35)}
+.form__file{border:2px dashed rgba(255,255,255,.2);border-radius:10px;padding:20px;text-align:center;color:rgba(255,255,255,.5);font-size:13px;margin-bottom:16px;cursor:pointer;transition:all .15s}
+.form__file:hover{border-color:var(--brand-red);color:#fff}
+.form__foot{font-size:11px;color:rgba(255,255,255,.45);margin-top:10px;text-align:center}
+
+/* ---------- CROSS SELL ---------- */
+.cross{background:#fff}
+.cross__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.cross-card{border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:16px;align-items:center;transition:all .15s}
+.cross-card:hover{border-color:var(--ink);background:var(--bg-soft)}
+.cross-card__ico{width:52px;height:52px;border-radius:12px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.cross-card__t{font-size:14px;font-weight:800}
+.cross-card__d{font-size:12px;color:var(--muted)}
+
+/* ---------- TECH (производственные возможности) ---------- */
+.tech{background:linear-gradient(135deg,#0f1116 0%,#1a1f2e 100%);color:#fff}
+.tech .eyebrow{color:var(--brand-lime)}
+.tech h2{color:#fff}
+.tech .lead{color:rgba(255,255,255,.7)}
+.tech__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.tech-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:all .18s;position:relative;overflow:hidden}
+.tech-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.06);border-color:var(--brand-lime)}
+.tech-card__ico{width:48px;height:48px;border-radius:12px;background:rgba(115,196,0,.15);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px}
+.tech-card__title{font-size:17px;font-weight:800;color:#fff}
+.tech-card__star{position:absolute;top:18px;right:18px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-lime);background:rgba(115,196,0,.12);padding:4px 8px;border-radius:20px}
+.tech-card__desc{font-size:13px;color:rgba(255,255,255,.65);line-height:1.55;flex:1}
+.tech-card__price{font-size:12px;color:rgba(255,255,255,.55);padding-top:12px;margin-top:6px;border-top:1px solid rgba(255,255,255,.08)}
+.tech-card__price b{color:#fff;font-size:14px;font-weight:800}
+.tech-card__link{font-size:12px;font-weight:800;color:var(--brand-lime);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* ---------- BLOG LATEST ---------- */
+.blog-latest{background:var(--bg-soft)}
+.blog-latest__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.bl-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all .18s}
+.bl-card:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(15,17,22,.08)}
+.bl-card__img{aspect-ratio:16/10;background:#0f1116;position:relative;overflow:hidden}
+.bl-card__img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;font-weight:600;background:linear-gradient(135deg,#1e2230 0%,#0f1116 100%);flex-direction:column;gap:3px;text-align:center;padding:10px}
+.bl-card__body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.bl-card__tag{font-size:10px;font-weight:800;color:var(--brand-green);text-transform:uppercase;letter-spacing:.1em}
+.bl-card__title{font-size:14px;font-weight:800;line-height:1.4;color:var(--ink)}
+.bl-card__meta{font-size:12px;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.blog-latest__cta{text-align:center;margin-top:28px}
+
+/* ---------- FOOTER (light simple) ---------- */
+.site-foot{background:var(--ink);color:rgba(255,255,255,.6);padding:32px 24px;font-size:13px}
+.site-foot__row{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero__grid{grid-template-columns:1fr;gap:32px}
+  .hero h1{font-size:40px}
+  .proof__row{grid-template-columns:repeat(3,1fr);gap:14px}
+  .tiles,.portfolio__grid,.trust__grid,.identify__grid,.reviews__grid,.process__row,.cross__grid,.blog-latest__grid,.tech__grid{grid-template-columns:repeat(2,1fr)}
+  .next__grid{grid-template-columns:1fr}
+  .site-nav{display:none}
+  .quiz__opts{grid-template-columns:1fr}
+  .price-explain{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .tiles,.portfolio__grid,.trust__grid,.identify__grid,.reviews__grid,.process__row,.cross__grid,.blog-latest__grid,.tech__grid{grid-template-columns:1fr}
+  .proof__row{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:32px!important}
+  h2{font-size:26px}
+  .section{padding:48px 20px}
+  .hero{padding:40px 20px 56px}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== PROTOTYPE SHELL ==================== -->
+<div class="proto-shell">
+  <div class="proto-shell__row">
+    <div class="proto-shell__title">
+      <div class="proto-shell__sub">Новая версия сайта</div>
+      <div class="proto-shell__h">vcolorite.ru</div>
+      <div class="proto-shell__desc">Интерактивный прототип · 4 типовые страницы</div>
+    </div>
+    <nav class="proto-nav" id="proto-nav">
+      <button class="proto-nav__btn active" data-page="home">Главная <span>/</span></button>
+      <button class="proto-nav__btn" data-page="letters">Объемные буквы <span>/obemnyie-bukvyi</span></button>
+      <button class="proto-nav__btn" data-page="signs">Вывески <span>/vyiveski</span></button>
+      <button class="proto-nav__btn" data-page="coord">Согласование <span>/soglasovanie</span></button>
+      <button class="proto-nav__btn" data-page="print3d">3D-печать <span>/3d-pechat</span></button>
+    </nav>
+  </div>
+</div>
+<div class="legend">
+  <div class="legend__row">
+    <strong>Маркировка блоков:</strong>
+    <span class="legend__item"><span class="legend__dot new"></span>NEW — новый блок</span>
+    <span class="legend__item"><span class="legend__dot changed"></span>CHANGED — изменён</span>
+    <span class="legend__item"><span class="legend__dot kept"></span>KEPT — оставлен</span>
+    <span style="margin-left:auto;opacity:.6">Переключайте вкладки выше, чтобы увидеть каждую страницу</span>
+  </div>
+</div>
+
+<!-- =================================================================== -->
+<!-- ==================== PAGE: HOME / ГЛАВНАЯ ========================= -->
+<!-- =================================================================== -->
+<div class="page active" id="page-home">
+
+  <!-- Site header (kept) -->
+  <header class="site-header">
+    <div class="site-header__row">
+      <a href="#" class="site-logo">
+        <span class="site-logo__mark">
+          <span class="dot-brand r"></span>
+          <span class="dot-brand g"></span>
+          <span class="dot-brand b"></span>
+          <span class="dot-brand l"></span>
+        </span>
+        КОЛОРИТ
+      </a>
+      <nav class="site-nav">
+        <div class="nav-item">
+          <a>Услуги</a>
+          <div class="nav-drop">
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Наружная реклама</div>
+              <a>Вывески<b>световые, несветовые</b></a>
+              <a>Объёмные буквы<b>с подсветкой и без</b></a>
+              <a>Неоновые вывески<b>LED-неон</b></a>
+              <a>Лайтбоксы<b>световые короба</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Интерьер · навигация</div>
+              <a>Таблички<b>офисные, режим работы</b></a>
+              <a>Наклейки<b>оракал, витрины</b></a>
+              <a>Гибка пластика<b>по чертежу</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Печать и производство</div>
+              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>УФ-печать<b>на любых материалах</b></a>
+            </div>
+          </div>
+        </div>
+        <a>Портфолио</a>
+        <a>Согласование</a>
+        <a>Блог</a>
+        <a>О компании</a>
+      </nav>
+      <div class="site-header__cta">
+        <div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div>
+        <button class="btn btn-primary">Рассчитать</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO - CHANGED -->
+  <section class="block hero" id="home-hero">
+    <div class="block__marker changed">Изменён · HERO</div>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Подольск · Москва и МО</div>
+        <h1>Вывески и наружная реклама<br><mark>под ключ</mark> — от замера до монтажа</h1>
+        <p class="sub">Собственное производство → дизайн → согласование → монтаж. Без посредников. Гарантия 2 года на всю конструкцию.</p>
+        <div class="ctas">
+          <a class="btn btn-primary btn-lg" href="#quiz">Рассчитать стоимость за 15 минут</a>
+          <a class="btn btn-ghost btn-lg" href="#portfolio">Посмотреть портфолио</a>
+        </div>
+        <div class="sla">Ответим на заявку в течение 15 минут в рабочее время</div>
+      </div>
+      <div class="hero__visual">
+        <div class="badge">Live · реальный проект</div>
+        <div class="ph">
+          📷<br>ФОТО: <em>работа КОЛОРИТА на фасаде</em>
+          <em style="margin-top:12px;opacity:.5">Для верстальщика: слайдер 4–5 проектов, автопрокрутка</em>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Убрали сезонную акцию «−10% на монтаж». Новый HERO отвечает на вопрос «кто вы и почему вам можно доверять» за 2 секунды. CTA ведёт не на «макет», а на расчёт — конкретный, измеримый шаг.
+    </div>
+  </div>
+
+  <!-- PROOF - NEW -->
+  <section class="block proof" id="home-proof">
+    <div class="block__marker">Новый · PROOF BAR</div>
+    <div class="proof__row">
+      <div class="proof__item"><div class="proof__n">19<span class="u"> лет</span></div><div class="proof__l">на рынке наружной рекламы</div></div>
+      <div class="proof__item"><div class="proof__n">500<span class="u">+</span></div><div class="proof__l">реализованных проектов</div></div>
+      <div class="proof__item"><div class="proof__n">165<span class="u">+</span></div><div class="proof__l">отзывов на Яндекс.Картах</div></div>
+      <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на конструкцию</div></div>
+      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация и замер</div></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS / PRICE TILES - CHANGED (4 крупных плитки вместо 9) -->
+  <section class="block section" id="home-products">
+    <div class="block__marker changed">Изменён · Иерархия продуктов</div>
+    <div class="container">
+      <div class="eyebrow">Что мы делаем</div>
+      <h2>4 главных продукта — с ценами и фото</h2>
+      <p class="lead">Отдельно ниже — производственные технологии, которые есть у нас в цеху.</p>
+      <div class="tiles">
+        <a class="tile">
+          <div class="tile__img"><div class="ph">📷 Вывеска на фасаде</div></div>
+          <div class="tile__title">Вывески</div>
+          <div class="tile__price">от <b>20 000 ₽</b></div>
+          <div class="tile__desc">Световые, несветовые, панель-кронштейны. Дизайн + монтаж за 5 дней.</div>
+          <span class="tile__link">Подробнее</span>
+        </a>
+        <a class="tile">
+          <div class="tile__img"><div class="ph">📷 Объемные буквы</div></div>
+          <div class="tile__title">Объемные буквы</div>
+          <div class="tile__price">от <b>15 000 ₽</b></div>
+          <div class="tile__desc">Светящиеся буквы и логотипы. Визуализация на вашем фасаде до старта работ.</div>
+          <span class="tile__link">Подробнее</span>
+        </a>
+        <a class="tile">
+          <div class="tile__img"><div class="ph">📷 Неоновая вывеска</div></div>
+          <div class="tile__title">Неон</div>
+          <div class="tile__price">от <b>12 000 ₽</b></div>
+          <div class="tile__desc">Гибкий LED-неон. Для интерьеров и фасадов.</div>
+          <span class="tile__link">Подробнее</span>
+        </a>
+        <a class="tile">
+          <div class="tile__img"><div class="ph">📷 Табличка</div></div>
+          <div class="tile__title">Таблички</div>
+          <div class="tile__price">от <b>3 500 ₽</b></div>
+          <div class="tile__desc">Офисные, информационные, навигационные. Срочно — за 1 день.</div>
+          <span class="tile__link">Подробнее</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Было 9 одинаковых плиток в одном ряду — технологии смешаны с продуктами, клиент не понимает разницу. Стало: 4 главных продукта крупно с ценами «от». Производственные технологии — ниже, отдельным блоком, как преимущество (а не как доп-услуги).
+    </div>
+  </div>
+
+  <!-- TECH - NEW (производственные возможности) -->
+  <section class="block tech section" id="home-tech">
+    <div class="block__marker">Новый · TECH (производство)</div>
+    <div class="container">
+      <div class="eyebrow">Собственное производство</div>
+      <h2>Всё делаем в своём цеху, без посредников</h2>
+      <p class="lead">Это наше ключевое преимущество: не заказываем печать и резку у подрядчиков. Контроль качества и сроков на каждой детали — и именно поэтому мы можем делать нестандартные вещи, когда другие отказывают.</p>
+      <div class="tech__grid">
+        <a class="tech-card">
+          <div class="tech-card__star">Ключевое</div>
+          <div class="tech-card__ico">🖨</div>
+          <div class="tech-card__title">3D-печать</div>
+          <div class="tech-card__desc">Фирменный принтер в цеху. Печатаем сложные формы, единичные тиражи и нестандартные кегли — всё, что невозможно или дорого на фрезере.</div>
+          <div class="tech-card__price">от <b>4 500 ₽</b> · прототип за 24 ч</div>
+          <span class="tech-card__link">Подробнее →</span>
+        </a>
+        <a class="tech-card">
+          <div class="tech-card__ico">🎨</div>
+          <div class="tech-card__title">УФ-печать</div>
+          <div class="tech-card__desc">Прямая печать на композите, акриле, стекле, ПВХ. Устойчивая к улице и ультрафиолету. Для вывесок, табличек и интерьеров.</div>
+          <div class="tech-card__price">от <b>2 000 ₽/м²</b> · печать за 1 день</div>
+          <span class="tech-card__link">Подробнее →</span>
+        </a>
+        <a class="tech-card">
+          <div class="tech-card__ico">📐</div>
+          <div class="tech-card__title">Гибка пластика</div>
+          <div class="tech-card__desc">Точная гибка акрила и ПВХ по чертежу. Нестандартные буквы, короба, объёмные элементы без швов и стыков.</div>
+          <div class="tech-card__price">от <b>1 200 ₽</b> · от эскиза до детали 2 дня</div>
+          <span class="tech-card__link">Подробнее →</span>
+        </a>
+        <a class="tech-card">
+          <div class="tech-card__ico">⚡</div>
+          <div class="tech-card__title">Лазерная резка</div>
+          <div class="tech-card__desc">Раскрой листовых материалов с точностью до 0,1 мм. Композит, акрил, фанера, металл — для корпусов букв и декора.</div>
+          <div class="tech-card__price">от <b>800 ₽</b> · резка за 1 день</div>
+          <span class="tech-card__link">Подробнее →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Это не просто список «что ещё мы умеем» — это продающий блок про собственное производство. Тёмный фон выделяет его на странице и противопоставляет продуктовому блоку: «вот что вы получаете» (продукты) vs «вот как мы это делаем и почему берёмся за сложное» (технологии). Карточка 3D-печати помечена как ключевая — это преимущество, которое нужно подчеркнуть отдельно (у клиента есть свой принтер, мало кто в регионе делает буквы на 3D).
+    </div>
+  </div>
+
+  <!-- PORTFOLIO - NEW -->
+  <section class="block portfolio section" id="portfolio">
+    <div class="block__marker">Новый · PORTFOLIO</div>
+    <div class="container">
+      <div class="eyebrow">Портфолио</div>
+      <h2>Наши работы на фасадах клиентов</h2>
+      <p class="lead">Не рендеры, а реальные фото после монтажа. Клик по проекту — полная история с ценой и сроком.</p>
+      <div class="portfolio__grid">
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Вывеска кафе<br><em>Подольск, 2025</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Кафе · Световая вывеска</div><div class="pf-card__title">Кафе «Пример» — световая вывеска 3.8 м</div><div class="pf-card__meta"><span>Срок: 6 дней</span><b>от 48 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Буквы на магазине<br><em>Москва, 2025</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Магазин · Объемные буквы</div><div class="pf-card__title">Магазин одежды — буквы с контражуром</div><div class="pf-card__meta"><span>Срок: 7 дней</span><b>от 62 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Неон в салоне<br><em>Москва, 2024</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон красоты · Неон</div><div class="pf-card__title">Салон красоты — интерьерный неон</div><div class="pf-card__meta"><span>Срок: 4 дня</span><b>от 28 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Панель-кронштейн<br><em>Подольск, 2025</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Аптека · Панель-кронштейн</div><div class="pf-card__title">Аптека — двусторонняя панель</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>от 22 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Лайтбокс ТЦ<br><em>МО, 2024</em></div></div><div class="pf-card__body"><div class="pf-card__tag">ТЦ · Лайтбокс</div><div class="pf-card__title">Магазин в ТЦ — лайтбокс над входом</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>от 35 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Комплекс вывесок<br><em>Подольск, 2025</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Автосервис · Комплекс</div><div class="pf-card__title">Автосервис — вывеска + буквы + таблички</div><div class="pf-card__meta"><span>Срок: 10 дней</span><b>от 120 000 ₽</b></div></div></div>
+      </div>
+      <div class="portfolio__cta">
+        <button class="btn btn-secondary btn-lg">Все 500+ проектов в портфолио</button>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — главный драйвер конверсии</strong>
+      Рекламное производство продаётся глазами. На главной не было ни одного фото реальной работы. Добавляем 6 плиток + переход на страницу со всеми 500+ проектами. Для фото нужна съёмка (см. контент-задачи в ТЗ).
+    </div>
+  </div>
+
+  <!-- TRUST - NEW -->
+  <section class="block trust section" id="home-trust">
+    <div class="block__marker">Новый · TRUST</div>
+    <div class="container">
+      <div class="eyebrow">Почему выбирают нас</div>
+      <h2>4 причины работать с КОЛОРИТОМ</h2>
+      <div class="trust__grid">
+        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Своё производство</div><div class="trust-card__d">Цех в Подольске. Без субподрядчиков — поэтому сроки прогнозируемы и цена ниже.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Поможем с согласованием</div><div class="trust-card__d">Знаем требования администрации Подольска и МО. Согласуем за 7–14 дней или вернём деньги.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">По конструкции, краске и электронике. Если что-то вышло из строя — приедем и починим.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🎨</div><div class="trust-card__t">Визуализация бесплатно</div><div class="trust-card__d">Покажем, как будет выглядеть на вашем фасаде до начала работ. Вы не покупаете «на слово».</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ - NEW (production-ready, branching) -->
+  <section class="block quiz section" id="quiz">
+    <div class="block__marker">Новый · QUIZ</div>
+    <div class="container">
+      <div class="eyebrow" style="color:#fff;opacity:.75">Не знаете, что вам подходит?</div>
+      <h2>Подберём подходящий вариант и пришлём ориентир по стоимости</h2>
+      <p class="qlead quiz__lead">Ответьте на короткие вопросы — учтём тип изделия, размер, монтаж, сроки и сразу поймём, что вам предложить.</p>
+
+      <div class="qbox" data-quiz><!-- mounted by mountQuiz() --></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS - NEW -->
+  <section class="block section" id="home-reviews">
+    <div class="block__marker">Новый · PROOF (Отзывы)</div>
+    <div class="container">
+      <div class="eyebrow">Отзывы</div>
+      <h2>165+ отзывов на Яндекс.Картах</h2>
+      <p class="lead">Реальные отзывы клиентов — с фото, датой и рейтингом. Без фильтра.</p>
+      <div class="reviews__grid">
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Заказывали вывеску для нового кафе в Подольске. Сделали за 6 дней, помогли с согласованием в администрации. Висит уже год — как новая.»</div><div class="rev-card__who"><div class="rev-card__ava">АМ</div><div><div class="rev-card__name">Алексей М.</div><div class="rev-card__meta">Кафе «Уют» · Яндекс.Карты</div></div></div></div>
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Нужны были объемные буквы для магазина. До старта показали визуализацию на фото нашего фасада — очень удобно, не пришлось гадать.»</div><div class="rev-card__who"><div class="rev-card__ava">ЕВ</div><div><div class="rev-card__name">Елена В.</div><div class="rev-card__meta">Магазин одежды · Яндекс.Карты</div></div></div></div>
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Спасибо за оперативность. Согласовали, изготовили и смонтировали за 12 дней. Старую вывеску демонтировали тоже они. Без нервов.»</div><div class="rev-card__who"><div class="rev-card__ava">ДК</div><div><div class="rev-card__name">Дмитрий К.</div><div class="rev-card__meta">Автосервис · Яндекс.Карты</div></div></div></div>
+      </div>
+      <div class="reviews__cta">
+        <a href="#">Читать все 165+ отзывов на Яндекс.Картах →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ - NEW -->
+  <section class="block section" style="background:var(--bg-soft)" id="home-faq">
+    <div class="block__marker">Новый · FAQ</div>
+    <div class="container">
+      <div class="eyebrow">Частые вопросы</div>
+      <h2 style="text-align:center">Отвечаем на 5 главных вопросов</h2>
+      <div class="faq">
+        <div class="faq-item open"><div class="faq-q">Сколько стоит вывеска / объемные буквы?</div><div class="faq-a">Цена зависит от размера, материала, подсветки и сложности монтажа. Ориентиры: вывеска — от 20 000 ₽, объемные буквы — от 15 000 ₽. Точный расчёт — после короткого брифа (15 минут).</div></div>
+        <div class="faq-item"><div class="faq-q">Сколько занимает изготовление?</div><div class="faq-a">Простая вывеска — 3–5 дней. Объемные буквы с подсветкой — 5–7 дней. Комплексный проект с согласованием — 2–3 недели.</div></div>
+        <div class="faq-item"><div class="faq-q">Вы помогаете с согласованием в администрации?</div><div class="faq-a">Да. Знаем требования Подольска и МО. Согласуем в среднем за 7–14 дней. Если не согласуем — вернём предоплату за этот этап.</div></div>
+        <div class="faq-item"><div class="faq-q">Какая гарантия?</div><div class="faq-a">2 года на всю конструкцию — краску, электронику, крепёж. Если что-то вышло из строя — бесплатный выезд и ремонт.</div></div>
+        <div class="faq-item"><div class="faq-q">Можно увидеть, как будет выглядеть до заказа?</div><div class="faq-a">Да. Присылаете фото своего фасада — мы делаем визуализацию в тот же день. Бесплатно и без обязательств.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG LATEST - NEW -->
+  <section class="block blog-latest section" id="home-blog">
+    <div class="block__marker">Новый · BLOG (последние статьи)</div>
+    <div class="container">
+      <div class="eyebrow">Из блога</div>
+      <h2>Полезные статьи из нашей практики</h2>
+      <p class="lead">110+ статей про вывески, материалы, согласование и 3D-печать.</p>
+      <div class="blog-latest__grid">
+        <a class="bl-card">
+          <div class="bl-card__img"><div class="ph">📷 Обложка<br><em>буквы на фасаде</em></div></div>
+          <div class="bl-card__body">
+            <div class="bl-card__tag">Объёмные буквы</div>
+            <div class="bl-card__title">Как выбрать подсветку: контражур, лицевая или комбинированная</div>
+            <div class="bl-card__meta">5 мин · 12 апреля 2026</div>
+          </div>
+        </a>
+        <a class="bl-card">
+          <div class="bl-card__img"><div class="ph">📷 Обложка<br><em>3D-принтер в цеху</em></div></div>
+          <div class="bl-card__body">
+            <div class="bl-card__tag">3D-печать</div>
+            <div class="bl-card__title">Почему буквы на 3D-принтере дешевле и точнее, чем на фрезере</div>
+            <div class="bl-card__meta">7 мин · 28 марта 2026</div>
+          </div>
+        </a>
+        <a class="bl-card">
+          <div class="bl-card__img"><div class="ph">📷 Обложка<br><em>согласование</em></div></div>
+          <div class="bl-card__body">
+            <div class="bl-card__tag">Согласование</div>
+            <div class="bl-card__title">Штраф до 1 млн за самовольную вывеску: реальные случаи в Подольске</div>
+            <div class="bl-card__meta">6 мин · 15 марта 2026</div>
+          </div>
+        </a>
+        <a class="bl-card">
+          <div class="bl-card__img"><div class="ph">📷 Обложка<br><em>материалы</em></div></div>
+          <div class="bl-card__body">
+            <div class="bl-card__tag">Материалы</div>
+            <div class="bl-card__title">Композит vs акрил: что выбрать для вывески на улице</div>
+            <div class="bl-card__meta">4 мин · 2 марта 2026</div>
+          </div>
+        </a>
+      </div>
+      <div class="blog-latest__cta">
+        <a class="btn btn-secondary btn-lg">Все 110+ статей в блоге →</a>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Блог из 110 статей — сильный SEO-актив, но с главной на него нет витрины. Этот блок показывает 4 последних (или самых популярных) статей и ведёт живой трафик с главной в блог. Автоматизируется: если блог на CMS — через API/RSS, если статика — обновляется вручную при релизе.
+    </div>
+  </div>
+
+  <!-- NEXT (form) - NEW -->
+  <section class="block next section" id="home-next">
+    <div class="block__marker">Новый · NEXT STEP</div>
+    <div class="container">
+      <div class="next__grid">
+        <div>
+          <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
+          <h2>Опишите задачу — пришлём предложение за 15 минут</h2>
+          <p style="margin-top:12px">Не нужно знать материалы и технологии. Достаточно фото фасада и пары слов о вашем бизнесе.</p>
+          <div class="next__points" style="margin-top:28px">
+            <div class="next__point">Пришлём 2–3 варианта с ценами «от» и сроками</div>
+            <div class="next__point">Сделаем визуализацию на вашем фасаде — бесплатно</div>
+            <div class="next__point">Расскажем, нужно ли согласование и сколько оно займёт</div>
+            <div class="next__point">Ответим в течение 15 минут в рабочее время</div>
+          </div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <label class="form__label">Как к вам обращаться</label>
+          <input class="form__field" placeholder="Имя">
+          <label class="form__label">Телефон или Telegram</label>
+          <input class="form__field" placeholder="+7 (___) ___-__-__">
+          <label class="form__label">Что нужно изготовить</label>
+          <textarea class="form__field" rows="3" placeholder="Например: световая вывеска для кафе 3 метра"></textarea>
+          <div class="form__file">📎 Прикрепить фото фасада (необязательно)</div>
+          <button class="btn btn-primary btn-lg" style="width:100%">Отправить заявку</button>
+          <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (kept) -->
+  <footer class="site-foot">
+    <div class="site-foot__row">
+      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
+      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ================ PAGE: LETTERS / ОБЪЕМНЫЕ БУКВЫ =================== -->
+<!-- =================================================================== -->
+<div class="page" id="page-letters">
+  <header class="site-header">
+    <div class="site-header__row">
+      <a href="#" class="site-logo"><span class="site-logo__mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</a>
+      <nav class="site-nav">
+        <div class="nav-item">
+          <a>Услуги</a>
+          <div class="nav-drop">
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Наружная реклама</div>
+              <a>Вывески<b>световые, несветовые</b></a>
+              <a>Объёмные буквы<b>с подсветкой и без</b></a>
+              <a>Неоновые вывески<b>LED-неон</b></a>
+              <a>Лайтбоксы<b>световые короба</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Интерьер · навигация</div>
+              <a>Таблички<b>офисные, режим работы</b></a>
+              <a>Наклейки<b>оракал, витрины</b></a>
+              <a>Гибка пластика<b>по чертежу</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Печать и производство</div>
+              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>УФ-печать<b>на любых материалах</b></a>
+            </div>
+          </div>
+        </div>
+        <a>Портфолио</a>
+        <a>Согласование</a>
+        <a>Блог</a>
+        <a>О компании</a>
+      </nav>
+      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+    </div>
+  </header>
+
+  <!-- HERO - CHANGED -->
+  <section class="block hero">
+    <div class="block__marker changed">Изменён · HERO</div>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Объемные буквы для бизнеса</div>
+        <h1>Объемные буквы<br><mark>под ключ за 5–7 дней</mark></h1>
+        <p class="sub">Покажем, как будет выглядеть на вашем фасаде <b>до начала работ</b>. Собственное производство, гарантия 2 года.</p>
+        <div class="ctas">
+          <button class="btn btn-primary btn-lg">Получить визуализацию на моём фасаде</button>
+          <button class="btn btn-ghost btn-lg">Смотреть работы</button>
+        </div>
+        <div class="sla">от 15 000 ₽ · Замер + дизайн + визуализация — бесплатно</div>
+      </div>
+      <div class="hero__visual">
+        <div class="badge">Live · монтаж на фасаде</div>
+        <div class="ph">📷<br>ФОТО/ВИДЕО: <em>буквы на фасаде, день/ночь</em><em style="margin-top:12px;opacity:.5">Верстальщику: слайдер или зацикленное видео 6–8 сек</em></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Было: «заметно днём и ярко ночью» — общий оффер. Стало: конкретика — срок (5–7 дней), бесплатная визуализация как главная выгода, цена «от». CTA ведёт на то, что клиент реально хочет увидеть.
+    </div>
+  </div>
+
+  <!-- PROOF - NEW -->
+  <section class="block proof">
+    <div class="block__marker">Новый · PROOF BAR</div>
+    <div class="proof__row">
+      <div class="proof__item"><div class="proof__n">5-7<span class="u"> дней</span></div><div class="proof__l">срок изготовления</div></div>
+      <div class="proof__item"><div class="proof__n">15<span class="u"> 000₽</span></div><div class="proof__l">стартовая цена комплекта</div></div>
+      <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на конструкцию</div></div>
+      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация на вашем фасаде</div></div>
+      <div class="proof__item"><div class="proof__n">7-14<span class="u"> дн</span></div><div class="proof__l">согласование в администрации</div></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO (главный блок) - CHANGED (усилен) -->
+  <section class="block portfolio section">
+    <div class="block__marker changed">Изменён · PORTFOLIO + PRICING</div>
+    <div class="container">
+      <div class="eyebrow">Реальные работы</div>
+      <h2>Наши буквы на фасадах клиентов</h2>
+      <p class="lead">Не студийные рендеры — фото после монтажа. Кликните на проект, чтобы увидеть историю: что было до, как выбирали, сколько стоило.</p>
+      <div class="portfolio__grid">
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 На фасаде кафе<br><em>День / вечер</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Кафе · Молочный акрил</div><div class="pf-card__title">Кафе «Пример» — буквы с контражуром, 1.8 м высота</div><div class="pf-card__meta"><span>6 дней · Подольск</span><b>48 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 На магазине<br><em>Фронт + ночь</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Магазин · Композит + акрил</div><div class="pf-card__title">Магазин одежды — буквы с лицевой подсветкой</div><div class="pf-card__meta"><span>7 дней · Москва</span><b>62 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Автосервис<br><em>Большой размер</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Автосервис · Оцинковка</div><div class="pf-card__title">Автосервис — крупные буквы 2.5 м</div><div class="pf-card__meta"><span>10 дней · МО</span><b>135 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Салон красоты<br><em>Интерьер</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон · Неон + акрил</div><div class="pf-card__title">Салон красоты — буквы с неоновым контуром</div><div class="pf-card__meta"><span>5 дней · Москва</span><b>28 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Офис-центр<br><em>Серые буквы</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Без подсветки</div><div class="pf-card__title">Бизнес-центр — буквы из алюминия</div><div class="pf-card__meta"><span>5 дней · Москва</span><b>42 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Торговый центр<br><em>Комплекс</em></div></div><div class="pf-card__body"><div class="pf-card__tag">ТЦ · Крупный формат</div><div class="pf-card__title">Магазин в ТЦ — буквы 1.5 м + логотип</div><div class="pf-card__meta"><span>8 дней · Подольск</span><b>78 000 ₽</b></div></div></div>
+      </div>
+      <div class="portfolio__cta">
+        <a class="btn btn-primary btn-lg" href="#quiz-letters">Хочу так же — рассчитать мой проект</a>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Блок «Наши цены» на текущем сайте — хороший, но фото студийные. Просим снять те же работы на фасадах клиентов (день + вечер). CTA «Хочу так же» — ключевой психологический триггер, ведёт на адаптированный квиз ниже.
+    </div>
+  </div>
+
+  <!-- QUIZ (адаптирован под «Объёмные буквы») - NEW -->
+  <section class="block quiz section" id="quiz-letters">
+    <div class="block__marker">Новый · QUIZ (по буквам)</div>
+    <div class="container">
+      <div class="eyebrow" style="color:#fff;opacity:.75">Адаптировано под объёмные буквы</div>
+      <h2>Рассчитаем ваш комплект букв — 6 коротких вопросов</h2>
+      <p class="qlead quiz__lead">Учтём место монтажа, тип свечения, размер и сроки. Пришлём ориентир по стоимости и визуализацию на фото вашего фасада.</p>
+      <div class="qbox" data-quiz data-quiz-service="Объёмные буквы" data-quiz-branch="sign"><!-- locked to letters --></div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Комментарий</strong>
+      Это тот же движок квиза, что и на главной — но первый экран «выбор услуги» пропущен: мы и так знаем, что клиент на странице «Объёмные буквы». Остаются только 6 релевантных шагов + контакты. Так лид попадает к менеджеру с полным брифом именно по буквам.
+    </div>
+  </div>
+
+  <!-- IDENTIFY - NEW -->
+  <section class="block section">
+    <div class="block__marker">Новый · IDENTIFY (Для кого)</div>
+    <div class="container">
+      <div class="eyebrow">Для кого</div>
+      <h2>Делаем буквы для разного бизнеса</h2>
+      <p class="lead">Найдите себя — покажем примеры именно для вашей ниши и подскажем, что обычно выбирают.</p>
+      <div class="identify__grid">
+        <div class="id-card"><div class="id-card__ico">☕</div><div class="id-card__t">Кафе, бары</div><div class="id-card__d">Акрил с подсветкой, 1–2 м</div></div>
+        <div class="id-card"><div class="id-card__ico">👗</div><div class="id-card__t">Магазины</div><div class="id-card__d">Композит, до 3 м высота</div></div>
+        <div class="id-card"><div class="id-card__ico">💅</div><div class="id-card__t">Салоны, SPA</div><div class="id-card__d">Интерьерные с неоном</div></div>
+        <div class="id-card"><div class="id-card__ico">🏢</div><div class="id-card__t">Офисы</div><div class="id-card__d">Алюминий без подсветки</div></div>
+        <div class="id-card"><div class="id-card__ico">🏬</div><div class="id-card__t">ТЦ, ТРК</div><div class="id-card__d">Крупный формат от 2 м</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE - CHANGED (вместо каталога материалов) -->
+  <section class="block section" style="background:var(--bg-soft)">
+    <div class="block__marker changed">Изменён · Каталог материалов → Что влияет на цену</div>
+    <div class="container">
+      <div class="eyebrow">Ценообразование</div>
+      <h2>Что влияет на стоимость</h2>
+      <p class="lead">Объясняем без технических терминов — чтобы вы понимали, почему один проект стоит 15 000 ₽, а другой 120 000 ₽.</p>
+      <div class="price-explain">
+        <div class="pe-card"><div class="pe-card__n">01</div><div><div class="pe-card__t">Размер</div><div class="pe-card__d">Буквы высотой 50 см и 2.5 м — разные технологии и расход материалов. Чем крупнее, тем дороже.</div></div></div>
+        <div class="pe-card"><div class="pe-card__n">02</div><div><div class="pe-card__t">Подсветка</div><div class="pe-card__d">Без подсветки — дешевле. Контражур (сзади) — самый популярный. Лицевая + контражур — самый яркий, дороже.</div></div></div>
+        <div class="pe-card"><div class="pe-card__n">03</div><div><div class="pe-card__t">Материал</div><div class="pe-card__d">Композит — базовый. Молочный акрил — для ровного свечения. Алюминий — премиум, для офисов.</div></div></div>
+        <div class="pe-card"><div class="pe-card__n">04</div><div><div class="pe-card__t">Монтаж</div><div class="pe-card__d">Первый этаж — дёшево. Фасад высотой 4+ метра — нужна вышка. Частник или ТЦ — разные регламенты.</div></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Вместо каталога материалов («молочный акрил 3мм» — клиенту ничего не говорит) — понятное объяснение, от чего зависит цена. Технические детали остаются в FAQ для тех, кому нужно.
+    </div>
+  </div>
+
+  <!-- PROCESS - NEW -->
+  <section class="block section">
+    <div class="block__marker">Новый · PROCESS</div>
+    <div class="container">
+      <div class="eyebrow">Как мы работаем</div>
+      <h2>5 шагов — от заявки до монтажа</h2>
+      <div class="process__row">
+        <div class="step"><div class="step__n">Шаг 1 · 15 мин</div><div class="step__t">Заявка и бриф</div><div class="step__d">Вы описываете задачу, присылаете фото фасада. Мы задаём уточняющие вопросы.</div></div>
+        <div class="step"><div class="step__n">Шаг 2 · в тот же день</div><div class="step__t">Визуализация</div><div class="step__d">Делаем макет и накладываем на фото вашего фасада. Вы видите результат до оплаты.</div></div>
+        <div class="step"><div class="step__n">Шаг 3 · 1–2 дня</div><div class="step__t">Договор и предоплата</div><div class="step__d">Согласуем смету, подписываем договор. Предоплата 50%.</div></div>
+        <div class="step"><div class="step__n">Шаг 4 · 5–7 дней</div><div class="step__t">Производство</div><div class="step__d">Режем, красим, собираем в нашем цеху. Присылаем фото готовых букв.</div></div>
+        <div class="step"><div class="step__n">Шаг 5 · 1 день</div><div class="step__t">Монтаж и приёмка</div><div class="step__d">Выезжаем на объект, устанавливаем, подключаем. Вы принимаете работу.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST - NEW -->
+  <section class="block trust section">
+    <div class="block__marker">Новый · TRUST</div>
+    <div class="container">
+      <div class="eyebrow">Гарантии и спокойствие</div>
+      <h2>Что вы получаете кроме букв</h2>
+      <div class="trust__grid">
+        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">На конструкцию, краску, подсветку. Приезжаем и чиним за свой счёт.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Согласование</div><div class="trust-card__d">Если нужно — согласуем с администрацией за 7–14 дней.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">⭐</div><div class="trust-card__t">165+ отзывов</div><div class="trust-card__d">На Яндекс.Картах. Без фильтра — читайте реальные.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">📄</div><div class="trust-card__t">Фиксированная цена</div><div class="trust-card__d">Цена в договоре = цена по факту. Без доплат «за сложность».</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ - NEW -->
+  <section class="block section" style="background:var(--bg-soft)">
+    <div class="block__marker">Новый · FAQ</div>
+    <div class="container">
+      <div class="eyebrow">Частые вопросы</div>
+      <h2 style="text-align:center">6 вопросов про объемные буквы</h2>
+      <div class="faq">
+        <div class="faq-item open"><div class="faq-q">Что выбрать: с подсветкой или без?</div><div class="faq-a">Если бизнес работает вечером — нужна подсветка. Если только днём (офис, склад) — можно без. Контражур — самый универсальный и популярный вариант.</div></div>
+        <div class="faq-item"><div class="faq-q">Какой размер лучше?</div><div class="faq-a">Смотрим с какого расстояния люди будут читать. Правило: 1 см высоты буквы = 2 метра расстояния читаемости.</div></div>
+        <div class="faq-item"><div class="faq-q">Можно ли поменять только одну букву, если сломалась?</div><div class="faq-a">Да, если проект наш — поменяем бесплатно по гарантии. Если чужой — изготовим аналогичную.</div></div>
+        <div class="faq-item"><div class="faq-q">Нужно ли согласование в администрации?</div><div class="faq-a">Для уличной вывески — почти всегда да. Мы знаем требования Подольска и МО, согласуем сами.</div></div>
+        <div class="faq-item"><div class="faq-q">Что если не понравится готовый результат?</div><div class="faq-a">До производства вы подписываете визуализацию. После — переделываем за наш счёт, если не совпадает с макетом.</div></div>
+        <div class="faq-item"><div class="faq-q">Как долго служат буквы на улице?</div><div class="faq-a">Композит и акрил — 5–7 лет без потери цвета. Электроника — 3–5 лет, меняется по гарантии.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT (form) - CHANGED (с загрузкой фото) -->
+  <section class="block next section">
+    <div class="block__marker changed">Изменён · Форма (теперь с фото фасада)</div>
+    <div class="container">
+      <div class="next__grid">
+        <div>
+          <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
+          <h2>Получите визуализацию на своём фасаде — бесплатно</h2>
+          <p style="margin-top:12px">Это самый простой способ понять, как будет выглядеть результат. Без обязательств и без звонков после, если не захотите.</p>
+          <div class="next__points" style="margin-top:28px">
+            <div class="next__point">Визуализация в тот же день по фото вашего фасада</div>
+            <div class="next__point">Ориентир по цене и срокам в первом же ответе</div>
+            <div class="next__point">Расскажем, нужно ли согласование именно в вашем случае</div>
+            <div class="next__point">Ответим за 15 минут в рабочее время</div>
+          </div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <label class="form__label">Имя</label>
+          <input class="form__field" placeholder="Как к вам обращаться">
+          <label class="form__label">Телефон или Telegram</label>
+          <input class="form__field" placeholder="+7 (___) ___-__-__">
+          <label class="form__label">Что планируете</label>
+          <textarea class="form__field" rows="3" placeholder="Например: буквы для кафе, высота ~1 м, с подсветкой"></textarea>
+          <div class="form__file">📎 Прикрепить фото фасада (очень поможет!)</div>
+          <button class="btn btn-primary btn-lg" style="width:100%">Получить визуализацию</button>
+          <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS SELL - NEW -->
+  <section class="block cross section">
+    <div class="block__marker">Новый · CROSS SELL</div>
+    <div class="container">
+      <div class="eyebrow">Вместе с буквами часто заказывают</div>
+      <h2>Дополните ваш проект</h2>
+      <div class="cross__grid" style="grid-template-columns:repeat(4,1fr)">
+        <a class="cross-card"><div class="cross-card__ico">🖨</div><div><div class="cross-card__t">3D-печать</div><div class="cross-card__d">Сложные формы и нестандартные кегли на нашем принтере</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">📋</div><div><div class="cross-card__t">Согласование</div><div class="cross-card__d">Берём на себя весь процесс с администрацией</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">🏷</div><div><div class="cross-card__t">Таблички</div><div class="cross-card__d">Режим работы, навигация по территории</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">💡</div><div><div class="cross-card__t">Лайтбоксы</div><div class="cross-card__d">Яркие короба рядом со входом</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__row">
+      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
+      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ================== PAGE: SIGNS / ВЫВЕСКИ ========================== -->
+<!-- =================================================================== -->
+<div class="page" id="page-signs">
+  <header class="site-header">
+    <div class="site-header__row">
+      <a href="#" class="site-logo"><span class="site-logo__mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</a>
+      <nav class="site-nav">
+        <div class="nav-item">
+          <a>Услуги</a>
+          <div class="nav-drop">
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Наружная реклама</div>
+              <a>Вывески<b>световые, несветовые</b></a>
+              <a>Объёмные буквы<b>с подсветкой и без</b></a>
+              <a>Неоновые вывески<b>LED-неон</b></a>
+              <a>Лайтбоксы<b>световые короба</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Интерьер · навигация</div>
+              <a>Таблички<b>офисные, режим работы</b></a>
+              <a>Наклейки<b>оракал, витрины</b></a>
+              <a>Гибка пластика<b>по чертежу</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Печать и производство</div>
+              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>УФ-печать<b>на любых материалах</b></a>
+            </div>
+          </div>
+        </div>
+        <a>Портфолио</a>
+        <a>Согласование</a>
+        <a>Блог</a>
+        <a>О компании</a>
+      </nav>
+      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+    </div>
+  </header>
+
+  <!-- HERO - CHANGED -->
+  <section class="block hero">
+    <div class="block__marker changed">Изменён · HERO</div>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Вывески для бизнеса</div>
+        <h1>Вывеска для вашего бизнеса —<br><mark>видно днём, ярко ночью</mark></h1>
+        <p class="sub">Дизайн + изготовление + монтаж <b>за 5 дней</b>. Покажем результат на фото вашего фасада ещё до оплаты.</p>
+        <div class="ctas">
+          <button class="btn btn-primary btn-lg">Рассчитать и увидеть на своём фасаде</button>
+          <button class="btn btn-ghost btn-lg">Смотреть портфолио</button>
+        </div>
+        <div class="sla">от 20 000 ₽ · Гарантия 2 года · Поможем с согласованием</div>
+      </div>
+      <div class="hero__visual">
+        <div class="badge">Live · фасад кафе</div>
+        <div class="ph">📷<br>ФОТО/ВИДЕО: <em>вывеска днём и ночью</em><em style="margin-top:12px;opacity:.5">Верстальщику: плавный переход день→ночь</em></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Было: «Вывески, которые приводят клиентов» — нет конкретики. Стало: срок (5 дней), цена «от», главная выгода (увидеть на фасаде до оплаты). Одна сильная CTA вместо двух конкурирующих.
+    </div>
+  </div>
+
+  <!-- PROOF - NEW -->
+  <section class="block proof">
+    <div class="block__marker">Новый · PROOF BAR</div>
+    <div class="proof__row">
+      <div class="proof__item"><div class="proof__n">5<span class="u"> дней</span></div><div class="proof__l">средний срок изготовления</div></div>
+      <div class="proof__item"><div class="proof__n">20<span class="u"> 000₽</span></div><div class="proof__l">стартовая цена вывески</div></div>
+      <div class="proof__item"><div class="proof__n">500<span class="u">+</span></div><div class="proof__l">вывесок смонтировано</div></div>
+      <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на конструкцию</div></div>
+      <div class="proof__item"><div class="proof__n">165<span class="u">+</span></div><div class="proof__l">отзывов на Я.Картах</div></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO - NEW (главный дефицит этой страницы) -->
+  <section class="block portfolio section">
+    <div class="block__marker">Новый · PORTFOLIO + PRICING</div>
+    <div class="container">
+      <div class="eyebrow">Портфолио</div>
+      <h2>Наши вывески — с ценами и сроками</h2>
+      <p class="lead">Главное отличие от страницы «Объемных букв» — здесь раньше не было ни одного примера работ. Добавляем.</p>
+      <div class="portfolio__grid">
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Световая вывеска<br><em>Кафе · 3.8 м</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Кафе · Лайтбокс</div><div class="pf-card__title">Кафе «Пример» — световая вывеска на фасаде</div><div class="pf-card__meta"><span>6 дней · Подольск</span><b>48 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Панель-кронштейн<br><em>Двусторонний</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Аптека · Панель</div><div class="pf-card__title">Аптека — двусторонняя панель-кронштейн</div><div class="pf-card__meta"><span>5 дней · Подольск</span><b>22 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Композит фасад<br><em>Магазин</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Магазин · Композит</div><div class="pf-card__title">Магазин одежды — фасадная вывеска 5 м</div><div class="pf-card__meta"><span>7 дней · Москва</span><b>75 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Интерьерная<br><em>ТЦ</em></div></div><div class="pf-card__body"><div class="pf-card__tag">ТЦ · Интерьерная</div><div class="pf-card__title">Магазин в ТЦ — над входом в павильон</div><div class="pf-card__meta"><span>4 дня · МО</span><b>28 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Автосервис<br><em>Большой формат</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Автосервис · Баннер</div><div class="pf-card__title">Автосервис — вывеска + указатели</div><div class="pf-card__meta"><span>8 дней · МО</span><b>65 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Фасад офиса<br><em>ABS-пластик</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Несветовая</div><div class="pf-card__title">Бизнес-центр — строгая несветовая вывеска</div><div class="pf-card__meta"><span>5 дней · Москва</span><b>32 000 ₽</b></div></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — закрывает главный дефицит страницы</strong>
+      На странице «Объемные буквы» блок «Наши цены» уже есть. А вот на странице «Вывески» его не было — это главная проблема. Повторяем успешный блок и дополняем более широким набором типов (панель-кронштейн, лайтбокс, интерьерные и т.д.).
+    </div>
+  </div>
+
+  <!-- IDENTIFY - NEW -->
+  <section class="block section">
+    <div class="block__marker">Новый · IDENTIFY</div>
+    <div class="container">
+      <div class="eyebrow">Для кого</div>
+      <h2>По типу бизнеса</h2>
+      <p class="lead">Выберите свой профиль — покажем примеры и обычные бюджеты для вашей ниши.</p>
+      <div class="identify__grid">
+        <div class="id-card"><div class="id-card__ico">☕</div><div class="id-card__t">Кафе, рестораны</div><div class="id-card__d">Световые лайтбоксы</div></div>
+        <div class="id-card"><div class="id-card__ico">🛒</div><div class="id-card__t">Магазины</div><div class="id-card__d">Фасадные на композите</div></div>
+        <div class="id-card"><div class="id-card__ico">🏢</div><div class="id-card__t">Офисы, БЦ</div><div class="id-card__d">Несветовые строгие</div></div>
+        <div class="id-card"><div class="id-card__ico">🏬</div><div class="id-card__t">ТЦ, ТРК</div><div class="id-card__d">Интерьерные над входом</div></div>
+        <div class="id-card"><div class="id-card__ico">💊</div><div class="id-card__t">Аптеки, услуги</div><div class="id-card__d">Панель-кронштейны</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES (оставляем + сжимаем) - KEPT (сжат) -->
+  <section class="block section" style="background:var(--bg-soft)">
+    <div class="block__marker kept">Оставлен, сжат</div>
+    <div class="container">
+      <div class="eyebrow">Типы вывесок</div>
+      <h2>Что вам подходит?</h2>
+      <div class="tiles" style="margin-top:28px">
+        <div class="tile"><div class="tile__img"><div class="ph">📷 Лайтбокс</div></div><div class="tile__title">Лайтбокс</div><div class="tile__desc">Световой короб. Ярко ночью, видно днём. Для кафе и магазинов.</div></div>
+        <div class="tile"><div class="tile__img"><div class="ph">📷 Фасадная</div></div><div class="tile__title">Фасадная</div><div class="tile__desc">Композит + плёнка. Самая недорогая и строгая.</div></div>
+        <div class="tile"><div class="tile__img"><div class="ph">📷 Панель-кронштейн</div></div><div class="tile__title">Панель-кронштейн</div><div class="tile__desc">Двусторонняя — видно с обеих сторон улицы.</div></div>
+        <div class="tile"><div class="tile__img"><div class="ph">📷 Интерьерная</div></div><div class="tile__title">Интерьерная</div><div class="tile__desc">Для ТЦ, офисов, салонов. Разные материалы.</div></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Блок «Типы вывесок» оставляем, но вместо каталога материалов (акрил / ПВХ / композит) показываем результат: название типа + когда использовать + фото. Технические детали материалов уходят в FAQ и карточки портфолио.
+    </div>
+  </div>
+
+  <!-- PROCESS - NEW -->
+  <section class="block section">
+    <div class="block__marker">Новый · PROCESS</div>
+    <div class="container">
+      <div class="eyebrow">Как мы работаем</div>
+      <h2>5 шагов — от заявки до монтажа</h2>
+      <div class="process__row">
+        <div class="step"><div class="step__n">Шаг 1</div><div class="step__t">Заявка</div><div class="step__d">Присылаете фото фасада и описание бизнеса.</div></div>
+        <div class="step"><div class="step__n">Шаг 2</div><div class="step__t">Визуализация</div><div class="step__d">В тот же день показываем, как будет выглядеть.</div></div>
+        <div class="step"><div class="step__n">Шаг 3</div><div class="step__t">Договор</div><div class="step__d">Фиксируем цену и срок. Предоплата 50%.</div></div>
+        <div class="step"><div class="step__n">Шаг 4</div><div class="step__t">Изготовление</div><div class="step__d">Производство в нашем цеху, 3–5 дней.</div></div>
+        <div class="step"><div class="step__n">Шаг 5</div><div class="step__t">Монтаж</div><div class="step__d">Устанавливаем, подключаем, сдаём работу.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST - NEW -->
+  <section class="block trust section">
+    <div class="block__marker">Новый · TRUST</div>
+    <div class="container">
+      <div class="eyebrow">Гарантии</div>
+      <h2>Что получает заказчик вывески</h2>
+      <div class="trust__grid">
+        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Согласование</div><div class="trust-card__d">Знаем регламенты Подольска и МО. Возьмём на себя все документы.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">Конструкция, краска, электроника. Бесплатный ремонт.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">⭐</div><div class="trust-card__t">165+ отзывов</div><div class="trust-card__d">Реальные на Яндекс.Картах — с фото и датами.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">💰</div><div class="trust-card__t">Цена в договоре</div><div class="trust-card__d">Без сюрпризов. То, что согласовали — то и заплатите.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT - CHANGED -->
+  <section class="block next section">
+    <div class="block__marker changed">Изменён · NEXT STEP (с фото фасада)</div>
+    <div class="container">
+      <div class="next__grid">
+        <div>
+          <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
+          <h2>Хотите увидеть свою вывеску на фасаде до оплаты?</h2>
+          <p style="margin-top:12px">Присылайте фото — покажем макет в тот же день. Без звонков, если вы не оставите телефон.</p>
+          <div class="next__points" style="margin-top:28px">
+            <div class="next__point">Визуализация в тот же день</div>
+            <div class="next__point">Цена «от» и срок — в первом ответе</div>
+            <div class="next__point">Расскажем про согласование — нужно ли в вашем случае</div>
+            <div class="next__point">Ответ в течение 15 минут</div>
+          </div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <label class="form__label">Имя</label>
+          <input class="form__field" placeholder="Как к вам обращаться">
+          <label class="form__label">Контакт</label>
+          <input class="form__field" placeholder="Телефон или Telegram">
+          <label class="form__label">Что планируете</label>
+          <textarea class="form__field" rows="3" placeholder="Например: вывеска для магазина одежды, фасад 4 м"></textarea>
+          <div class="form__file">📎 Прикрепить фото фасада</div>
+          <button class="btn btn-primary btn-lg" style="width:100%">Рассчитать мою вывеску</button>
+          <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__row">
+      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
+      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- =============== PAGE: COORD / СОГЛАСОВАНИЕ ======================== -->
+<!-- =================================================================== -->
+<div class="page" id="page-coord">
+  <header class="site-header">
+    <div class="site-header__row">
+      <a href="#" class="site-logo"><span class="site-logo__mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</a>
+      <nav class="site-nav">
+        <div class="nav-item">
+          <a>Услуги</a>
+          <div class="nav-drop">
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Наружная реклама</div>
+              <a>Вывески<b>световые, несветовые</b></a>
+              <a>Объёмные буквы<b>с подсветкой и без</b></a>
+              <a>Неоновые вывески<b>LED-неон</b></a>
+              <a>Лайтбоксы<b>световые короба</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Интерьер · навигация</div>
+              <a>Таблички<b>офисные, режим работы</b></a>
+              <a>Наклейки<b>оракал, витрины</b></a>
+              <a>Гибка пластика<b>по чертежу</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Печать и производство</div>
+              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>УФ-печать<b>на любых материалах</b></a>
+            </div>
+          </div>
+        </div>
+        <a>Портфолио</a>
+        <a>Согласование</a>
+        <a>Блог</a>
+        <a>О компании</a>
+      </nav>
+      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+    </div>
+  </header>
+
+  <!-- HERO - KEPT (оставляем, один из лучших HERO на сайте) -->
+  <section class="block hero">
+    <div class="block__marker kept">Оставлен · сильный HERO</div>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Согласование наружной рекламы</div>
+        <h1>Согласуем вывеску<br><mark>за 7–14 дней</mark> — под ключ</h1>
+        <p class="sub">Без штрафов, демонтажа и хождения по инстанциям. Знаем требования Подольска и МО на память.</p>
+        <div class="ctas">
+          <button class="btn btn-primary btn-lg">Бесплатная консультация</button>
+          <button class="btn btn-ghost btn-lg">📄 Скачать чек-лист</button>
+        </div>
+        <div class="sla">Если не согласуем — вернём деньги за этап</div>
+      </div>
+      <div class="hero__visual">
+        <div class="badge">Live · кейс</div>
+        <div class="ph">📷<br>ФОТО: <em>документы + фасад с согласованной вывеской</em><em style="margin-top:12px;opacity:.5">Верстальщику: галерея «до/после»</em></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Это уже лучшая страница на сайте — текущий HERO почти не меняем. Добавляем только одну строчку с гарантией возврата денег — это сильный триггер доверия для страха «не согласуют».
+    </div>
+  </div>
+
+  <!-- FEAR (штрафы) - NEW (конкретные суммы) -->
+  <section class="block section" style="background:linear-gradient(135deg,#fef2f2,#ffffff)">
+    <div class="block__marker">Новый · Триггер страха (конкретные штрафы)</div>
+    <div class="container">
+      <div class="eyebrow">Что будет, если не согласовать</div>
+      <h2>Конкретные суммы штрафов за самовольную вывеску</h2>
+      <p class="lead">Большинство владельцев бизнеса не знают, что штраф приходит быстро — и обычно после первой же проверки или жалобы конкурента.</p>
+      <div class="price-explain" style="margin-top:36px">
+        <div class="pe-card" style="border-color:#fecaca"><div class="pe-card__n">₽</div><div><div class="pe-card__t">ИП · до 5 000 ₽</div><div class="pe-card__d">По ст. 14.37 КоАП РФ — нарушение требований к установке рекламной конструкции.</div></div></div>
+        <div class="pe-card" style="border-color:#fecaca"><div class="pe-card__n">₽₽</div><div><div class="pe-card__t">ООО · до 1 000 000 ₽</div><div class="pe-card__d">Да, до миллиона. Плюс предписание демонтировать за свой счёт в 30 дней.</div></div></div>
+        <div class="pe-card" style="border-color:#fecaca"><div class="pe-card__n">⚠</div><div><div class="pe-card__t">Демонтаж за свой счёт</div><div class="pe-card__d">Если не демонтировали сами — муниципалитет демонтирует и взыщет расходы через суд.</div></div></div>
+        <div class="pe-card" style="border-color:#fecaca"><div class="pe-card__n">🔄</div><div><div class="pe-card__t">Повторный штраф</div><div class="pe-card__d">Если не согласовали после штрафа — штраф выписывают заново, и так каждый месяц.</div></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — добавляет мотивацию действовать</strong>
+      Текущая страница хорошо рассказывает «как согласовать», но не даёт сильного мотива «почему нужно сейчас». Конкретные суммы штрафов — классический триггер страха, работает лучше абстрактного «будут проблемы».
+    </div>
+  </div>
+
+  <!-- PROCESS - KEPT -->
+  <section class="block section">
+    <div class="block__marker kept">Оставлен · Этапы согласования</div>
+    <div class="container">
+      <div class="eyebrow">Как мы согласуем</div>
+      <h2>5 этапов работы</h2>
+      <div class="process__row">
+        <div class="step"><div class="step__n">Этап 1 · 1 день</div><div class="step__t">Проверка адреса</div><div class="step__d">Смотрим, в какой зоне ваш фасад — от этого зависит регламент.</div></div>
+        <div class="step"><div class="step__n">Этап 2 · 2–3 дня</div><div class="step__t">Подготовка документов</div><div class="step__d">Проект, эскиз, согласие собственника, договор аренды.</div></div>
+        <div class="step"><div class="step__n">Этап 3 · 1–2 дня</div><div class="step__t">Подача в администрацию</div><div class="step__d">Электронно через МФЦ или лично — смотрим, что быстрее.</div></div>
+        <div class="step"><div class="step__n">Этап 4 · 5–10 дней</div><div class="step__t">Ожидание решения</div><div class="step__d">Отслеживаем статус, отвечаем на запросы ведомства.</div></div>
+        <div class="step"><div class="step__n">Этап 5 · 1 день</div><div class="step__t">Получение паспорта</div><div class="step__d">Забираем паспорт рекламного места — можно монтировать.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES - NEW (кейсы согласования) -->
+  <section class="block portfolio section">
+    <div class="block__marker">Новый · PORTFOLIO (Кейсы)</div>
+    <div class="container">
+      <div class="eyebrow">Кейсы согласования</div>
+      <h2>Как мы согласовали для клиентов</h2>
+      <p class="lead">Конкретные истории — сколько заняло, какие были сложности, чем закончилось.</p>
+      <div class="portfolio__grid">
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Кафе в центре<br><em>Фасад + буквы</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Кафе · Подольск</div><div class="pf-card__title">Согласовали за 8 дней — кафе в историческом центре</div><div class="pf-card__meta"><span>Срок: 8 дней</span><b>Под ключ</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Магазин ТЦ<br><em>Входная группа</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Магазин · ТЦ МО</div><div class="pf-card__title">Помогли заменить старую вывеску без штрафов</div><div class="pf-card__meta"><span>Срок: 11 дней</span><b>+ демонтаж</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Автосервис<br><em>Крупный формат</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Автосервис · Подольск</div><div class="pf-card__title">Согласовали нестандартный размер 6×2 м</div><div class="pf-card__meta"><span>Срок: 14 дней</span><b>Эскиз 3×</b></div></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — социальное доказательство</strong>
+      На странице нет конкретных примеров «мы согласовали для X за Y дней». Добавляем 3–6 кейсов с деталями. Это сильнее, чем общие «мы работаем под ключ».
+    </div>
+  </div>
+
+  <!-- CROSS SELL (в производство вывесок) - NEW -->
+  <section class="block section" style="background:linear-gradient(135deg,#ecfdf5,#ffffff)">
+    <div class="block__marker">Новый · CROSS SELL (в производство)</div>
+    <div class="container">
+      <div class="eyebrow">Дешевле под ключ</div>
+      <h2>Изготовление + согласование = полный цикл</h2>
+      <p class="lead">Если вам нужна новая вывеска — закажите сразу и производство, и согласование. Это дешевле и быстрее, чем два подрядчика.</p>
+      <div class="cross__grid" style="margin-top:36px">
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">💰</div><div><div class="cross-card__t">Скидка 10%</div><div class="cross-card__d">На пакет «изготовление + согласование»</div></div></div>
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">⚡</div><div><div class="cross-card__t">Параллельные процессы</div><div class="cross-card__d">Пока идёт согласование — мы уже производим</div></div></div>
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">📋</div><div><div class="cross-card__t">Один договор</div><div class="cross-card__d">Одна ответственность, одна гарантия</div></div></div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <button class="btn btn-primary btn-lg">Заказать вывеску под ключ</button>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — мост в производство</strong>
+      Страница «Согласование» не возвращает пользователя в основной продукт компании (производство вывесок). Добавляем мост: если клиенту нужно и то и то — предложить пакет со скидкой. Это повышает средний чек.
+    </div>
+  </div>
+
+  <!-- FAQ - KEPT -->
+  <section class="block section" style="background:var(--bg-soft)">
+    <div class="block__marker kept">Оставлен · FAQ</div>
+    <div class="container">
+      <div class="eyebrow">Частые вопросы</div>
+      <h2 style="text-align:center">Что спрашивают чаще всего</h2>
+      <div class="faq">
+        <div class="faq-item open"><div class="faq-q">Сколько стоит согласование?</div><div class="faq-a">Зависит от адреса и сложности. В среднем — от 15 000 ₽. Если заказываете вместе с производством — скидка 10%.</div></div>
+        <div class="faq-item"><div class="faq-q">Что если моя вывеска уже висит — её снимут?</div><div class="faq-a">Если есть жалоба или проверка — да, могут обязать демонтировать. Лучше согласовать задним числом — это дешевле штрафа.</div></div>
+        <div class="faq-item"><div class="faq-q">Нужно ли согласование для интерьерных вывесок в ТЦ?</div><div class="faq-a">Для интерьерных (внутри здания) — часто достаточно согласования с администрацией ТЦ. Для фасадных — да, нужно.</div></div>
+        <div class="faq-item"><div class="faq-q">А если не согласуют?</div><div class="faq-a">Вернём деньги за этот этап и предложим альтернативу (поменять размер, материал, расположение).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT - KEPT -->
+  <section class="block next section">
+    <div class="block__marker kept">Оставлен · NEXT STEP</div>
+    <div class="container">
+      <div class="next__grid">
+        <div>
+          <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
+          <h2>Проверим ваш адрес бесплатно</h2>
+          <p style="margin-top:12px">Пришлите адрес и фото фасада — за 1 день скажем, какие нужны документы, сроки и стоимость согласования.</p>
+          <div class="next__points" style="margin-top:28px">
+            <div class="next__point">Проверка адреса и регламента — бесплатно</div>
+            <div class="next__point">Расчёт стоимости всего пакета</div>
+            <div class="next__point">Чек-лист документов, которые понадобятся</div>
+            <div class="next__point">Ответ за 15 минут в рабочее время</div>
+          </div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <label class="form__label">Имя</label>
+          <input class="form__field" placeholder="Как к вам обращаться">
+          <label class="form__label">Контакт</label>
+          <input class="form__field" placeholder="Телефон или Telegram">
+          <label class="form__label">Адрес установки</label>
+          <input class="form__field" placeholder="Например: Подольск, Ленина 15">
+          <label class="form__label">Что планируете</label>
+          <textarea class="form__field" rows="2" placeholder="Описание вывески"></textarea>
+          <div class="form__file">📎 Прикрепить фото фасада</div>
+          <button class="btn btn-primary btn-lg" style="width:100%">Проверить адрес</button>
+          <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__row">
+      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
+      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ================ PAGE: PRINT3D / 3D-ПЕЧАТЬ ======================== -->
+<!-- =================================================================== -->
+<div class="page" id="page-print3d">
+  <header class="site-header">
+    <div class="site-header__row">
+      <a href="#" class="site-logo"><span class="site-logo__mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</a>
+      <nav class="site-nav">
+        <div class="nav-item">
+          <a>Услуги</a>
+          <div class="nav-drop">
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Наружная реклама</div>
+              <a>Вывески<b>световые, несветовые</b></a>
+              <a>Объёмные буквы<b>с подсветкой и без</b></a>
+              <a>Неоновые вывески<b>LED-неон</b></a>
+              <a>Лайтбоксы<b>световые короба</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Интерьер · навигация</div>
+              <a>Таблички<b>офисные, режим работы</b></a>
+              <a>Наклейки<b>оракал, витрины</b></a>
+              <a>Гибка пластика<b>по чертежу</b></a>
+            </div>
+            <div class="nav-drop__col">
+              <div class="nav-drop__title">Печать и производство</div>
+              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>УФ-печать<b>на любых материалах</b></a>
+            </div>
+          </div>
+        </div>
+        <a>Портфолио</a>
+        <a>Согласование</a>
+        <a>Блог</a>
+        <a>О компании</a>
+      </nav>
+      <div class="site-header__cta"><div class="site-phone">+7 (495) 278-02-98<small>Подольск · Москва</small></div><button class="btn btn-primary">Рассчитать</button></div>
+    </div>
+  </header>
+
+  <!-- HERO - CHANGED (из технической в продающую) -->
+  <section class="block hero">
+    <div class="block__marker changed">Изменён · HERO (продающая, не техническая)</div>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Собственное производство</div>
+        <h1>Печатаем буквы и элементы<br><mark>на фирменном 3D-принтере</mark></h1>
+        <p class="sub">Профессиональный принтер промышленного класса. Сложная форма, единичный заказ, нестандартный кегль — всё, что невозможно или дорого сделать на фрезере и лазере.</p>
+        <div class="ctas">
+          <a class="btn btn-primary btn-lg" href="#quiz-print3d">Рассчитать мой проект</a>
+          <a class="btn btn-ghost btn-lg" href="#pf-print3d">Посмотреть примеры</a>
+        </div>
+        <div class="sla">Замер и визуализация в тот же день · Ответ за 15 минут</div>
+      </div>
+      <div class="hero__visual">
+        <div class="badge">Live · наш цех</div>
+        <div class="ph">📷<br>ФОТО: <em>принтер в работе, печатает логотип</em><em style="margin-top:12px;opacity:.5">Верстальщику: авто-видео 10 сек из цеха</em></div>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Было: страница-услуга «3D-печать» с технологическим описанием (FDM, PLA, ABS и т.п.). Стало: продающая страница про конкурентное преимущество — «у нас есть принтер, которого нет почти ни у кого, вот что это вам даёт». Ниже идут реальные задачи клиента, а не технические параметры.
+    </div>
+  </div>
+
+  <!-- PROOF BAR - NEW -->
+  <section class="block proof">
+    <div class="block__marker">Новый · PROOF BAR</div>
+    <div class="proof__row">
+      <div class="proof-item"><div class="proof-item__n">10+</div><div class="proof-item__l">лет с 3D-печатью</div></div>
+      <div class="proof-item"><div class="proof-item__n">до 600 мм</div><div class="proof-item__l">размер одной детали</div></div>
+      <div class="proof-item"><div class="proof-item__n">±0.2 мм</div><div class="proof-item__l">точность</div></div>
+      <div class="proof-item"><div class="proof-item__n">24 ч</div><div class="proof-item__l">готовый прототип</div></div>
+    </div>
+  </section>
+
+  <!-- BENEFITS - NEW (зачем клиенту 3D-печать) -->
+  <section class="block section">
+    <div class="block__marker">Новый · BENEFITS (зачем вам 3D-печать)</div>
+    <div class="container">
+      <div class="eyebrow">Что даёт собственный принтер</div>
+      <h2>4 задачи, которые решаем лучше всех в регионе</h2>
+      <p class="lead">Фрезер и лазерный станок не всё умеют. Там, где они пасуют — работает наш 3D-принтер.</p>
+      <div class="identify__grid">
+        <div class="id-card"><div class="id-card__ico">🔤</div><div class="id-card__t">Сложные буквы</div><div class="id-card__d">Рельеф, объём, скругления — любая форма без доплаты за сложность</div></div>
+        <div class="id-card"><div class="id-card__ico">🎯</div><div class="id-card__t">Единичный заказ</div><div class="id-card__d">Одна буква или один логотип — без тиража. Без удорожания</div></div>
+        <div class="id-card"><div class="id-card__ico">⚡</div><div class="id-card__t">Быстрый прототип</div><div class="id-card__d">Тестовый образец за 24 часа — посмотреть и потрогать до старта производства</div></div>
+        <div class="id-card"><div class="id-card__ico">📐</div><div class="id-card__t">Нестандартные кегли</div><div class="id-card__d">Буквы высотой от 5 см до 60 см, которые неэффективно резать на фрезере</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO - NEW -->
+  <section class="block portfolio section" id="pf-print3d">
+    <div class="block__marker">Новый · PORTFOLIO (что мы уже напечатали)</div>
+    <div class="container">
+      <div class="eyebrow">Наши работы</div>
+      <h2>Реальные проекты с 3D-печатью</h2>
+      <p class="lead">Фото из нашего цеха и с объектов клиентов. С ценами, сроками и пояснением «почему именно 3D».</p>
+      <div class="portfolio__grid">
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Логотип с рельефом<br><em>Ресторан, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ресторан · рельефный логотип</div><div class="pf-card__title">Логотип 40 см с 3D-рельефом — невозможно на фрезере</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>от 18 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Объёмные буквы<br><em>Салон, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон · объёмные буквы</div><div class="pf-card__title">Комплект букв сложной формы — одна партия, без повтора</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>от 32 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Прототип<br><em>Дизайн-студия</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Прототип · макет для презентации</div><div class="pf-card__title">Тестовый образец за 24 ч — до старта большого тиража</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 4 500 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Элементы вывески<br><em>ТЦ, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Вывеска · нестандартные элементы</div><div class="pf-card__title">Декоративные вставки 15 см — то, что лазер не берёт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 7 800 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигация<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · 3D-навигация</div><div class="pf-card__title">Табличек 12 шт с рельефным номером — единичный тираж</div><div class="pf-card__meta"><span>Срок: 4 дня</span><b>от 22 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Сувениры<br><em>Корпоратив</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Подарки · корпоративные сувениры</div><div class="pf-card__title">Логотип-сувенир 50 штук — без литья и пресс-форм</div><div class="pf-card__meta"><span>Срок: 6 дней</span><b>от 12 000 ₽</b></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ - NEW -->
+  <section class="block quiz section" id="quiz-print3d">
+    <div class="block__marker">Новый · QUIZ (адаптирован под 3D-печать)</div>
+    <div class="container">
+      <div class="eyebrow" style="color:#fff;opacity:.75">Рассчитаем ваш проект</div>
+      <h2>Ответьте на 5 вопросов — пришлём расчёт с ориентиром по цене</h2>
+      <p class="qlead quiz__lead">Учтём размер, сложность формы, количество и сроки — поймём, подходит ли 3D-печать под вашу задачу, или выгоднее другая технология.</p>
+      <div class="qbox" data-quiz data-quiz-service="3D-печать" data-quiz-branch="uv"></div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner">
+      <strong>Комментарий</strong>
+      Квиз переиспользует ту же JS-фабрика mountQuiz() — достаточно одной строки с data-атрибутами, никакого дублирования логики. Сейчас показана ветка uv (печать на материале) как ближайший аналог — для боевой версии на этапе вёрстки нужно добавить отдельную ветку print3d в QUIZ_CONFIG с вопросами про размер, сложность формы, количество, материал, пост-обработку.
+    </div>
+  </div>
+
+  <!-- PROCESS - NEW -->
+  <section class="block section">
+    <div class="block__marker">Новый · PROCESS</div>
+    <div class="container">
+      <div class="eyebrow">Как мы работаем</div>
+      <h2>От эскиза до готовой детали — 4 шага</h2>
+      <div class="process__row">
+        <div class="step"><div class="step__n">Шаг 1 · 15 мин</div><div class="step__t">Эскиз или фото</div><div class="step__d">Присылаете эскиз, чертёж или просто фото того, что хотите. Подберём оптимальный способ.</div></div>
+        <div class="step"><div class="step__n">Шаг 2 · 1 день</div><div class="step__t">3D-модель и расчёт</div><div class="step__d">Готовим модель для печати. Присылаем превью и точную цену.</div></div>
+        <div class="step"><div class="step__n">Шаг 3 · 1–3 дня</div><div class="step__t">Печать</div><div class="step__d">Печатаем на нашем принтере. Присылаем фото готовой детали до отгрузки.</div></div>
+        <div class="step"><div class="step__n">Шаг 4 · по запросу</div><div class="step__t">Пост-обработка и покраска</div><div class="step__d">Шлифовка, грунт, покраска в нужный цвет. Готовая деталь, не полуфабрикат.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST - NEW -->
+  <section class="block trust section">
+    <div class="block__marker">Новый · TRUST</div>
+    <div class="container">
+      <div class="eyebrow">Почему нам доверяют</div>
+      <h2>Принтер в цеху, а не у подрядчика</h2>
+      <div class="trust__grid">
+        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Свой принтер</div><div class="trust-card__d">Не заказываем у посредников. Контролируем качество и сроки на каждой детали.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">На напечатанные изделия. Если деформируется или ломается — бесплатная замена.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🎨</div><div class="trust-card__t">Готовая деталь</div><div class="trust-card__d">Не «печать и сам крась». Мы шлифуем, грунтуем, красим — получаете готовое изделие.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">💰</div><div class="trust-card__t">Цена в договоре</div><div class="trust-card__d">Фикс после расчёта. Не «итоговая цена по результатам печати».</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS - NEW (где применяется в других услугах) -->
+  <section class="block cross section">
+    <div class="block__marker">Новый · CROSS SELL (где применяется 3D)</div>
+    <div class="container">
+      <div class="eyebrow">Где мы используем 3D-печать</div>
+      <h2>3D-печать — часть других услуг</h2>
+      <p class="lead">Если у вас комплексный проект — 3D-печать может быть одним из этапов, а не отдельной услугой. Берём на себя всё.</p>
+      <div class="cross__grid">
+        <a class="cross-card"><div class="cross-card__ico">🔤</div><div><div class="cross-card__t">Объёмные буквы</div><div class="cross-card__d">Сложная форма, маленький тираж, нестандартный кегль</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">🏷</div><div><div class="cross-card__t">Таблички</div><div class="cross-card__d">Рельефные, с 3D-элементами, персонализированные</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">💡</div><div><div class="cross-card__t">Вывески</div><div class="cross-card__d">Нестандартные декоративные элементы и вставки</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT - NEW -->
+  <section class="block next section">
+    <div class="block__marker">Новый · NEXT STEP</div>
+    <div class="container">
+      <div class="next__grid">
+        <div>
+          <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
+          <h2>Покажите, что хотите напечатать</h2>
+          <p style="margin-top:12px">Эскиз, фото, скриншот из интернета или просто описание — подойдёт любой формат. Дальше мы разберёмся сами.</p>
+          <div class="next__points" style="margin-top:28px">
+            <div class="next__point">Скажем сразу — подходит 3D-печать или выгоднее другое</div>
+            <div class="next__point">Цена «от» и срок — в первом ответе</div>
+            <div class="next__point">Если подойдёт — пришлём превью модели до старта</div>
+            <div class="next__point">Ответ за 15 минут в рабочее время</div>
+          </div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <label class="form__label">Имя</label>
+          <input class="form__field" placeholder="Как к вам обращаться">
+          <label class="form__label">Контакт</label>
+          <input class="form__field" placeholder="Телефон или Telegram">
+          <label class="form__label">Что нужно напечатать</label>
+          <textarea class="form__field" rows="3" placeholder="Например: объёмные буквы 30 см с рельефом, 5 штук"></textarea>
+          <div class="form__file">📎 Прикрепить эскиз / фото</div>
+          <button class="btn btn-primary btn-lg" style="width:100%">Рассчитать мой проект</button>
+          <div class="form__foot">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__row">
+      <div>© ООО «КОЛОРИТ» · Подольск, Ватутина, 7/2</div>
+      <div>+7 (495) 278-02-98 · zakaz@vcolorite.ru · @VCOLORITE_office</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ===== Page switcher =====
+document.querySelectorAll('.proto-nav__btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const id = btn.dataset.page;
+    document.querySelectorAll('.proto-nav__btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// ===== FAQ toggle =====
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// ===== QUIZ: production-ready branching quiz =====
+// Всё, что нужно для быстрой правки — ниже, в QUIZ_CONFIG.
+// Чтобы изменить вопрос/вариант/добавить шаг — правим только конфиг.
+// Квиз мультиэкземплярный: mountQuiz(root, { lockService, lockBranch }) —
+// если lockService задан, шаг 1 (выбор услуги) пропускается.
+
+const QUIZ_CONFIG = {
+  // Общий первый шаг — выбор услуги. Значение "branch" определяет ветку дальше.
+  serviceStep: {
+    eyebrow: 'Шаг 1 · Выбор услуги',
+    q: 'Что вам нужно изготовить?',
+    sub: 'От этого зависят дальнейшие вопросы — покажем только то, что важно именно для вашей задачи.',
+    options: [
+      { label: 'Вывеска',               branch: 'sign' },
+      { label: 'Объёмные буквы',        branch: 'sign' },
+      { label: 'Неоновая вывеска',      branch: 'sign' },
+      { label: 'Табличка',              branch: 'plate' },
+      { label: 'Наклейки',              branch: 'stickers' },
+      { label: 'УФ-печать',             branch: 'uv' },
+      { label: 'Согласование вывески', branch: 'approval' },
+      { label: 'Нужна помощь с выбором', branch: 'help' },
+    ],
+  },
+  // Ветки — каждая содержит массив шагов. Для вывесок/букв/неона используется ветка "sign" с динамическим шагом 3.
+  branches: {
+    // Ветка 1: Вывеска / Объёмные буквы / Неоновая вывеска
+    sign: [
+      {
+        key: 'placement',
+        q: 'Где будет размещение?',
+        options: [
+          'На фасаде снаружи',
+          'Внутри помещения',
+          'В ТЦ / БЦ',
+          'На витрине / стекле',
+          'На выставке / стойке',
+          'Пока не знаю',
+        ],
+      },
+      {
+        key: 'variant',
+        // динамический вопрос в зависимости от выбранной услуги
+        dynamic: true,
+        byService: {
+          'Вывеска': {
+            q: 'Какой вариант ближе?',
+            options: ['Световая вывеска','Без подсветки','С логотипом','Информационная / режим работы','Нужна рекомендация'],
+          },
+          'Объёмные буквы': {
+            q: 'Какой вариант нужен?',
+            options: ['Без подсветки','Лицевое свечение','Контражур','Комбинированный вариант','Не знаю'],
+          },
+          'Неоновая вывеска': {
+            q: 'Для чего нужна неоновая вывеска?',
+            options: ['Для бизнеса / интерьера','Для фотозоны','Для витрины / open','По своему макету','Нужна помощь с дизайном'],
+          },
+        },
+      },
+      {
+        key: 'size',
+        q: 'Какой примерный размер?',
+        options: ['До 50 см','50–100 см','1–2 м','2–4 м','Более 4 м','Несколько конструкций'],
+      },
+      {
+        key: 'ready',
+        q: 'Что у вас уже есть?',
+        options: ['Есть готовый макет','Есть логотип, но макета нет','Есть только идея','Есть фото фасада / места','Нужен дизайн с нуля'],
+      },
+      {
+        key: 'scope',
+        q: 'Что ещё нужно?',
+        options: ['Только изготовление','Изготовление + монтаж','Изготовление + монтаж + подключение','Нужна помощь с согласованием','Нужен полный цикл под ключ'],
+      },
+      {
+        key: 'deadline',
+        q: 'Когда нужен готовый результат?',
+        options: ['Срочно, 1–3 дня','В течение недели','2–3 недели','В течение месяца','Пока просто считаю варианты'],
+      },
+    ],
+    // Ветка 2: Табличка
+    plate: [
+      { key:'purpose', q:'Для чего нужна табличка?', options:['На дверь / кабинет','Режим работы','Адресная / фасадная','Навигация / указатель','Информационная','Шильд / маркировка','Не знаю']},
+      { key:'material', q:'Какой материал или стиль ближе?', options:['Пластик','Металл','Акрил / прозрачная','ПВХ','С печатью','С гравировкой','Нужна рекомендация']},
+      { key:'where', q:'Где будет использоваться?', options:['Внутри помещения','На улице','Во влажной зоне','На производстве / складе']},
+      { key:'size', q:'Какой размер или формат?', options:['Маленькая','Средняя','Крупная','Несколько разных','Свой размер / не знаю']},
+      { key:'qty', q:'Сколько нужно?', options:['1 штука','2–5','6–20','20+','Нужен комплект навигации']},
+      { key:'content', q:'Есть ли текст / макет?', options:['Всё готово','Есть только текст','Нужен дизайн','Нужна помощь с выбором материала']},
+      { key:'deadline', q:'Когда нужно изготовить?', options:['Сегодня / срочно','1–3 дня','На этой неделе','Не срочно']},
+    ],
+    // Ветка 3: Наклейки
+    stickers: [
+      { key:'where', q:'Куда будут клеиться наклейки?', options:['На упаковку','На стекло / витрину','На товар / тару','На оборудование','На транспорт','Для интерьера / навигации']},
+      { key:'material', q:'Какой материал нужен?', options:['Бумага','Плёнка','Прозрачная плёнка','Металлизированная','Не знаю']},
+      { key:'conditions', q:'Какие условия эксплуатации?', options:['Только внутри','Улица','Влага / холод','Частый контакт руками']},
+      { key:'qty', q:'Какой тираж?', options:['До 100','100–500','500–1000','1000+','Постоянные тиражи']},
+      { key:'layout', q:'Есть ли макет?', options:['Да','Нужна адаптация','Нужен дизайн с нуля']},
+      { key:'deadline', q:'Когда нужны?', options:['Срочно','В течение недели','Плановый заказ']},
+    ],
+    // Ветка 4: УФ-печать
+    uv: [
+      { key:'substrate', q:'На чём нужно печатать?', options:['Пластик','Стекло','Металл','Дерево','Сувенирная продукция','Электроника','Панели / шильдики','Другое']},
+      { key:'surface', q:'Какая поверхность?', options:['Светлая','Тёмная','Прозрачная','Фактурная','Не знаю']},
+      { key:'priority', q:'Что важнее всего?', options:['Точная цветопередача','Стойкость','Белый цвет / печать по прозрачному','Лак / премиальный вид','Скорость изготовления']},
+      { key:'qty', q:'Количество изделий?', options:['1–10','10–50','50–200','200+','Серийное производство']},
+      { key:'layout', q:'Есть ли готовый файл?', options:['Да','Нужна проверка макета','Нужен дизайн']},
+      { key:'deadline', q:'Срок?', options:['Срочно','До недели','Плановый заказ']},
+    ],
+    // Ветка 5: Согласование
+    approval: [
+      { key:'city', q:'Где находится объект?', options:['Москва','Московская область','Подольск','Другой город']},
+      { key:'status', q:'Что уже есть?', options:['Только идея','Есть макет вывески','Вывеска уже установлена','Нужно узаконить текущую вывеску']},
+      { key:'need', q:'Что нужно сделать?', options:['Проверить, требуется ли согласование','Подготовить дизайн-проект','Подать документы','Полное сопровождение под ключ','Нужна консультация']},
+      { key:'object', q:'Какой тип объекта?', options:['Магазин','Салон / студия','Офис','Кафе / ресторан','ТЦ / БЦ','Другое']},
+      { key:'urgency', q:'Насколько срочно?', options:['Срочно','В ближайшие 2 недели','В течение месяца','Пока нужна консультация']},
+    ],
+    // Ветка 6: Нужна помощь с выбором
+    help: [
+      { key:'area', q:'Что вы хотите оформить?', options:['Фасад / входную группу','Помещение внутри','Витрину / стекло','Навигацию / таблички','Продукцию / упаковку','Пока не уверен']},
+      { key:'priority', q:'Что для вас важнее?', options:['Чтобы было заметно','Чтобы выглядело аккуратно и премиально','Чтобы уложиться в бюджет','Чтобы сделали быстро','Чтобы подсказали лучший вариант']},
+      { key:'deadline', q:'Когда планируете запуск?', options:['Срочно','На этой неделе','В ближайший месяц','Пока изучаю варианты']},
+    ],
+  },
+};
+
+// ——— Analytics (window.dataLayer / ym / gtag, тихо деградирует) ———
+function qtrack(event, payload){
+  const data = Object.assign({event, ts:Date.now()}, payload||{});
+  if(window.dataLayer && Array.isArray(window.dataLayer)) window.dataLayer.push(data);
+  if(window.ym && window.YM_COUNTER) try{ window.ym(window.YM_COUNTER,'reachGoal',event,data);}catch(e){}
+  if(window.gtag) try{ window.gtag('event', event, data);}catch(e){}
+  if(window.console) console.debug('[quiz]', event, data);
+}
+
+// ——— submit: POST /quiz-submit, fallback в localStorage ———
+async function submitQuiz(payload){
+  try{
+    const res = await fetch('/quiz-submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload),
+    });
+    if(!res.ok) throw new Error('bad status');
+    return await res.json().catch(()=>({ok:true}));
+  }catch(e){
+    try{
+      const key = 'quiz_submissions';
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.push(payload);
+      localStorage.setItem(key, JSON.stringify(arr));
+    }catch(_){}
+    return {ok:true, fallback:true};
+  }
+}
+
+// ——— Утилиты ———
+function escHtml(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escAttr(s){ return escHtml(s); }
+function labelForKey(k){
+  const map = { placement:'Размещение', variant:'Вариант', size:'Размер', ready:'Что есть', scope:'Объём работ', deadline:'Сроки',
+    purpose:'Назначение', material:'Материал', where:'Место', qty:'Количество', content:'Контент',
+    substrate:'Основание', surface:'Поверхность', priority:'Приоритет', layout:'Макет',
+    city:'Город', status:'Текущий статус', need:'Что нужно', object:'Тип объекта', urgency:'Срочность',
+    area:'Зона', conditions:'Условия эксплуатации' };
+  return map[k] || k;
+}
+function formatRuPhone(v){
+  let d = (v||'').replace(/\D/g,'');
+  if(d.startsWith('8')) d = '7' + d.slice(1);
+  if(!d.startsWith('7')) d = '7' + d;
+  d = d.slice(0,11);
+  const p = d.slice(1);
+  let out = '+7';
+  if(p.length>0) out += ' (' + p.slice(0,3);
+  if(p.length>=3) out += ') ';
+  if(p.length>=4) out += p.slice(3,6);
+  if(p.length>=7) out += '-' + p.slice(6,8);
+  if(p.length>=9) out += '-' + p.slice(8,10);
+  return out;
+}
+function validateRuPhone(v){
+  const d = (v||'').replace(/\D/g,'');
+  return d.length === 11 && (d.startsWith('7') || d.startsWith('8'));
+}
+function readUtm(){
+  const p = new URLSearchParams(location.search);
+  const utm = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{
+    if(p.get(k)) utm[k] = p.get(k);
+  });
+  return utm;
+}
+
+// ===================================================================
+// Quiz Factory — mountQuiz(root, { lockService, lockBranch })
+// Если lockService передан, шаг 1 (выбор услуги) пропускается,
+// прогресс и шаги считаются только внутри ветки + финальный шаг.
+// ===================================================================
+function mountQuiz(root, opts = {}){
+  if(!root) return;
+  const lockService = opts.lockService || null;
+  const lockBranch  = opts.lockBranch  || null;
+
+  // Стейт экземпляра
+  const state = {
+    step: 0,                    // 0 = выбор услуги (или первый шаг ветки, если locked)
+    service: lockService,
+    branch: lockBranch,
+    answers: {},
+    contact: { name:'', phone:'', messenger:'', comment:'', consent:false },
+    direction: 'forward',
+    file: null,
+  };
+
+  // Структура DOM контейнера
+  root.innerHTML = `
+    <div class="qprogress">
+      <div class="qprogress__bar"><div class="qprogress__fill"></div></div>
+      <div class="qprogress__label">Шаг <b>1</b> из <b>—</b></div>
+    </div>
+    <div class="qstage"></div>
+  `;
+  const fill  = root.querySelector('.qprogress__fill');
+  const label = root.querySelector('.qprogress__label');
+  const stage = root.querySelector('.qstage');
+
+  function getSteps(){
+    if(!state.branch) return [];
+    return QUIZ_CONFIG.branches[state.branch] || [];
+  }
+  // Индексация шагов в UI:
+  // - свободный квиз: 0 = выбор услуги, 1..N = шаги ветки, N+1 = контакты, N+2 = success
+  // - locked квиз:    0..N-1 = шаги ветки, N = контакты, N+1 = success
+  function uiStepIndex(){ return state.step; }
+  function totalForProgress(){
+    // количество «реальных» экранов до success
+    const branchLen = getSteps().length;
+    return (lockService ? 0 : 1) + branchLen + 1; // +1 контакты
+  }
+  function humanStep(){
+    const total = totalForProgress();
+    return Math.min(state.step + 1, total);
+  }
+  function updateProgress(done){
+    const total = Math.max(totalForProgress(), 1);
+    const pct = done ? 100 : Math.min(100, Math.round((state.step / Math.max(total-1,1)) * 100));
+    fill.style.width = pct + '%';
+    label.innerHTML = done ? 'Готово' : `Шаг <b>${humanStep()}</b> из <b>${total}</b>`;
+  }
+
+  function render(){
+    const dirClass = state.direction === 'back' ? ' back' : '';
+
+    // Сдвиг индексов для locked режима: «шаг 0» локд-квиза = первый шаг ветки
+    const branchSteps = getSteps();
+    const firstBranchIdx = lockService ? 0 : 1;
+    const lastBranchIdx  = firstBranchIdx + branchSteps.length - 1;
+    const contactIdx     = lastBranchIdx + 1;
+    const successIdx     = contactIdx + 1;
+
+    // ——— Шаг выбора услуги (только если НЕ заблокирован) ———
+    if(!lockService && state.step === 0){
+      const s = QUIZ_CONFIG.serviceStep;
+      stage.innerHTML = `
+        <div class="qstep${dirClass}">
+          <div class="qstep__eyebrow">${s.eyebrow}</div>
+          <div class="qstep__q">${s.q}</div>
+          ${s.sub ? `<div class="qstep__sub">${s.sub}</div>` : ''}
+          <div class="qopts cols-3">
+            ${s.options.map((o,i)=>`
+              <button class="qopt${state.service===o.label?' active':''}" data-i="${i}">
+                <span class="qopt__mark"></span><span>${o.label}</span>
+              </button>`).join('')}
+          </div>
+          ${renderNav(true)}
+        </div>`;
+      stage.querySelectorAll('.qopt').forEach(b=>{
+        b.addEventListener('click',()=>{
+          const opt = s.options[+b.dataset.i];
+          state.service = opt.label;
+          state.branch  = opt.branch;
+          state.answers = {};
+          qtrack('quiz_start', { service: opt.label });
+          qtrack('quiz_branch_selected', { service: opt.label, branch: opt.branch });
+          goto(1, 'forward');
+        });
+      });
+      updateProgress();
+      bindBack();
+      return;
+    }
+
+    // ——— Шаги ветки ———
+    if(state.step >= firstBranchIdx && state.step <= lastBranchIdx){
+      const branchPos = state.step - firstBranchIdx;
+      const raw = branchSteps[branchPos];
+      let step = raw;
+      if(raw.dynamic){
+        step = Object.assign({}, raw, raw.byService[state.service] || Object.values(raw.byService)[0]);
+      }
+      stage.innerHTML = `
+        <div class="qstep${dirClass}">
+          <div class="qstep__eyebrow">Шаг ${humanStep()} · ${state.service}</div>
+          <div class="qstep__q">${step.q}</div>
+          <div class="qopts${step.options.length<=4?' cols-2':(step.options.length>6?' cols-3':'')}">
+            ${step.options.map(o=>`
+              <button class="qopt${state.answers[step.key]===o?' active':''}" data-val="${escAttr(o)}">
+                <span class="qopt__mark"></span><span>${o}</span>
+              </button>`).join('')}
+          </div>
+          ${renderNav(lockService && branchPos===0)}
+        </div>`;
+      stage.querySelectorAll('.qopt').forEach(b=>{
+        b.addEventListener('click',()=>{
+          const val = b.dataset.val;
+          state.answers[step.key] = val;
+          stage.querySelectorAll('.qopt').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          qtrack('quiz_step', { step: humanStep(), key: step.key, value: val, branch: state.branch });
+          setTimeout(()=>goto(state.step+1, 'forward'), 220);
+        });
+      });
+      updateProgress();
+      bindBack();
+      return;
+    }
+
+    // ——— Контакты ———
+    if(state.step === contactIdx){
+      stage.innerHTML = `
+        <div class="qstep${dirClass}">
+          <div class="qstep__eyebrow">Последний шаг</div>
+          <div class="qstep__q">Куда прислать расчёт?</div>
+          <div class="qstep__sub">Можем сразу оценить по фото фасада, макету или примеру, который вам нравится.</div>
+          <form class="qform" novalidate>
+            <div class="qform__microbenefit">Подскажем оптимальный вариант по бюджету, срокам и способу изготовления.</div>
+            <div class="qform__row">
+              <label class="qform__label">Имя</label>
+              <input class="qform__field" name="name" placeholder="Как к вам обращаться" value="${escAttr(state.contact.name)}">
+            </div>
+            <div class="qform__row">
+              <label class="qform__label">Телефон</label>
+              <input class="qform__field" name="phone" inputmode="tel" placeholder="+7 (___) ___-__-__" value="${escAttr(state.contact.phone)}">
+              <div class="qform__err err-phone" style="display:none">Введите корректный номер телефона</div>
+            </div>
+            <div class="qform__row full">
+              <label class="qform__label">Удобный способ связи (Telegram / WhatsApp)</label>
+              <input class="qform__field" name="messenger" placeholder="@username или номер" value="${escAttr(state.contact.messenger)}">
+            </div>
+            <div class="qform__row full">
+              <label class="qform__label">Комментарий</label>
+              <textarea class="qform__field" name="comment" rows="3" placeholder="Коротко опишите задачу или пожелания">${escHtml(state.contact.comment)}</textarea>
+            </div>
+            <label class="qform__file">
+              <input type="file" class="qfile-input" accept="image/*,application/pdf" style="display:none">
+              <span class="qfile-label">📎 Прикрепить фото фасада, макет или пример (необязательно)</span>
+            </label>
+            <label class="qform__check">
+              <input type="checkbox" name="consent" ${state.contact.consent?'checked':''}>
+              <span>Я согласен на <a href="politika.html" target="_blank">обработку персональных данных</a></span>
+            </label>
+            <div class="qform__err err-consent" style="display:none">Нужно согласие на обработку данных</div>
+            <div class="qform__submit">
+              <button type="submit" class="btn btn-primary btn-lg">Получить расчёт</button>
+            </div>
+          </form>
+          ${renderNav(false)}
+        </div>`;
+      bindFormHandlers();
+      updateProgress();
+      bindBack();
+      return;
+    }
+
+    // ——— Успех ———
+    if(state.step === successIdx){
+      const summary = [];
+      summary.push(['Услуга', state.service]);
+      Object.entries(state.answers).forEach(([k,v])=>summary.push([labelForKey(k), v]));
+      summary.push(['Связь', state.contact.phone + (state.contact.messenger?' · '+state.contact.messenger:'')]);
+      stage.innerHTML = `
+        <div class="qstep qsuccess">
+          <div class="qsuccess__ico">✓</div>
+          <div class="qsuccess__title">Заявка отправлена</div>
+          <div class="qsuccess__desc">Менеджер свяжется с вами в течение 15 минут в рабочее время. Пришлём ориентир по стоимости и срокам.</div>
+          <div class="qsuccess__summary">
+            <div class="qsuccess__summary-title">Что мы приняли в работу</div>
+            ${summary.map(([k,v])=>`<div class="qsuccess__summary-row"><span>${k}</span><span>${escHtml(v||'—')}</span></div>`).join('')}
+          </div>
+          <button class="btn btn-secondary qrestart">Заполнить ещё раз</button>
+        </div>`;
+      stage.querySelector('.qrestart').addEventListener('click', reset);
+      updateProgress(true);
+      return;
+    }
+  }
+
+  function renderNav(disableBack){
+    return `<div class="qnav">
+      <button class="qback" ${disableBack?'disabled':''} type="button">← Назад</button>
+      <div class="qhint">Конфиденциально. Без спама.</div>
+    </div>`;
+  }
+  function bindBack(){
+    const back = stage.querySelector('.qback');
+    if(back && !back.disabled){
+      back.addEventListener('click', ()=>goto(Math.max(0, state.step-1), 'back'));
+    }
+  }
+  function goto(next, dir){
+    state.direction = dir;
+    state.step = next;
+    render();
+  }
+
+  function bindFormHandlers(){
+    const form = stage.querySelector('form.qform');
+    const phoneInput = form.querySelector('[name=phone]');
+    phoneInput.addEventListener('input', e=>{
+      e.target.value = formatRuPhone(e.target.value);
+    });
+    const fileInput = form.querySelector('.qfile-input');
+    const fileLabel = form.querySelector('.qfile-label');
+    const fileBox   = form.querySelector('.qform__file');
+    fileInput.addEventListener('change', ()=>{
+      if(fileInput.files[0]){
+        state.file = fileInput.files[0].name;
+        fileLabel.textContent = '✓ ' + fileInput.files[0].name;
+        fileBox.classList.add('filled');
+      } else {
+        state.file = null;
+        fileLabel.textContent = '📎 Прикрепить фото фасада, макет или пример (необязательно)';
+        fileBox.classList.remove('filled');
+      }
+    });
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      state.contact.name      = (fd.get('name')||'').toString().trim();
+      state.contact.phone     = (fd.get('phone')||'').toString().trim();
+      state.contact.messenger = (fd.get('messenger')||'').toString().trim();
+      state.contact.comment   = (fd.get('comment')||'').toString().trim();
+      state.contact.consent   = !!fd.get('consent');
+      let ok = true;
+      const phoneErr = form.querySelector('.err-phone');
+      const consentErr = form.querySelector('.err-consent');
+      phoneErr.style.display='none';
+      consentErr.style.display='none';
+      phoneInput.classList.remove('error');
+      if(!validateRuPhone(state.contact.phone)){
+        ok = false;
+        phoneErr.style.display='block';
+        phoneInput.classList.add('error');
+      }
+      if(!state.contact.consent){
+        ok = false;
+        consentErr.style.display='block';
+      }
+      if(!ok) return;
+      const payload = {
+        serviceType: state.service,
+        branch: state.branch,
+        answers: state.answers,
+        contact: state.contact,
+        fileName: state.file,
+        utm: readUtm(),
+        submittedAt: new Date().toISOString(),
+      };
+      qtrack('quiz_submit', payload);
+      submitQuiz(payload).then(()=>{
+        qtrack('quiz_success', { service: state.service, branch: state.branch });
+        goto(state.step+1, 'forward');
+      }).catch(err=>{
+        alert('Не удалось отправить заявку. Попробуйте ещё раз или позвоните по +7 (495) 278-02-98');
+        console.error(err);
+      });
+    });
+  }
+
+  function reset(){
+    state.step = 0;
+    state.service = lockService;
+    state.branch = lockBranch;
+    state.answers = {};
+    state.contact = { name:'', phone:'', messenger:'', comment:'', consent:false };
+    state.direction = 'forward';
+    state.file = null;
+    render();
+  }
+
+  render();
+}
+
+// ——— Монтируем квизы, которые есть на странице ———
+document.querySelectorAll('[data-quiz]').forEach(el=>{
+  const lockService = el.dataset.quizService || null;
+  const lockBranch  = el.dataset.quizBranch  || null;
+  mountQuiz(el, { lockService, lockBranch });
+});
+// Плавный скролл к якорям квизов
+if(location.hash && /^#quiz/.test(location.hash)){
+  setTimeout(()=>document.querySelector(location.hash)?.scrollIntoView({behavior:'smooth',block:'start'}), 50);
+}
+</script>
+</body>
+</html>
