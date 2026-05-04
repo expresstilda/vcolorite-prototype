@@ -156,7 +156,7 @@ p{color:var(--ink-2)}
 .proof__l{font-size:12px;opacity:.7;font-weight:500;margin-top:4px}
 
 /* ---------- PRODUCTS / PRICE TILES ---------- */
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:36px}
 .tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .18s;position:relative;overflow:hidden}
 .tile:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 16px 40px rgba(15,17,22,.08)}
 .tile__img{aspect-ratio:16/11;background:#0f1116;border-radius:10px;margin:-6px -6px 8px;position:relative;overflow:hidden}
@@ -307,7 +307,7 @@ p{color:var(--ink-2)}
 .reviews__cta a{color:var(--brand-red);font-weight:700;border-bottom:1px dashed var(--brand-red)}
 
 /* ---------- PROCESS (steps) ---------- */
-.process__row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:36px;position:relative}
+.process__row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:36px;position:relative}
 .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;position:relative}
 .step__n{font-size:11px;font-weight:800;color:var(--brand-red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
 .step__t{font-size:16px;font-weight:800;margin-bottom:6px}
@@ -561,7 +561,7 @@ p{color:var(--ink-2)}
       <div>
         <div class="eyebrow">Подольск · Москва и МО</div>
         <h1>Вывески и наружная реклама<br><mark>под ключ</mark> — от замера до монтажа</h1>
-        <p class="sub">Собственное производство → дизайн → согласование → монтаж. Без посредников. Гарантия 2 года на всю конструкцию.</p>
+        <p class="sub">Согласование → дизайн → производство → монтаж. Без посредников. Гарантия 2 года на всю конструкцию.</p>
         <div class="ctas">
           <a class="btn btn-primary btn-lg" href="#quiz">Рассчитать стоимость за 15 минут</a>
           <a class="btn btn-ghost btn-lg" href="#portfolio">Посмотреть портфолио</a>
@@ -592,7 +592,7 @@ p{color:var(--ink-2)}
       <div class="proof__item"><div class="proof__n">500<span class="u">+</span></div><div class="proof__l">реализованных проектов</div></div>
       <div class="proof__item"><div class="proof__n">165<span class="u">+</span></div><div class="proof__l">отзывов на Яндекс.Картах</div></div>
       <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на конструкцию</div></div>
-      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация и замер</div></div>
+      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация по фото</div></div>
     </div>
   </section>
 
@@ -632,6 +632,13 @@ p{color:var(--ink-2)}
           <div class="tile__desc">Офисные, информационные, навигационные. Срочно — за 1 день.</div>
           <span class="tile__link">Подробнее</span>
         </a>
+        <a class="tile">
+          <div class="tile__img"><div class="ph">📷 Наклейки</div></div>
+          <div class="tile__title">Наклейки</div>
+          <div class="tile__price">от <b>500 ₽</b></div>
+          <div class="tile__desc">Витрины, авто, оракал, плёнка с печатью. Любые тиражи.</div>
+          <span class="tile__link">Подробнее</span>
+        </a>
       </div>
     </div>
   </section>
@@ -659,17 +666,17 @@ p{color:var(--ink-2)}
           <span class="tech-card__link">Подробнее →</span>
         </a>
         <a class="tech-card">
-          <div class="tech-card__ico">🎨</div>
-          <div class="tech-card__title">УФ-печать</div>
-          <div class="tech-card__desc">Прямая печать на композите, акриле, стекле, ПВХ. Устойчивая к улице и ультрафиолету. Для вывесок, табличек и интерьеров.</div>
-          <div class="tech-card__price">от <b>2 000 ₽/м²</b> · печать за 1 день</div>
+          <div class="tech-card__ico">🛠</div>
+          <div class="tech-card__title">Фрезеровка</div>
+          <div class="tech-card__desc">Точный фигурный раскрой акрила, ПВХ, композита. Сложные формы букв, корпусов и подложек на координатном станке.</div>
+          <div class="tech-card__price">от <b>1 500 ₽</b> · детали за 1 день</div>
           <span class="tech-card__link">Подробнее →</span>
         </a>
         <a class="tech-card">
-          <div class="tech-card__ico">📐</div>
-          <div class="tech-card__title">Гибка пластика</div>
-          <div class="tech-card__desc">Точная гибка акрила и ПВХ по чертежу. Нестандартные буквы, короба, объёмные элементы без швов и стыков.</div>
-          <div class="tech-card__price">от <b>1 200 ₽</b> · от эскиза до детали 2 дня</div>
+          <div class="tech-card__ico">🖼</div>
+          <div class="tech-card__title">Широкоформатная печать</div>
+          <div class="tech-card__desc">Печать баннеров, наклеек, плёнки на любых рулонных материалах. До 3,2 м шириной, стойкие к улице чернила.</div>
+          <div class="tech-card__price">от <b>500 ₽/м²</b> · печать за 1 день</div>
           <span class="tech-card__link">Подробнее →</span>
         </a>
         <a class="tech-card">
@@ -723,10 +730,10 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Почему выбирают нас</div>
       <h2>4 причины работать с КОЛОРИТОМ</h2>
       <div class="trust__grid">
-        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Своё производство</div><div class="trust-card__d">Цех в Подольске. Без субподрядчиков — поэтому сроки прогнозируемы и цена ниже.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Поможем с согласованием</div><div class="trust-card__d">Знаем требования администрации Подольска и МО. Согласуем за 7–14 дней или вернём деньги.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">По конструкции, краске и электронике. Если что-то вышло из строя — приедем и починим.</div></div>
         <div class="trust-card"><div class="trust-card__ico">🎨</div><div class="trust-card__t">Визуализация бесплатно</div><div class="trust-card__d">Покажем, как будет выглядеть на вашем фасаде до начала работ. Вы не покупаете «на слово».</div></div>
+        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Поможем с согласованием</div><div class="trust-card__d">Знаем требования администрации Подольска и МО. Согласуем за 7–14 дней или вернём деньги.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Своё производство</div><div class="trust-card__d">Цех в Подольске. Без субподрядчиков — поэтому сроки прогнозируемы и цена ниже.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">По конструкции, краске и электронике. Если что-то вышло из строя — приедем и починим.</div></div>
       </div>
     </div>
   </section>
@@ -754,6 +761,9 @@ p{color:var(--ink-2)}
         <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Заказывали вывеску для нового кафе в Подольске. Сделали за 6 дней, помогли с согласованием в администрации. Висит уже год — как новая.»</div><div class="rev-card__who"><div class="rev-card__ava">АМ</div><div><div class="rev-card__name">Алексей М.</div><div class="rev-card__meta">Кафе «Уют» · Яндекс.Карты</div></div></div></div>
         <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Нужны были объемные буквы для магазина. До старта показали визуализацию на фото нашего фасада — очень удобно, не пришлось гадать.»</div><div class="rev-card__who"><div class="rev-card__ava">ЕВ</div><div><div class="rev-card__name">Елена В.</div><div class="rev-card__meta">Магазин одежды · Яндекс.Карты</div></div></div></div>
         <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Спасибо за оперативность. Согласовали, изготовили и смонтировали за 12 дней. Старую вывеску демонтировали тоже они. Без нервов.»</div><div class="rev-card__who"><div class="rev-card__ava">ДК</div><div><div class="rev-card__name">Дмитрий К.</div><div class="rev-card__meta">Автосервис · Яндекс.Карты</div></div></div></div>
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Делали неон в салон. Два эскиза на выбор, изготовили за 4 дня. Смонтировали аккуратно, поверхность не повредили. Рекомендую.»</div><div class="rev-card__who"><div class="rev-card__ava">МС</div><div><div class="rev-card__name">Мария С.</div><div class="rev-card__meta">Салон красоты · Яндекс.Карты</div></div></div></div>
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Полностью оформили входную группу: вывеска, таблички, наклейки на дверь. Один подрядчик — один договор. Сроки выдержали.»</div><div class="rev-card__who"><div class="rev-card__ava">ИП</div><div><div class="rev-card__name">Игорь П.</div><div class="rev-card__meta">Стоматология · Яндекс.Карты</div></div></div></div>
+        <div class="rev-card"><div class="rev-card__stars">★★★★★</div><div class="rev-card__text">«Нужно было заменить вывеску в ТЦ. Помогли с регламентами арендодателя, согласовали все документы. Цена в смете — то же, что заплатили.»</div><div class="rev-card__who"><div class="rev-card__ava">ОТ</div><div><div class="rev-card__name">Ольга Т.</div><div class="rev-card__meta">Магазин в ТЦ · Яндекс.Карты</div></div></div></div>
       </div>
       <div class="reviews__cta">
         <a href="#">Читать все 165+ отзывов на Яндекс.Картах →</a>
@@ -768,11 +778,11 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Частые вопросы</div>
       <h2 style="text-align:center">Отвечаем на 5 главных вопросов</h2>
       <div class="faq">
-        <div class="faq-item open"><div class="faq-q">Сколько стоит вывеска / объемные буквы?</div><div class="faq-a">Цена зависит от размера, материала, подсветки и сложности монтажа. Ориентиры: вывеска — от 20 000 ₽, объемные буквы — от 15 000 ₽. Точный расчёт — после короткого брифа (15 минут).</div></div>
-        <div class="faq-item"><div class="faq-q">Сколько занимает изготовление?</div><div class="faq-a">Простая вывеска — 3–5 дней. Объемные буквы с подсветкой — 5–7 дней. Комплексный проект с согласованием — 2–3 недели.</div></div>
-        <div class="faq-item"><div class="faq-q">Вы помогаете с согласованием в администрации?</div><div class="faq-a">Да. Знаем требования Подольска и МО. Согласуем в среднем за 7–14 дней. Если не согласуем — вернём предоплату за этот этап.</div></div>
-        <div class="faq-item"><div class="faq-q">Какая гарантия?</div><div class="faq-a">2 года на всю конструкцию — краску, электронику, крепёж. Если что-то вышло из строя — бесплатный выезд и ремонт.</div></div>
+        <div class="faq-item open"><div class="faq-q">Вы помогаете с согласованием в администрации?</div><div class="faq-a">Да. Знаем требования Подольска и МО. Согласуем в среднем за 7–14 дней. Если не согласуем — вернём предоплату за этот этап.</div></div>
         <div class="faq-item"><div class="faq-q">Можно увидеть, как будет выглядеть до заказа?</div><div class="faq-a">Да. Присылаете фото своего фасада — мы делаем визуализацию в тот же день. Бесплатно и без обязательств.</div></div>
+        <div class="faq-item"><div class="faq-q">Сколько стоит вывеска / объемные буквы?</div><div class="faq-a">Цена зависит от размера, материала, подсветки и сложности монтажа. Ориентиры: вывеска — от 20 000 ₽, объемные буквы — от 15 000 ₽. Точный расчёт — после короткого брифа (15 минут).</div></div>
+        <div class="faq-item"><div class="faq-q">Сколько занимает изготовление?</div><div class="faq-a">Простая вывеска — 3–5 дней. Объемные буквы с подсветкой — 5–7 дней. Комплексный проект с согласованием — 2–3 недели.</div></div>
+        <div class="faq-item"><div class="faq-q">Какая гарантия?</div><div class="faq-a">2 года на всю конструкцию — краску, электронику, крепёж. Если что-то вышло из строя — бесплатный выезд и ремонт.</div></div>
       </div>
     </div>
   </section>
@@ -984,7 +994,7 @@ p{color:var(--ink-2)}
           <button class="btn btn-primary btn-lg">Получить визуализацию на моём фасаде</button>
           <button class="btn btn-ghost btn-lg">Смотреть работы</button>
         </div>
-        <div class="sla">от 15 000 ₽ · Замер + дизайн + визуализация — бесплатно</div>
+        <div class="sla">Дизайн и визуализация — бесплатно</div>
       </div>
       <div class="hero__visual">
         <div class="badge">Live · монтаж на фасаде</div>
@@ -1068,6 +1078,11 @@ p{color:var(--ink-2)}
         <div class="id-card"><div class="id-card__ico">💅</div><div class="id-card__t">Салоны, SPA</div><div class="id-card__d">Интерьерные с неоном</div></div>
         <div class="id-card"><div class="id-card__ico">🏢</div><div class="id-card__t">Офисы</div><div class="id-card__d">Алюминий без подсветки</div></div>
         <div class="id-card"><div class="id-card__ico">🏬</div><div class="id-card__t">ТЦ, ТРК</div><div class="id-card__d">Крупный формат от 2 м</div></div>
+        <div class="id-card"><div class="id-card__ico">🚗</div><div class="id-card__t">Автосервисы</div><div class="id-card__d">Контрастные, видно с дороги</div></div>
+        <div class="id-card"><div class="id-card__ico">💊</div><div class="id-card__t">Аптеки, медцентры</div><div class="id-card__d">С крестом и подсветкой 24/7</div></div>
+        <div class="id-card"><div class="id-card__ico">💈</div><div class="id-card__t">Барбершопы</div><div class="id-card__d">Винтаж, неон, тёплый свет</div></div>
+        <div class="id-card"><div class="id-card__ico">🎒</div><div class="id-card__t">Школы, детсады</div><div class="id-card__d">Безопасные крепления, мягкий свет</div></div>
+        <div class="id-card"><div class="id-card__ico">🏨</div><div class="id-card__t">Гостиницы</div><div class="id-card__d">Премиум-материалы, контражур</div></div>
       </div>
     </div>
   </section>
@@ -1099,28 +1114,14 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · PROCESS</div>
     <div class="container">
       <div class="eyebrow">Как мы работаем</div>
-      <h2>5 шагов — от заявки до монтажа</h2>
+      <h2>6 шагов — от заявки до монтажа</h2>
       <div class="process__row">
         <div class="step"><div class="step__n">Шаг 1 · 15 мин</div><div class="step__t">Заявка и бриф</div><div class="step__d">Вы описываете задачу, присылаете фото фасада. Мы задаём уточняющие вопросы.</div></div>
         <div class="step"><div class="step__n">Шаг 2 · в тот же день</div><div class="step__t">Визуализация</div><div class="step__d">Делаем макет и накладываем на фото вашего фасада. Вы видите результат до оплаты.</div></div>
-        <div class="step"><div class="step__n">Шаг 3 · 1–2 дня</div><div class="step__t">Договор и предоплата</div><div class="step__d">Согласуем смету, подписываем договор. Предоплата 50%.</div></div>
-        <div class="step"><div class="step__n">Шаг 4 · 5–7 дней</div><div class="step__t">Производство</div><div class="step__d">Режем, красим, собираем в нашем цеху. Присылаем фото готовых букв.</div></div>
-        <div class="step"><div class="step__n">Шаг 5 · 1 день</div><div class="step__t">Монтаж и приёмка</div><div class="step__d">Выезжаем на объект, устанавливаем, подключаем. Вы принимаете работу.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST - NEW -->
-  <section class="block trust section">
-    <div class="block__marker">Новый · TRUST</div>
-    <div class="container">
-      <div class="eyebrow">Гарантии и спокойствие</div>
-      <h2>Что вы получаете кроме букв</h2>
-      <div class="trust__grid">
-        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">На конструкцию, краску, подсветку. Приезжаем и чиним за свой счёт.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Согласование</div><div class="trust-card__d">Если нужно — согласуем с администрацией за 7–14 дней.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">⭐</div><div class="trust-card__t">165+ отзывов</div><div class="trust-card__d">На Яндекс.Картах. Без фильтра — читайте реальные.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">📄</div><div class="trust-card__t">Фиксированная цена</div><div class="trust-card__d">Цена в договоре = цена по факту. Без доплат «за сложность».</div></div>
+        <div class="step"><div class="step__n">Шаг 3 · 7–14 дней</div><div class="step__t">Согласование</div><div class="step__d">Подаём документы в администрацию города и получаем разрешение на монтаж и эксплуатацию вывески.</div></div>
+        <div class="step"><div class="step__n">Шаг 4 · 1–2 дня</div><div class="step__t">Договор и предоплата</div><div class="step__d">Согласуем смету, подписываем договор. Предоплата 50%.</div></div>
+        <div class="step"><div class="step__n">Шаг 5 · 5–7 дней</div><div class="step__t">Производство</div><div class="step__d">Режем, красим, собираем в нашем цеху. Присылаем фото готовых букв.</div></div>
+        <div class="step"><div class="step__n">Шаг 6 · 1 день</div><div class="step__t">Монтаж и приёмка</div><div class="step__d">Выезжаем на объект, устанавливаем, подключаем. Вы принимаете работу.</div></div>
       </div>
     </div>
   </section>
@@ -1404,28 +1405,14 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · PROCESS</div>
     <div class="container">
       <div class="eyebrow">Как мы работаем</div>
-      <h2>5 шагов — от заявки до монтажа</h2>
+      <h2>6 шагов — от заявки до монтажа</h2>
       <div class="process__row">
         <div class="step"><div class="step__n">Шаг 1</div><div class="step__t">Заявка</div><div class="step__d">Присылаете фото фасада и описание бизнеса.</div></div>
         <div class="step"><div class="step__n">Шаг 2</div><div class="step__t">Визуализация</div><div class="step__d">В тот же день показываем, как будет выглядеть.</div></div>
-        <div class="step"><div class="step__n">Шаг 3</div><div class="step__t">Договор</div><div class="step__d">Фиксируем цену и срок. Предоплата 50%.</div></div>
-        <div class="step"><div class="step__n">Шаг 4</div><div class="step__t">Изготовление</div><div class="step__d">Производство в нашем цеху, 3–5 дней.</div></div>
-        <div class="step"><div class="step__n">Шаг 5</div><div class="step__t">Монтаж</div><div class="step__d">Устанавливаем, подключаем, сдаём работу.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST - NEW -->
-  <section class="block trust section">
-    <div class="block__marker">Новый · TRUST</div>
-    <div class="container">
-      <div class="eyebrow">Гарантии</div>
-      <h2>Что получает заказчик вывески</h2>
-      <div class="trust__grid">
-        <div class="trust-card"><div class="trust-card__ico">📋</div><div class="trust-card__t">Согласование</div><div class="trust-card__d">Знаем регламенты Подольска и МО. Возьмём на себя все документы.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">Конструкция, краска, электроника. Бесплатный ремонт.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">⭐</div><div class="trust-card__t">165+ отзывов</div><div class="trust-card__d">Реальные на Яндекс.Картах — с фото и датами.</div></div>
-        <div class="trust-card"><div class="trust-card__ico">💰</div><div class="trust-card__t">Цена в договоре</div><div class="trust-card__d">Без сюрпризов. То, что согласовали — то и заплатите.</div></div>
+        <div class="step"><div class="step__n">Шаг 3</div><div class="step__t">Согласование</div><div class="step__d">Подаём документы в администрацию города и получаем разрешение на монтаж и эксплуатацию вывески — 7–14 дней.</div></div>
+        <div class="step"><div class="step__n">Шаг 4</div><div class="step__t">Договор</div><div class="step__d">Фиксируем цену и срок. Предоплата 50%.</div></div>
+        <div class="step"><div class="step__n">Шаг 5</div><div class="step__t">Изготовление</div><div class="step__d">Производство в нашем цеху, 3–5 дней.</div></div>
+        <div class="step"><div class="step__n">Шаг 6</div><div class="step__t">Монтаж</div><div class="step__d">Устанавливаем, подключаем, сдаём работу.</div></div>
       </div>
     </div>
   </section>
@@ -1636,6 +1623,31 @@ p{color:var(--ink-2)}
     </div>
   </section>
 
+  <!-- SCHEME - NEW (фасадная схема) -->
+  <section class="block section" style="background:var(--bg-soft)">
+    <div class="block__marker">Новый · Фасадная схема (доп-услуга)</div>
+    <div class="container">
+      <div class="eyebrow">Если для вашей вывески нет места</div>
+      <h2>Сделаем фасадную схему — даже если её не было</h2>
+      <p class="lead">Фасадная схема — документ собственника здания, на котором отмечены места под рекламу. Если для вашей вывески места нет, а согласовать всё равно надо — мы возьмём это на себя.</p>
+      <div class="trust__grid" style="margin-top:36px">
+        <div class="trust-card"><div class="trust-card__ico">👥</div><div class="trust-card__t">4 собственника? Соберём</div><div class="trust-card__d">Часто здание разделено между несколькими владельцами. Найдём всех, переговорим, получим согласие.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🏛</div><div class="trust-card__t">Здание из СССР? Знаем как</div><div class="trust-card__d">Старый фонд, нет архивов, перепутаны границы — типичная история. Проходили это много раз.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">📐</div><div class="trust-card__t">Подготовим единый проект</div><div class="trust-card__d">Замеры всего фасада, размещение мест под рекламу, чертежи — пакет документов под подачу в администрацию.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">💸</div><div class="trust-card__t">Расчёт индивидуальный</div><div class="trust-card__d">Стоимость зависит от площади фасада, числа собственников и состояния документов на здание.</div></div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <button class="btn btn-primary btn-lg">Узнать, нужна ли фасадная схема для моего адреса</button>
+      </div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — доп-услуга «фасадная схема»</strong>
+      Денис на созвоне (21.04): «На фасадной схеме изображено всё здание... Если места под рекламу нет — надо идти в администрацию переделать. Это даже более дорогостоящая работа, чем получить разрешение». Часто блокирует согласование, поэтому выводим как отдельную услугу с понятным CTA.
+    </div>
+  </div>
+
   <!-- CASES - NEW (кейсы согласования) -->
   <section class="block portfolio section">
     <div class="block__marker">Новый · PORTFOLIO (Кейсы)</div>
@@ -1661,16 +1673,16 @@ p{color:var(--ink-2)}
   <section class="block section" style="background:linear-gradient(135deg,#ecfdf5,#ffffff)">
     <div class="block__marker">Новый · CROSS SELL (в производство)</div>
     <div class="container">
-      <div class="eyebrow">Дешевле под ключ</div>
-      <h2>Изготовление + согласование = полный цикл</h2>
-      <p class="lead">Если вам нужна новая вывеска — закажите сразу и производство, и согласование. Это дешевле и быстрее, чем два подрядчика.</p>
+      <div class="eyebrow">Пакетное предложение</div>
+      <h2>Согласование + изготовление = скидка 10%</h2>
+      <p class="lead">Закажите пакетом — мы делаем скидку 10% на изготовление вывески. Один подрядчик, параллельные процессы, на 2–3 недели быстрее, чем у двух разных компаний.</p>
       <div class="cross__grid" style="margin-top:36px">
-        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">💰</div><div><div class="cross-card__t">Скидка 10%</div><div class="cross-card__d">На пакет «изготовление + согласование»</div></div></div>
-        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">⚡</div><div><div class="cross-card__t">Параллельные процессы</div><div class="cross-card__d">Пока идёт согласование — мы уже производим</div></div></div>
-        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">📋</div><div><div class="cross-card__t">Один договор</div><div class="cross-card__d">Одна ответственность, одна гарантия</div></div></div>
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">💰</div><div><div class="cross-card__t">−10% на изготовление</div><div class="cross-card__d">При заказе пакета «Согласование + Изготовление»</div></div></div>
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">⚡</div><div><div class="cross-card__t">Параллельные процессы</div><div class="cross-card__d">Пока согласовываем — уже готовим производство</div></div></div>
+        <div class="cross-card" style="background:#fff"><div class="cross-card__ico">📋</div><div><div class="cross-card__t">Один договор</div><div class="cross-card__d">Один контакт, одна ответственность, одна гарантия</div></div></div>
       </div>
       <div style="text-align:center;margin-top:32px">
-        <button class="btn btn-primary btn-lg">Заказать вывеску под ключ</button>
+        <button class="btn btn-primary btn-lg">Получить расчёт пакета</button>
       </div>
     </div>
   </section>
@@ -1855,7 +1867,7 @@ p{color:var(--ink-2)}
       </div>
       <div class="hero__visual">
         <div class="badge">Live · наш цех</div>
-        <div class="ph">📷<br>ФОТО: <em>принтер в работе, печатает логотип</em><em style="margin-top:12px;opacity:.5">Верстальщику: авто-видео 10 сек из цеха</em></div>
+        <div class="ph">🎬<br>ВИДЕО / GIF: <em>принтер печатает логотип, 16:9, ~6–10 сек, цикл</em><em style="margin-top:12px;opacity:.5">Снимет клиент в цеху, верстальщик добавит autoplay+loop+muted</em></div>
       </div>
     </div>
   </section>
