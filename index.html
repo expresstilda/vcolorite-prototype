@@ -245,6 +245,21 @@ p{color:var(--ink-2)}
 .qopt:hover .qopt__mark,.qopt.active .qopt__mark{border-color:var(--brand-red)}
 .qopt.active .qopt__mark::after{content:"";position:absolute;inset:3px;background:var(--brand-red);border-radius:50%}
 
+/* Multi-select marks (checkbox style) */
+.qopts--multi .qopt__mark{border-radius:6px}
+.qopts--multi .qopt.active .qopt__mark{background:var(--brand-red)}
+.qopts--multi .qopt.active .qopt__mark::after{inset:0;background:transparent;border-radius:0;content:"✓";display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:900}
+
+/* Free-text and «свой вариант» inputs inside a step */
+.qfields{display:grid;gap:14px}
+.qother{margin-top:12px}
+.qother__label,.qfields .qform__label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
+.qother .qform__field,.qfields .qform__field{width:100%}
+
+/* Continue button for multi / text / «свой вариант» steps */
+.qstep__next{margin-top:20px}
+.qstep__next .btn{min-width:200px}
+
 /* Nav row */
 .qnav{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .qback{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;padding:8px 12px;border-radius:8px;transition:all .15s;font-family:inherit}
@@ -538,7 +553,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -666,7 +681,7 @@ p{color:var(--ink-2)}
           <div class="tech-card__star">Ключевое</div>
           <div class="tech-card__ico">🖨</div>
           <div class="tech-card__title">3D-печать</div>
-          <div class="tech-card__desc">Фирменный принтер в цеху. Печатаем сложные формы, единичные тиражи и нестандартные кегли — всё, что невозможно или дорого на фрезере.</div>
+          <div class="tech-card__desc">Свой парк принтеров Bambu Lab в цеху. Печатаем сложные формы, единичные тиражи и мелкие буквы до 5 см — всё, что невозможно или дорого на фрезере.</div>
           <div class="tech-card__price">от <b>4 500 ₽</b> · прототип за 24 ч</div>
           <span class="tech-card__link">Подробнее →</span>
         </a>
@@ -886,11 +901,11 @@ p{color:var(--ink-2)}
   <!-- SEO TEXT -->
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Заголовок</h2>
+      <h2 class="seo-text__title">Производство наружной рекламы</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Профессиональное производство наружной рекламы — это не «повесить надпись на стену», а целый комплекс: от анализа фасада и проходящего трафика до подбора материалов, типа подсветки и способа крепления с учётом реальных условий эксплуатации.</p>
+        <p>Перед заказом важно понять задачу. Отдельные объёмные буквы подходят, когда название бренда само по себе — главный визуальный акцент. Надписи на подложке оптимальны для прямых фасадов и витрин. Комплексное оформление входной группы сочетает несколько элементов и «подводит» человека к двери.</p>
+        <p>«КОЛОРИТ» берёт на себя анализ задачи, подбор конструкции, расчёт нагрузок и погодных рисков, грамотный монтаж с соблюдением техники безопасности. Работаем в Подольске, Москве и по всей Московской области — за плечами не один десяток реализованных объектов в схожих условиях.</p>
       </div>
     </div>
   </section>
@@ -903,7 +918,7 @@ p{color:var(--ink-2)}
           <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
           КОЛОРИТ
         </div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года. Собственный цех, парк 3D-принтеров Bambu Lab, согласование «под&nbsp;ключ».</div>
         <div class="site-foot__soc">
           <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
           <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
@@ -973,7 +988,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -1058,9 +1073,9 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · QUIZ (по буквам)</div>
     <div class="container">
       <div class="eyebrow" style="color:#fff;opacity:.75">Адаптировано под объёмные буквы</div>
-      <h2>Рассчитаем ваш комплект букв — 6 коротких вопросов</h2>
+      <h2>Рассчитаем ваш комплект букв — несколько коротких вопросов</h2>
       <p class="qlead quiz__lead">Учтём место монтажа, тип свечения, размер и сроки. Пришлём ориентир по стоимости и визуализацию на фото вашего фасада.</p>
-      <div class="qbox" data-quiz data-quiz-service="Объёмные буквы" data-quiz-branch="sign"><!-- locked to letters --></div>
+      <div class="qbox" data-quiz data-quiz-service="Объёмные буквы" data-quiz-branch="letters"><!-- бриф клиента «Квиз буквы» --></div>
     </div>
   </section>
   <div class="block__comment">
@@ -1193,7 +1208,7 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Вместе с буквами часто заказывают</div>
       <h2>Дополните ваш проект</h2>
       <div class="cross__grid" style="grid-template-columns:repeat(4,1fr)">
-        <a class="cross-card"><div class="cross-card__ico">🖨</div><div><div class="cross-card__t">3D-печать</div><div class="cross-card__d">Сложные формы и нестандартные кегли на нашем принтере</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">🖨</div><div><div class="cross-card__t">3D-печать</div><div class="cross-card__d">Сложные формы и мелкие буквы на принтерах Bambu Lab</div></div></a>
         <a class="cross-card"><div class="cross-card__ico">📋</div><div><div class="cross-card__t">Согласование</div><div class="cross-card__d">Берём на себя весь процесс с администрацией</div></div></a>
         <a class="cross-card"><div class="cross-card__ico">🏷</div><div><div class="cross-card__t">Таблички</div><div class="cross-card__d">Режим работы, навигация по территории</div></div></a>
         <a class="cross-card"><div class="cross-card__ico">💡</div><div><div class="cross-card__t">Лайтбоксы</div><div class="cross-card__d">Яркие короба рядом со входом</div></div></a>
@@ -1204,11 +1219,11 @@ p{color:var(--ink-2)}
   <!-- SEO TEXT -->
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Заголовок</h2>
+      <h2 class="seo-text__title">Зачем бизнесу объёмные буквы на фасаде</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Фасад — первая точка контакта клиента с брендом, и объёмные буквы работают как постоянный офлайн-маяк. В отличие от плоских панелей, объёмная надпись лучше читается на расстоянии и под разными углами и создаёт впечатление солидности и долговечности бренда.</p>
+        <p>Буквы бывают световыми — с лицевым свечением, контражуром или комбинированным эффектом — и без подсветки. Световые буквы требуют грамотного подбора мощности диодов и блоков питания, а качественный монтаж не менее важен, чем само производство.</p>
+        <p>Мы подбираем материалы и технологию под конкретный фасад и задачу, отвечаем за установку и обслуживание — это прогнозируемые сроки и прозрачный бюджет.</p>
       </div>
     </div>
   </section>
@@ -1220,7 +1235,7 @@ p{color:var(--ink-2)}
           <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
           КОЛОРИТ
         </div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года. Собственный цех, парк 3D-принтеров Bambu Lab, согласование «под&nbsp;ключ».</div>
         <div class="site-foot__soc">
           <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
           <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
@@ -1290,7 +1305,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -1313,10 +1328,10 @@ p{color:var(--ink-2)}
         <h1>Вывеска для вашего бизнеса —<br><mark>видно днём, ярко ночью</mark></h1>
         <p class="sub">Дизайн + изготовление + монтаж <b>за 5 дней</b>. Покажем результат на фото вашего фасада ещё до оплаты.</p>
         <div class="ctas">
-          <button class="btn btn-primary btn-lg">Рассчитать и увидеть на своём фасаде</button>
+          <a class="btn btn-primary btn-lg" href="#quiz-signs">Рассчитать и увидеть на своём фасаде</a>
           <button class="btn btn-ghost btn-lg">Смотреть портфолио</button>
         </div>
-        <div class="sla">от 20 000 ₽ · Гарантия 2 года · Поможем с согласованием</div>
+        <div class="sla">Бесплатная визуализация на фасаде · Гарантия 2 года · Поможем с согласованием</div>
       </div>
       <div class="hero__visual">
         <div class="badge">Live · фасад кафе</div>
@@ -1358,12 +1373,32 @@ p{color:var(--ink-2)}
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Автосервис<br><em>Большой формат</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Автосервис · Баннер</div><div class="pf-card__title">Автосервис — вывеска + указатели</div><div class="pf-card__meta"><span>8 дней · МО</span><b>65 000 ₽</b></div></div></div>
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Фасад офиса<br><em>ABS-пластик</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Несветовая</div><div class="pf-card__title">Бизнес-центр — строгая несветовая вывеска</div><div class="pf-card__meta"><span>5 дней · Москва</span><b>32 000 ₽</b></div></div></div>
       </div>
+      <div class="portfolio__cta">
+        <a class="btn btn-primary btn-lg" href="#quiz-signs">Хочу так же — рассчитать мою вывеску</a>
+      </div>
     </div>
   </section>
   <div class="block__comment">
     <div class="block__comment-inner new">
       <strong>Новый блок — закрывает главный дефицит страницы</strong>
       На странице «Объемные буквы» блок «Наши цены» уже есть. А вот на странице «Вывески» его не было — это главная проблема. Повторяем успешный блок и дополняем более широким набором типов (панель-кронштейн, лайтбокс, интерьерные и т.д.).
+    </div>
+  </div>
+
+  <!-- QUIZ (адаптирован под «Вывески») - NEW -->
+  <section class="block quiz section" id="quiz-signs">
+    <div class="block__marker">Новый · QUIZ (по вывескам)</div>
+    <div class="container">
+      <div class="eyebrow" style="color:#fff;opacity:.75">Адаптировано под вывески</div>
+      <h2>Подберём и рассчитаем вашу вывеску</h2>
+      <p class="qlead quiz__lead">Сначала выберите тип вывески — дальше покажем только то, что важно именно для него (световая, несветовая, панель-кронштейн). Пришлём ориентир по стоимости, срокам и способу монтажа.</p>
+      <div class="qbox" data-quiz data-quiz-service="Вывески" data-quiz-branch="signs"><!-- бриф клиента «Квиз вывески» --></div>
+    </div>
+  </section>
+  <div class="block__comment">
+    <div class="block__comment-inner new">
+      <strong>Новый блок — квиз по брифу клиента</strong>
+      Вопросы и варианты взяты 1-в-1 из брифа «Квиз вывески». Шаг 1 «Тип вывески» — мультивыбор; в зависимости от выбора показываются условные шаги: для лайтбокса — свечение/цвет/управление светом, для фасадной таблички — материал/окраска/крепление, для панель-кронштейна — формат/подсветка/двусторонность. Доп. услуги — чекбоксы.
     </div>
   </div>
 
@@ -1463,11 +1498,11 @@ p{color:var(--ink-2)}
   <!-- SEO TEXT -->
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Заголовок</h2>
+      <h2 class="seo-text__title">Изготовление вывесок</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Вывеска — это первое, что видит человек, подходя к вашему бизнесу. Грамотно изготовленная вывеска превращает фасад в рекламный инструмент, который работает круглосуточно без ежемесячной платы.</p>
+        <p>Хорошая вывеска решает сразу несколько задач: помогает найти вход, сообщает тип бизнеса, выделяет вас среди конкурентов и формирует доверие за счёт аккуратного исполнения. Мы делаем фасадные вывески, лайтбоксы, световые буквы и интерьерную навигацию.</p>
+        <p>Работаем полным циклом — замер, дизайн, изготовление, монтаж и гарантия. Стоимость зависит от размера, сложности подсветки и способа крепления; точную смету даём после короткого брифа.</p>
       </div>
     </div>
   </section>
@@ -1479,7 +1514,7 @@ p{color:var(--ink-2)}
           <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
           КОЛОРИТ
         </div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года. Собственный цех, парк 3D-принтеров Bambu Lab, согласование «под&nbsp;ключ».</div>
         <div class="site-foot__soc">
           <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
           <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
@@ -1549,7 +1584,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -1575,7 +1610,7 @@ p{color:var(--ink-2)}
           <button class="btn btn-primary btn-lg">Бесплатная консультация</button>
           <button class="btn btn-ghost btn-lg">📄 Скачать чек-лист</button>
         </div>
-        <div class="sla">Если не согласуем — вернём деньги за этап</div>
+        <div class="sla">Под ключ — от 10 000 ₽ · Если не согласуем — вернём деньги за этап</div>
       </div>
       <div class="hero__visual">
         <div class="badge">Live · кейс</div>
@@ -1756,11 +1791,11 @@ p{color:var(--ink-2)}
   <!-- SEO TEXT -->
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Заголовок</h2>
+      <h2 class="seo-text__title">Согласование вывески: документы, регламенты, штрафы</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Согласование вывески — неотъемлемая часть размещения наружной рекламы. Оно поддерживает архитектурный облик города и подтверждает безопасность конструкции.</p>
+        <p>Важно различать информационную вывеску, которая обозначает место бизнеса, и рекламную конструкцию, которая продвигает товары и услуги. В Москве и Московской области действуют свои регламенты по размещению, габаритам и дизайну.</p>
+        <p>Самостоятельная попытка согласовать вывеску часто оборачивается возвратом документов и задержками. Мы берём на себя анализ адреса и типа фасада, разработку проекта, подачу документов и получение разрешения — чтобы вывеска размещалась законно.</p>
       </div>
     </div>
   </section>
@@ -1772,7 +1807,7 @@ p{color:var(--ink-2)}
           <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
           КОЛОРИТ
         </div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года. Собственный цех, парк 3D-принтеров Bambu Lab, согласование «под&nbsp;ключ».</div>
         <div class="site-foot__soc">
           <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
           <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
@@ -1842,7 +1877,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -1862,8 +1897,8 @@ p{color:var(--ink-2)}
     <div class="hero__grid">
       <div>
         <div class="eyebrow">Собственное производство</div>
-        <h1>Печатаем буквы и элементы<br><mark>на фирменном 3D-принтере</mark></h1>
-        <p class="sub">Профессиональный принтер промышленного класса. Сложная форма, единичный заказ, нестандартный кегль — всё, что невозможно или дорого сделать на фрезере и лазере.</p>
+        <h1>Печатаем буквы и элементы<br><mark>на принтерах Bambu Lab</mark></h1>
+        <p class="sub">Свой парк из 6 принтеров Bambu Lab (2× H2D, 4× H2S) в цеху. Сложная форма, единичный заказ, мелкие буквы — всё, что невозможно или дорого сделать на фрезере и лазере.</p>
         <div class="ctas">
           <a class="btn btn-primary btn-lg" href="#quiz-print3d">Рассчитать мой проект</a>
           <a class="btn btn-ghost btn-lg" href="#pf-print3d">Посмотреть примеры</a>
@@ -1872,7 +1907,7 @@ p{color:var(--ink-2)}
       </div>
       <div class="hero__visual">
         <div class="badge">Live · наш цех</div>
-        <div class="ph">🎬<br>ВИДЕО / GIF: <em>принтер печатает логотип, 16:9, ~6–10 сек, цикл</em><em style="margin-top:12px;opacity:.5">Снимет клиент в цеху, верстальщик добавит autoplay+loop+muted</em></div>
+        <div class="ph">📷<br>ФОТО: <em>наш парк 3D-принтеров Bambu Lab в цеху (6 шт: 2× H2D + 4× H2S)</em><em style="margin-top:12px;opacity:.5">Фото фермы принтеров от клиента или с сайта vcolorite.ru — без стоков на 1000 принтеров</em></div>
       </div>
     </div>
   </section>
@@ -1887,9 +1922,10 @@ p{color:var(--ink-2)}
   <section class="block proof">
     <div class="block__marker">Новый · PROOF BAR</div>
     <div class="proof__row">
-      <div class="proof-item"><div class="proof-item__n">10+</div><div class="proof-item__l">лет с 3D-печатью</div></div>
-      <div class="proof-item"><div class="proof-item__n">до 600 мм</div><div class="proof-item__l">размер одной детали</div></div>
-      <div class="proof-item"><div class="proof-item__n">±0.2 мм</div><div class="proof-item__l">точность</div></div>
+      <div class="proof-item"><div class="proof-item__n">6</div><div class="proof-item__l">принтеров Bambu Lab</div></div>
+      <div class="proof-item"><div class="proof-item__n">5 лет</div><div class="proof-item__l">с 3D-печатью</div></div>
+      <div class="proof-item"><div class="proof-item__n">до 300 мм</div><div class="proof-item__l">размер одной детали</div></div>
+      <div class="proof-item"><div class="proof-item__n">±0,1 мм</div><div class="proof-item__l">точность геометрии</div></div>
       <div class="proof-item"><div class="proof-item__n">24 ч</div><div class="proof-item__l">готовый прототип</div></div>
     </div>
   </section>
@@ -1905,7 +1941,7 @@ p{color:var(--ink-2)}
         <div class="id-card"><div class="id-card__ico">🔤</div><div class="id-card__t">Сложные буквы</div><div class="id-card__d">Рельеф, объём, скругления — любая форма без доплаты за сложность</div></div>
         <div class="id-card"><div class="id-card__ico">🎯</div><div class="id-card__t">Единичный заказ</div><div class="id-card__d">Одна буква или один логотип — без тиража. Без удорожания</div></div>
         <div class="id-card"><div class="id-card__ico">⚡</div><div class="id-card__t">Быстрый прототип</div><div class="id-card__d">Тестовый образец за 24 часа — посмотреть и потрогать до старта производства</div></div>
-        <div class="id-card"><div class="id-card__ico">📐</div><div class="id-card__t">Нестандартные кегли</div><div class="id-card__d">Буквы высотой от 5 см до 60 см, которые неэффективно резать на фрезере</div></div>
+        <div class="id-card"><div class="id-card__ico">📐</div><div class="id-card__t">Минимальный размер</div><div class="id-card__d">Буквы высотой до 5 см и мелкие детали, которые неэффективно резать на фрезере</div></div>
       </div>
     </div>
   </section>
@@ -1918,12 +1954,12 @@ p{color:var(--ink-2)}
       <h2>Реальные проекты с 3D-печатью</h2>
       <p class="lead">Фото из нашего цеха и с объектов клиентов. С ценами, сроками и пояснением «почему именно 3D».</p>
       <div class="portfolio__grid">
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Логотип с рельефом<br><em>Ресторан, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ресторан · рельефный логотип</div><div class="pf-card__title">Логотип 40 см с 3D-рельефом — невозможно на фрезере</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>от 18 000 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Объёмные буквы<br><em>Салон, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон · объёмные буквы</div><div class="pf-card__title">Комплект букв сложной формы — одна партия, без повтора</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>от 32 000 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Прототип<br><em>Дизайн-студия</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Прототип · макет для презентации</div><div class="pf-card__title">Тестовый образец за 24 ч — до старта большого тиража</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 4 500 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Элементы вывески<br><em>ТЦ, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Вывеска · нестандартные элементы</div><div class="pf-card__title">Декоративные вставки 15 см — то, что лазер не берёт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 7 800 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигация<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · 3D-навигация</div><div class="pf-card__title">Табличек 12 шт с рельефным номером — единичный тираж</div><div class="pf-card__meta"><span>Срок: 4 дня</span><b>от 22 000 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Сувениры<br><em>Корпоратив</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Подарки · корпоративные сувениры</div><div class="pf-card__title">Логотип-сувенир 50 штук — без литья и пресс-форм</div><div class="pf-card__meta"><span>Срок: 6 дней</span><b>от 12 000 ₽</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Логотип с рельефом<br><em>Ресторан, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ресторан · рельефный логотип</div><div class="pf-card__title">Логотип 40 см с 3D-рельефом — невозможно на фрезере</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Объёмные буквы<br><em>Салон, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон · объёмные буквы</div><div class="pf-card__title">Комплект букв сложной формы — одна партия, без повтора</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Прототип<br><em>Дизайн-студия</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Прототип · макет для презентации</div><div class="pf-card__title">Тестовый образец за 24 ч — до старта большого тиража</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Элементы вывески<br><em>ТЦ, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Вывеска · нестандартные элементы</div><div class="pf-card__title">Декоративные вставки 15 см — то, что лазер не берёт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигация<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · 3D-навигация</div><div class="pf-card__title">Табличек 12 шт с рельефным номером — единичный тираж</div><div class="pf-card__meta"><span>Срок: 4 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Сувениры<br><em>Корпоратив</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Подарки · корпоративные сувениры</div><div class="pf-card__title">Логотип-сувенир 50 штук — без литья и пресс-форм</div><div class="pf-card__meta"><span>Срок: 6 дней</span><b>Цена по запросу</b></div></div></div>
       </div>
     </div>
   </section>
@@ -1933,15 +1969,15 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · QUIZ (адаптирован под 3D-печать)</div>
     <div class="container">
       <div class="eyebrow" style="color:#fff;opacity:.75">Рассчитаем ваш проект</div>
-      <h2>Ответьте на 5 вопросов — пришлём расчёт с ориентиром по цене</h2>
+      <h2>Ответьте на несколько вопросов — пришлём расчёт с ориентиром по цене</h2>
       <p class="qlead quiz__lead">Учтём размер, сложность формы, количество и сроки — поймём, подходит ли 3D-печать под вашу задачу, или выгоднее другая технология.</p>
-      <div class="qbox" data-quiz data-quiz-service="3D-печать" data-quiz-branch="uv"></div>
+      <div class="qbox" data-quiz data-quiz-service="3D-печать" data-quiz-branch="print3d"><!-- бриф клиента «3д печать» --></div>
     </div>
   </section>
   <div class="block__comment">
     <div class="block__comment-inner">
       <strong>Комментарий</strong>
-      Квиз переиспользует ту же JS-фабрика mountQuiz() — достаточно одной строки с data-атрибутами, никакого дублирования логики. Сейчас показана ветка uv (печать на материале) как ближайший аналог — для боевой версии на этапе вёрстки нужно добавить отдельную ветку print3d в QUIZ_CONFIG с вопросами про размер, сложность формы, количество, материал, пост-обработку.
+      Квиз переиспользует ту же JS-фабрику mountQuiz() — достаточно одной строки с data-атрибутами, никакого дублирования логики. Вопросы и варианты взяты 1-в-1 из брифа клиента «3д печать» (FDM): тип услуги, точность, количество, материал, цвет, высота слоя, заполнение, поддержки, пост-обработка (чекбоксы), срочность. Парк: 6 принтеров Bambu Lab — 2× H2D и 4× H2S. Область печати (офсайт): H2D 350×320×325 мм, H2S 340×320×340 мм; точность позиционирования &lt;0,05 мм; мин. слой 0,08 мм. В проф-баре «до 300 мм» — консервативно (фактический максимум до 340 мм, можно поднять по согласованию с клиентом).
     </div>
   </div>
 
@@ -1967,7 +2003,7 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Почему нам доверяют</div>
       <h2>Принтер в цеху, а не у подрядчика</h2>
       <div class="trust__grid">
-        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Свой принтер</div><div class="trust-card__d">Не заказываем у посредников. Контролируем качество и сроки на каждой детали.</div></div>
+        <div class="trust-card"><div class="trust-card__ico">🏭</div><div class="trust-card__t">Свой парк принтеров</div><div class="trust-card__d">Не заказываем у посредников. Контролируем качество и сроки на каждой детали.</div></div>
         <div class="trust-card"><div class="trust-card__ico">🛡</div><div class="trust-card__t">Гарантия 2 года</div><div class="trust-card__d">На напечатанные изделия. Если деформируется или ломается — бесплатная замена.</div></div>
         <div class="trust-card"><div class="trust-card__ico">🎨</div><div class="trust-card__t">Готовая деталь</div><div class="trust-card__d">Не «печать и сам крась». Мы шлифуем, грунтуем, красим — получаете готовое изделие.</div></div>
         <div class="trust-card"><div class="trust-card__ico">💰</div><div class="trust-card__t">Цена в договоре</div><div class="trust-card__d">Фикс после расчёта. Не «итоговая цена по результатам печати».</div></div>
@@ -1983,9 +2019,9 @@ p{color:var(--ink-2)}
       <h2>3D-печать — часть других услуг</h2>
       <p class="lead">Если у вас комплексный проект — 3D-печать может быть одним из этапов, а не отдельной услугой. Берём на себя всё.</p>
       <div class="cross__grid">
-        <a class="cross-card"><div class="cross-card__ico">🔤</div><div><div class="cross-card__t">Объёмные буквы</div><div class="cross-card__d">Сложная форма, маленький тираж, нестандартный кегль</div></div></a>
-        <a class="cross-card"><div class="cross-card__ico">🏷</div><div><div class="cross-card__t">Таблички</div><div class="cross-card__d">Рельефные, с 3D-элементами, персонализированные</div></div></a>
-        <a class="cross-card"><div class="cross-card__ico">💡</div><div><div class="cross-card__t">Вывески</div><div class="cross-card__d">Нестандартные декоративные элементы и вставки</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">🔤</div><div><div class="cross-card__t">Объёмные буквы</div><div class="cross-card__d">Сложная форма, маленький тираж, мелкие буквы до 5 см</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">🏆</div><div><div class="cross-card__t">Наградные кубки</div><div class="cross-card__d">Кубки и награды по вашему макету — единичные и сериями</div></div></a>
+        <a class="cross-card"><div class="cross-card__ico">⚙️</div><div><div class="cross-card__t">Запчасти и детали</div><div class="cross-card__d">Замена сломанных деталей и комплектующих, когда оригинал не найти</div></div></a>
       </div>
     </div>
   </section>
@@ -2031,11 +2067,11 @@ p{color:var(--ink-2)}
   <!-- SEO TEXT -->
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Заголовок</h2>
+      <h2 class="seo-text__title">3D-печать на заказ</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>3D-технологии перестали быть экзотикой и стали рабочим инструментом для бизнеса, рекламы и производства. Сегодня можно получить прототип, комплект объёмных букв или функциональную деталь за несколько дней, а не недель.</p>
+        <p>Производство идёт послойно по 3D-модели, без пресс-форм и штампов, поэтому единичные и мелкосерийные заказы выполняются без «штрафа» по цене. Это удобно для прототипов, нестандартных деталей и замены того, что больше не выпускается.</p>
+        <p>Работаем и по готовым моделям, и в формате совместной разработки — рассматриваем 3D-печать как удобный инструмент развития бизнеса, а не как эксперимент.</p>
       </div>
     </div>
   </section>
@@ -2047,7 +2083,7 @@ p{color:var(--ink-2)}
           <span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>
           КОЛОРИТ
         </div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года. Собственный цех, 3D-принтер, согласование «под&nbsp;ключ».</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года. Собственный цех, парк 3D-принтеров Bambu Lab, согласование «под&nbsp;ключ».</div>
         <div class="site-foot__soc">
           <a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a>
           <a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a>
@@ -2116,7 +2152,7 @@ p{color:var(--ink-2)}
             </div>
             <div class="nav-drop__col">
               <div class="nav-drop__title">Печать и производство</div>
-              <a>3D-печать<b>на фирменном принтере</b></a>
+              <a>3D-печать<b>на принтерах Bambu Lab</b></a>
               <a>УФ-печать<b>на любых материалах</b></a>
             </div>
           </div>
@@ -2135,13 +2171,13 @@ p{color:var(--ink-2)}
     <div class="hero__grid">
       <div>
         <div class="eyebrow">Таблички для офиса и бизнеса</div>
-        <h1>Таблички из акрила и металла —<br><mark>от эскиза до монтажа за 1 день</mark></h1>
-        <p class="sub">Изготовим офисные таблички, указатели, таблички на дверь, ресепшн и навигацию. Покажем макет до оплаты.</p>
+        <h1>Таблички из акрила и композита —<br><mark>от эскиза до монтажа за 1 день</mark></h1>
+        <p class="sub">Изготовим офисные таблички, указатели, таблички на дверь, ресепшн и навигацию. Покажем макет до оплаты. Согласование в администрации не требуется.</p>
         <div class="ctas">
           <button class="btn btn-primary btn-lg">Получить расчёт по фото</button>
           <button class="btn btn-ghost btn-lg" onclick="document.getElementById('plates-portfolio').scrollIntoView({behavior:'smooth'})">Смотреть примеры</button>
         </div>
-        <div class="sla">Дизайн и визуализация — бесплатно · Гарантия 2 года</div>
+        <div class="sla">Срок от 1 дня · Монтаж по Подольску и МО · Гарантия 2 года</div>
       </div>
       <div class="hero__visual">
         <div class="badge">Live · офис</div>
@@ -2156,7 +2192,7 @@ p{color:var(--ink-2)}
       <div class="proof__item"><div class="proof__n">1<span class="u"> день</span></div><div class="proof__l">срок изготовления от</div></div>
       <div class="proof__item"><div class="proof__n">500<span class="u">+</span></div><div class="proof__l">табличек в портфолио</div></div>
       <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на изделие</div></div>
-      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация по фото</div></div>
+      <div class="proof__item"><div class="proof__n">4<span class="u"> материала</span></div><div class="proof__l">акрил, ПВХ, композит, дерево</div></div>
       <div class="proof__item"><div class="proof__n">165<span class="u">+</span></div><div class="proof__l">отзывов на Я.Картах</div></div>
     </div>
   </section>
@@ -2171,7 +2207,7 @@ p{color:var(--ink-2)}
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Ресепшн<br><em>Салон красоты, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Салон · Объёмный логотип</div><div class="pf-card__title">Салон красоты — объёмный логотип на ресепшн</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>от 8 500 ₽</b></div></div></div>
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигация по этажам<br><em>ТЦ, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">ТЦ · Навигационная система</div><div class="pf-card__title">Торговый центр — навигация по этажам, 35 указателей</div><div class="pf-card__meta"><span>Срок: 5 дней</span><b>от 45 000 ₽</b></div></div></div>
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Режим работы<br><em>Магазин, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Магазин · ПВХ + плёнка</div><div class="pf-card__title">Магазин — табличка «Режим работы» + «Закрыто/Открыто»</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 800 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Дистанционные держатели<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил + металл</div><div class="pf-card__title">Офис — таблички на дистанционных держателях</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 2 400 ₽/шт</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Дистанционные держатели<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил + композит</div><div class="pf-card__title">Офис — таблички на дистанционных держателях</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 2 400 ₽/шт</b></div></div></div>
         <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Уличная табличка<br><em>Медцентр, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Медцентр · Композит</div><div class="pf-card__title">Медцентр — уличная вывеска-табличка на фасад</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>от 6 500 ₽</b></div></div></div>
       </div>
     </div>
@@ -2183,7 +2219,7 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Что изготавливаем</div>
       <h2>Таблички под любую задачу</h2>
       <div class="tiles" style="margin-top:28px;grid-template-columns:repeat(4,1fr)">
-        <div class="tile"><div class="tile__img"><div class="ph">📷 Офисная табличка</div></div><div class="tile__title">Офисные</div><div class="tile__desc">На дверь кабинета, переговорную, санузел. Акрил, металл, дерево.</div></div>
+        <div class="tile"><div class="tile__img"><div class="ph">📷 Офисная табличка</div></div><div class="tile__title">Офисные</div><div class="tile__desc">На дверь кабинета, переговорную, санузел. Акрил, композит, дерево.</div></div>
         <div class="tile"><div class="tile__img"><div class="ph">📷 Ресепшн</div></div><div class="tile__title">Ресепшн и лого</div><div class="tile__desc">Объёмные буквы и логотипы на стену за стойкой. Подсветка опционально.</div></div>
         <div class="tile"><div class="tile__img"><div class="ph">📷 Навигация</div></div><div class="tile__title">Навигация</div><div class="tile__desc">Стрелки, указатели по этажам, схемы офиса и торгового центра.</div></div>
         <div class="tile"><div class="tile__img"><div class="ph">📷 Уличная</div></div><div class="tile__title">Уличные</div><div class="tile__desc">На фасад, калитку, режим работы. Устойчивые к погоде материалы.</div></div>
@@ -2198,8 +2234,8 @@ p{color:var(--ink-2)}
       <h2>Из чего делаем</h2>
       <div class="process__row" style="grid-template-columns:repeat(3,1fr)">
         <div class="step"><div class="step__n">Акрил</div><div class="step__t">Самый популярный</div><div class="step__d">Цветной, прозрачный, зеркальный. УФ-печать с обратной стороны — изображение не стирается. От 1 дня.</div></div>
-        <div class="step"><div class="step__n">Металл</div><div class="step__t">Премиум-вид</div><div class="step__d">Нержавейка, анодированный алюминий. Гравировка, лазерная резка, шлифовка. Строгий деловой стиль.</div></div>
-        <div class="step"><div class="step__n">ПВХ / композит</div><div class="step__t">Эконом-вариант</div><div class="step__d">Лёгкие, не ржавеют, просто крепить. Полноцветная печать. Подходят для помещений и улицы.</div></div>
+        <div class="step"><div class="step__n">Композит</div><div class="step__t">Для улицы</div><div class="step__d">Алюминиевый композит: прочный, не выгорает и не боится погоды. Полноцветная печать, аккуратные кромки. Строгий деловой вид.</div></div>
+        <div class="step"><div class="step__n">ПВХ</div><div class="step__t">Эконом-вариант</div><div class="step__d">Лёгкий, не ржавеет, просто крепить. Полноцветная печать. Подходит для помещений и улицы.</div></div>
       </div>
     </div>
   </section>
@@ -2256,10 +2292,10 @@ p{color:var(--ink-2)}
 
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Изготовление табличек из акрила и пластика в Подольске</h2>
+      <h2 class="seo-text__title">Изготовление табличек</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Таблички сопровождают человека буквально на каждом шагу: дом, подъезд, офис, магазин, парковка, бизнес-центр. Их изготовление — это продуманная работа с информацией, материалами и дизайном.</p>
+        <p>Мы делаем адресные и офисные таблички, навигацию, информационные и специальные таблички — например, «ответственный за пожарную безопасность» и со шрифтом Брайля. Материалы — ПВХ, акрил, оргстекло и композит — подбираем под условия эксплуатации, от интерьера до уличного фасада. Системный подход к проекту даёт лучший результат, чем набор разрозненных табличек.</p>
       </div>
     </div>
   </section>
@@ -2268,7 +2304,7 @@ p{color:var(--ink-2)}
     <div class="site-foot__grid">
       <div class="site-foot__col">
         <div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div>
-        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года.</div>
+        <div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года.</div>
         <div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div>
       </div>
       <div class="site-foot__col"><div class="site-foot__col-title">Услуги</div><a href="#">Объёмные буквы</a><a href="#">Вывески</a><a href="#">Таблички</a><a href="#">Неон</a><a href="#">3D-печать</a><a href="#">Согласование</a></div>
@@ -2292,7 +2328,7 @@ p{color:var(--ink-2)}
           <div class="nav-drop">
             <div class="nav-drop__col"><div class="nav-drop__title">Наружная реклама</div><a>Вывески<b>световые, несветовые</b></a><a>Объёмные буквы<b>с подсветкой и без</b></a><a>Неоновые вывески<b>LED-неон</b></a></div>
             <div class="nav-drop__col"><div class="nav-drop__title">Интерьер · навигация</div><a>Таблички<b>офисные, режим работы</b></a><a>Наклейки<b>оракал, витрины</b></a><a>Гибка пластика<b>по чертежу</b></a></div>
-            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на фирменном принтере</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
+            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на принтерах Bambu Lab</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
           </div>
         </div>
         <a>Портфолио</a><a>Согласование</a><a>Блог</a><a>О компании</a>
@@ -2414,17 +2450,17 @@ p{color:var(--ink-2)}
 
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Наклейки для вашего бизнеса в Подольске</h2>
+      <h2 class="seo-text__title">Изготовление наклеек на заказ</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Современное рекламное производство позволяет реализовать практически любой формат — от самоклеящихся наклеек для интерьера и улицы до напольной графики, настенного декора и виниловых стикеров в качестве корпоративного мерча.</p>
+        <p>Перед большим тиражом можно напечатать тестовый вариант и оценить цвета, читаемость мелких деталей и поведение плёнки на поверхности. Для корпоративных клиентов важны стабильное качество от партии к партии, предсказуемые сроки и удобная логистика — изготовление наклеек на заказ мы выстраиваем как долгосрочное партнёрство с едиными стандартами по макетам и материалам.</p>
       </div>
     </div>
   </section>
 
   <footer class="site-foot">
     <div class="site-foot__grid">
-      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
+      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Услуги</div><a href="#">Объёмные буквы</a><a href="#">Вывески</a><a href="#">Таблички</a><a href="#">Неон</a><a href="#">3D-печать</a><a href="#">Согласование</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Компания</div><a href="#">О компании</a><a href="#">Портфолио</a><a href="#">Блог</a><a href="#">Контакты</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Контакты</div><div class="site-foot__addr"><div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div><div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div><div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div><div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div></div></div>
@@ -2446,7 +2482,7 @@ p{color:var(--ink-2)}
           <div class="nav-drop">
             <div class="nav-drop__col"><div class="nav-drop__title">Наружная реклама</div><a>Вывески<b>световые, несветовые</b></a><a>Объёмные буквы<b>с подсветкой и без</b></a><a>Неоновые вывески<b>LED-неон</b></a></div>
             <div class="nav-drop__col"><div class="nav-drop__title">Интерьер · навигация</div><a>Таблички<b>офисные, режим работы</b></a><a>Наклейки<b>оракал, витрины</b></a><a>Гибка пластика<b>по чертежу</b></a></div>
-            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на фирменном принтере</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
+            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на принтерах Bambu Lab</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
           </div>
         </div>
         <a>Портфолио</a><a>Согласование</a><a>Блог</a><a>О компании</a>
@@ -2461,12 +2497,12 @@ p{color:var(--ink-2)}
       <div>
         <div class="eyebrow">Неоновые вывески LED</div>
         <h1>Неоновая вывеска под ключ —<br><mark>безопасный LED-неон за 3 дня</mark></h1>
-        <p class="sub">Светодиодный неон 12В. Любая форма, любой цвет, любой текст. Срок службы — более 50 000 часов. Показываем на вашем фасаде до оплаты.</p>
+        <p class="sub">Светодиодный неон 12В. Любая форма, любой цвет, любой текст. Срок службы — более 50 тыс. часов. Подберём цвет и форму под ваш бренд.</p>
         <div class="ctas">
-          <button class="btn btn-primary btn-lg">Рассчитать и увидеть на своём фасаде</button>
+          <button class="btn btn-primary btn-lg">Рассчитать стоимость неона</button>
           <button class="btn btn-ghost btn-lg" onclick="document.getElementById('neon-portfolio').scrollIntoView({behavior:'smooth'})">Смотреть примеры</button>
         </div>
-        <div class="sla">Дизайн и визуализация — бесплатно · Гарантия 2 года · Согласование под ключ</div>
+        <div class="sla">Гарантия 2 года · Согласование под ключ · 10+ цветов свечения</div>
       </div>
       <div class="hero__visual">
         <div class="badge">Live · ночью</div>
@@ -2479,10 +2515,10 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · PROOF BAR</div>
     <div class="proof__row">
       <div class="proof__item"><div class="proof__n">3<span class="u"> дня</span></div><div class="proof__l">срок изготовления</div></div>
-      <div class="proof__item"><div class="proof__n">50<span class="u">к ч</span></div><div class="proof__l">срок службы светодиодов</div></div>
+      <div class="proof__item"><div class="proof__n">50<span class="u"> тыс. ч</span></div><div class="proof__l">срок службы светодиодов</div></div>
       <div class="proof__item"><div class="proof__n">12<span class="u"> В</span></div><div class="proof__l">безопасное напряжение</div></div>
       <div class="proof__item"><div class="proof__n">2<span class="u"> года</span></div><div class="proof__l">гарантия на конструкцию</div></div>
-      <div class="proof__item"><div class="proof__n">0<span class="u"> ₽</span></div><div class="proof__l">визуализация по фото</div></div>
+      <div class="proof__item"><div class="proof__n">10<span class="u">+</span></div><div class="proof__l">цветов свечения</div></div>
     </div>
   </section>
 
@@ -2506,10 +2542,10 @@ p{color:var(--ink-2)}
     <div class="block__marker">Новый · ПРЕИМУЩЕСТВА LED-НЕОНА</div>
     <div class="container">
       <div class="eyebrow">Почему LED-неон</div>
-      <h2>Чем светодиодный неон лучше газового</h2>
+      <h2>Безопасный, долговечный и любой формы</h2>
       <div class="process__row" style="grid-template-columns:repeat(3,1fr)">
-        <div class="step"><div class="step__n">🔒 Безопасность</div><div class="step__t">12 Вольт</div><div class="step__d">Газовый неон работает от 5000–15000 В и содержит токсичные газы. LED-неон безопасен — 12В, без ртути и аргона.</div></div>
-        <div class="step"><div class="step__n">⏱ Долговечность</div><div class="step__t">50 000 часов</div><div class="step__d">Это более 5 лет непрерывной работы 24/7. Лампы не перегорают, не мигают, не требуют замены трубок.</div></div>
+        <div class="step"><div class="step__n">🔒 Безопасность</div><div class="step__t">12 Вольт</div><div class="step__d">Безопасное низкое напряжение 12В — без высоковольтных трансформаторов, ртути и газов. Можно монтировать в интерьере и там, где есть люди.</div></div>
+        <div class="step"><div class="step__n">⏱ Долговечность</div><div class="step__t">50 тыс. часов</div><div class="step__d">Более 5 лет непрерывной работы 24/7. Светодиоды не перегорают и не мигают, не требуют обслуживания.</div></div>
         <div class="step"><div class="step__n">🎨 Гибкость форм</div><div class="step__t">Любая форма</div><div class="step__d">Изгибается в любую букву, логотип или иллюстрацию. Десятки цветов, регулировка яркости.</div></div>
       </div>
     </div>
@@ -2551,10 +2587,10 @@ p{color:var(--ink-2)}
       <div class="next__grid">
         <div>
           <div class="eyebrow" style="color:var(--brand-red)">Следующий шаг</div>
-          <h2>Хотите увидеть неон на своём фасаде до оплаты?</h2>
-          <p style="margin-top:12px">Присылайте фото — покажем визуализацию в тот же день. Цена и срок в первом ответе.</p>
+          <h2>Рассчитаем неон для вашего объекта</h2>
+          <p style="margin-top:12px">Присылайте фото и текст/логотип — подберём цвет и форму, посчитаем цену и срок. Цена и срок в первом ответе.</p>
           <div class="next__points" style="margin-top:28px">
-            <div class="next__point">Визуализация в тот же день</div>
+            <div class="next__point">Расчёт цены и срока в первом ответе</div>
             <div class="next__point">Производство от 3 дней</div>
             <div class="next__point">Согласование под ключ при необходимости</div>
             <div class="next__point">Ответ в течение 15 минут</div>
@@ -2583,17 +2619,17 @@ p{color:var(--ink-2)}
 
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Неоновые вывески в Подольске — LED-неон под ключ</h2>
+      <h2 class="seo-text__title">Что такое неоновая реклама и чем она отличается от обычной подсветки</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Неоновая реклама — формат, где контур надписи, логотипа или графики выполнен яркой непрерывной линией. Современные вывески используют гибкий LED-неон, который повторяет практически любой контур и даёт узнаваемый «неоновый» эффект с равномерным свечением, без точечных диодов.</p>
+        <p>Такое решение подходит и для интерьера, и для улицы. Рынок перешёл на LED-неон из-за меньшего энергопотребления, простого монтажа, расширенной палитры цветов и большей механической прочности — это стабильная работа и минимум обслуживания.</p>
       </div>
     </div>
   </section>
 
   <footer class="site-foot">
     <div class="site-foot__grid">
-      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
+      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Услуги</div><a href="#">Объёмные буквы</a><a href="#">Вывески</a><a href="#">Таблички</a><a href="#">Неон</a><a href="#">3D-печать</a><a href="#">Согласование</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Компания</div><a href="#">О компании</a><a href="#">Портфолио</a><a href="#">Блог</a><a href="#">Контакты</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Контакты</div><div class="site-foot__addr"><div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div><div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div><div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div><div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div></div></div>
@@ -2615,7 +2651,7 @@ p{color:var(--ink-2)}
           <div class="nav-drop">
             <div class="nav-drop__col"><div class="nav-drop__title">Наружная реклама</div><a>Вывески<b>световые, несветовые</b></a><a>Объёмные буквы<b>с подсветкой и без</b></a><a>Неоновые вывески<b>LED-неон</b></a></div>
             <div class="nav-drop__col"><div class="nav-drop__title">Интерьер · навигация</div><a>Таблички<b>офисные, режим работы</b></a><a>Наклейки<b>оракал, витрины</b></a><a>Гибка пластика<b>по чертежу</b></a></div>
-            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на фирменном принтере</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
+            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на принтерах Bambu Lab</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
           </div>
         </div>
         <a>Портфолио</a><a>Согласование</a><a>Блог</a><a>О компании</a>
@@ -2630,7 +2666,7 @@ p{color:var(--ink-2)}
       <div>
         <div class="eyebrow">УФ-печать на любых материалах</div>
         <h1>УФ-печать с белым цветом и лаком —<br><mark>на пластике, стекле, металле, дереве</mark></h1>
-        <p class="sub">Промышленная УФ-печать до 600×900 мм. Стойкие к влаге и UV чернила. Точная цветопередача до 1440 dpi. Серийное производство и кастомизация упаковки.</p>
+        <p class="sub">Промышленная УФ-печать стойкими к влаге и UV чернилами. Точная цветопередача до 1440 dpi. Белый цвет и лак — печать на тёмном, прозрачном и металле. Серийное производство и кастомизация упаковки.</p>
         <div class="ctas">
           <button class="btn btn-primary btn-lg">Получить расчёт по макету</button>
           <button class="btn btn-ghost btn-lg" onclick="document.getElementById('uf-portfolio').scrollIntoView({behavior:'smooth'})">Смотреть примеры</button>
@@ -2649,7 +2685,7 @@ p{color:var(--ink-2)}
     <div class="proof__row">
       <div class="proof__item"><div class="proof__n">1<span class="u"> день</span></div><div class="proof__l">срок печати от</div></div>
       <div class="proof__item"><div class="proof__n">1440<span class="u"> dpi</span></div><div class="proof__l">разрешение печати</div></div>
-      <div class="proof__item"><div class="proof__n">600<span class="u">×900</span></div><div class="proof__l">максимальное поле, мм</div></div>
+      <div class="proof__item"><div class="proof__n">Белый</div><div class="proof__l">цвет + лак</div></div>
       <div class="proof__item"><div class="proof__n">6<span class="u">+</span></div><div class="proof__l">типов материалов</div></div>
       <div class="proof__item"><div class="proof__n">165<span class="u">+</span></div><div class="proof__l">отзывов на Я.Картах</div></div>
     </div>
@@ -2661,12 +2697,12 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Наши работы</div>
       <h2>Примеры УФ-печати — на разных материалах</h2>
       <div class="portfolio__grid">
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Корпоративные кружки<br><em>Компания, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Сувениры · Керамика</div><div class="pf-card__title">Корпоративные кружки с логотипом — тираж 50 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 350 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Таблички на акриле<br><em>Офис, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил + белый слой</div><div class="pf-card__title">Офис — таблички на тёмном акриле с фото-качеством</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 900 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Брендирование упаковки<br><em>Бренд, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Упаковка · Картон</div><div class="pf-card__title">Премиум-упаковка — логотип на коробках, тираж 200 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 120 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Металлические таблички<br><em>Завод, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Производство · Нержавейка</div><div class="pf-card__title">Завод — шильды на оборудование, нержавеющая сталь</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 1 800 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Флешки с логотипом<br><em>Конференция, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Подарки · Пластик</div><div class="pf-card__title">Корпоративные флешки — логотип на металлическом корпусе</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 280 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Стекло<br><em>Ресторан, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ресторан · Стекло</div><div class="pf-card__title">Ресторан — меню-подставки из стекла с логотипом</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 650 ₽/шт</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Корпоративные кружки<br><em>Компания, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Сувениры · Керамика</div><div class="pf-card__title">Корпоративные кружки с логотипом — тираж 50 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Таблички на акриле<br><em>Офис, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил + белый слой</div><div class="pf-card__title">Офис — таблички на тёмном акриле с фото-качеством</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Брендирование упаковки<br><em>Бренд, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Упаковка · Картон</div><div class="pf-card__title">Премиум-упаковка — логотип на коробках, тираж 200 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Металлические таблички<br><em>Завод, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Производство · Нержавейка</div><div class="pf-card__title">Завод — шильды на оборудование, нержавеющая сталь</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Флешки с логотипом<br><em>Конференция, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Подарки · Пластик</div><div class="pf-card__title">Корпоративные флешки — логотип на металлическом корпусе</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Стекло<br><em>Ресторан, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ресторан · Стекло</div><div class="pf-card__title">Ресторан — меню-подставки из стекла с логотипом</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
       </div>
     </div>
   </section>
@@ -2738,17 +2774,17 @@ p{color:var(--ink-2)}
 
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">УФ-печать на сувенирной продукции в Подольске</h2>
+      <h2 class="seo-text__title">УФ-печать на сувенирной продукции</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Технология УФ-печати основана на специальных чернилах, которые мгновенно «застывают» под ультрафиолетом. Это позволяет работать с самыми разными материалами и формами и печатать небольшими тиражами без дорогой оснастки.</p>
+        <p>Для сувениров и подарков важно не только наличие логотипа, но и то, как он выглядит через месяц, полгода, год. УФ-печать держит изображение на изделиях ежедневного использования — кружках, ручках, флешках — и помогает решать сразу несколько задач: от повышения узнаваемости до укрепления деловых отношений с клиентами и партнёрами.</p>
       </div>
     </div>
   </section>
 
   <footer class="site-foot">
     <div class="site-foot__grid">
-      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
+      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Услуги</div><a href="#">Объёмные буквы</a><a href="#">Вывески</a><a href="#">Таблички</a><a href="#">Неон</a><a href="#">3D-печать</a><a href="#">Согласование</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Компания</div><a href="#">О компании</a><a href="#">Портфолио</a><a href="#">Блог</a><a href="#">Контакты</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Контакты</div><div class="site-foot__addr"><div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div><div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div><div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div><div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div></div></div>
@@ -2770,7 +2806,7 @@ p{color:var(--ink-2)}
           <div class="nav-drop">
             <div class="nav-drop__col"><div class="nav-drop__title">Наружная реклама</div><a>Вывески<b>световые, несветовые</b></a><a>Объёмные буквы<b>с подсветкой и без</b></a><a>Неоновые вывески<b>LED-неон</b></a></div>
             <div class="nav-drop__col"><div class="nav-drop__title">Интерьер · навигация</div><a>Таблички<b>офисные, режим работы</b></a><a>Наклейки<b>оракал, витрины</b></a><a>Гибка пластика<b>по чертежу</b></a></div>
-            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на фирменном принтере</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
+            <div class="nav-drop__col"><div class="nav-drop__title">Печать и производство</div><a>3D-печать<b>на принтерах Bambu Lab</b></a><a>УФ-печать<b>на любых материалах</b></a></div>
           </div>
         </div>
         <a>Портфолио</a><a>Согласование</a><a>Блог</a><a>О компании</a>
@@ -2816,12 +2852,12 @@ p{color:var(--ink-2)}
       <div class="eyebrow">Наши работы</div>
       <h2>Примеры изделий из гнутого пластика</h2>
       <div class="portfolio__grid">
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Корпус объёмных букв<br><em>Магазин, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Буквы · Акрил 4 мм</div><div class="pf-card__title">Объёмные буквы — гнутые торцы из цветного акрила</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 1 200 ₽/буква</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Витрина<br><em>Ювелирный, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ювелирный · Оргстекло</div><div class="pf-card__title">Ювелирный магазин — гнутые подставки под витрину</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 3 500 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Лоток-подставка<br><em>Торговля, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ритейл · ПВХ 3 мм</div><div class="pf-card__title">Розница — лотки под ценники из белого ПВХ, тираж 50 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>от 280 ₽/шт</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Защитный экран<br><em>Стойка, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Поликарбонат</div><div class="pf-card__title">Ресепшн — защитный экран из прозрачного поликарбоната</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 4 200 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Козырёк<br><em>Вход, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Архитектура · Поликарбонат</div><div class="pf-card__title">Вход в здание — прозрачный козырёк из поликарбоната</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>от 12 000 ₽</b></div></div></div>
-        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигационный карман<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил прозрачный</div><div class="pf-card__title">Офис — карманы для информационных листов А4, 30 шт</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>от 350 ₽/шт</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Корпус объёмных букв<br><em>Магазин, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Буквы · Акрил 4 мм</div><div class="pf-card__title">Объёмные буквы — гнутые торцы из цветного акрила</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Витрина<br><em>Ювелирный, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ювелирный · Оргстекло</div><div class="pf-card__title">Ювелирный магазин — гнутые подставки под витрину</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Лоток-подставка<br><em>Торговля, МО</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Ритейл · ПВХ 3 мм</div><div class="pf-card__title">Розница — лотки под ценники из белого ПВХ, тираж 50 шт</div><div class="pf-card__meta"><span>Срок: 2 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Защитный экран<br><em>Стойка, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Поликарбонат</div><div class="pf-card__title">Ресепшн — защитный экран из прозрачного поликарбоната</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Козырёк<br><em>Вход, Подольск</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Архитектура · Поликарбонат</div><div class="pf-card__title">Вход в здание — прозрачный козырёк из поликарбоната</div><div class="pf-card__meta"><span>Срок: 3 дня</span><b>Цена по запросу</b></div></div></div>
+        <div class="pf-card"><div class="pf-card__img"><div class="ph">📷 Навигационный карман<br><em>Офис, Москва</em></div></div><div class="pf-card__body"><div class="pf-card__tag">Офис · Акрил прозрачный</div><div class="pf-card__title">Офис — карманы для информационных листов А4, 30 шт</div><div class="pf-card__meta"><span>Срок: 1 день</span><b>Цена по запросу</b></div></div></div>
       </div>
     </div>
   </section>
@@ -2891,17 +2927,17 @@ p{color:var(--ink-2)}
 
   <section class="seo-text">
     <div class="seo-text__inner">
-      <h2 class="seo-text__title">Гибка пластика на станке в Подольске</h2>
+      <h2 class="seo-text__title">Гибка пластика на станках с нихромовой нитью</h2>
       <div class="seo-text__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Гибка пластика нихромовой нитью — современный способ, открывающий широкие возможности для функциональных и эстетичных изделий. Пластик размягчается до нужной температуры тонкой нагретой нитью и фиксируется в заданной форме — с точностью по линии гиба и чистой поверхностью без следов нагрева.</p>
+        <p>Метод подходит для акрила, ПВХ и поликарбоната. Применение — торговые дисплеи, интерьерные панели, защитные экраны и премиальная упаковка. Гнутый пластик сохраняет свойства при интенсивной эксплуатации и позволяет получить индивидуальную форму под задачу.</p>
       </div>
     </div>
   </section>
 
   <footer class="site-foot">
     <div class="site-foot__grid">
-      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2013 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
+      <div class="site-foot__col"><div class="site-foot__brand"><span class="site-foot__brand-mark"><span class="dot-brand r"></span><span class="dot-brand g"></span><span class="dot-brand b"></span><span class="dot-brand l"></span></span>КОЛОРИТ</div><div class="site-foot__tagline">Наружная реклама и производство в&nbsp;Подольске с&nbsp;2007 года.</div><div class="site-foot__soc"><a href="https://t.me/VCOLORITE_office" target="_blank" rel="noopener" class="soc-tg" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.712 4.94-4.465c.215-.19-.047-.295-.332-.106L9.54 13.075l-2.64-.825c-.573-.182-.576-.573.12-.854l10.31-3.982c.477-.182.89.107.745.81z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIrzdbErM7iu5B7obRVYE3uUEAMoS4kIRvjR6byPFrKafMRuyk" target="_blank" rel="noopener" class="soc-max" aria-label="Max"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.8 17h-1.95v-6.15L12 14.6 9.15 10.85V17H7.2V7h1.95L12 11.2 14.85 7h1.95v10z"/></svg></a></div></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Услуги</div><a href="#">Объёмные буквы</a><a href="#">Вывески</a><a href="#">Таблички</a><a href="#">Неон</a><a href="#">3D-печать</a><a href="#">Согласование</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Компания</div><a href="#">О компании</a><a href="#">Портфолио</a><a href="#">Блог</a><a href="#">Контакты</a></div>
       <div class="site-foot__col"><div class="site-foot__col-title">Контакты</div><div class="site-foot__addr"><div class="site-foot__addr-item"><strong>Подольск, Ватутина, 7/2</strong>ООО «КОЛОРИТ»</div><div class="site-foot__addr-item"><a href="tel:+74952780298" style="font-size:16px;color:#fff;font-weight:800">+7 (495) 278-02-98</a></div><div class="site-foot__addr-item"><a href="mailto:zakaz@vcolorite.ru">zakaz@vcolorite.ru</a></div><div class="site-foot__addr-item">ПН–ПТ 10:00–18:00<br>СБ–ВС выходной</div></div></div>
@@ -2943,9 +2979,10 @@ const QUIZ_CONFIG = {
     q: 'Что вам нужно изготовить?',
     sub: 'От этого зависят дальнейшие вопросы — покажем только то, что важно именно для вашей задачи.',
     options: [
-      { label: 'Вывеска',               branch: 'sign' },
-      { label: 'Объёмные буквы',        branch: 'sign' },
+      { label: 'Вывеска',               branch: 'signs' },
+      { label: 'Объёмные буквы',        branch: 'letters' },
       { label: 'Неоновая вывеска',      branch: 'sign' },
+      { label: '3D-печать',             branch: 'print3d' },
       { label: 'Табличка',              branch: 'plate' },
       { label: 'Наклейки',              branch: 'stickers' },
       { label: 'УФ-печать',             branch: 'uv' },
@@ -3051,8 +3088,101 @@ const QUIZ_CONFIG = {
       { key:'priority', q:'Что для вас важнее?', options:['Чтобы было заметно','Чтобы выглядело аккуратно и премиально','Чтобы уложиться в бюджет','Чтобы сделали быстро','Чтобы подсказали лучший вариант']},
       { key:'deadline', q:'Когда планируете запуск?', options:['Срочно','На этой неделе','В ближайший месяц','Пока изучаю варианты']},
     ],
+
+    // ===== Ветка: Объёмные световые буквы (по брифу клиента «Квиз буквы») =====
+    letters: [
+      { key:'text', type:'text', q:'Что пишем на вывеске?', sub:'Текст будущих объёмных букв — количество символов рассчитаем автоматически.',
+        fields:[{ name:'text', label:'Текст вывески', placeholder:'Например: КОЛОРИТ' }] },
+      { key:'height', q:'Какая высота букв?', other:true, otherLabel:'Другая высота', otherPlaceholder:'Укажите в см',
+        options:['До 15 см','15–30 см (стандарт)','30–60 см (фасадные)','60–100+ см (крупногабарит)'] },
+      { key:'glow', q:'Тип свечения?', sub:'Главное в восприятии вывески ночью.',
+        options:['Лицевое (светят спереди, белый пластик)','Контражур (свет на стену вокруг буквы)','Комбинированное (лицо + торец)'] },
+      { key:'glowColor', q:'Цвет свечения?',
+        options:['Тёплый белый (≈3500K, как лампочка)','Холодный белый (≈6500K, яркий, голубоватый)','Нейтральный (≈4000K, яркий белый)','Красный / Синий / Зелёный (монохром)'] },
+      { key:'placement', q:'Где будет установка?', sub:'От этого зависит степень защиты корпуса.',
+        options:['Внутри помещения','На улице под козырьком (средняя защита)','На улице, открытый фасад (герметизация IP65)','На кровле / высоко (ветровые нагрузки)'] },
+      { key:'deadline', q:'Когда нужен готовый результат?',
+        options:['Стандарт (14 дней)','Ускоренно (7–10 дней)','Срочно (3–5 дней)','Прямо сейчас (1–2 дня)'] },
+      { key:'layout', q:'Готов ли дизайн-макет?',
+        options:['Да, файл в векторе (AI, PDF, CDR)','Да, есть картинка / скетч (JPG)','Нет, нужна помощь дизайнера'] },
+      { key:'extras', type:'multi', optional:true, q:'Дополнительные услуги', sub:'Выберите всё, что нужно — можно несколько.',
+        options:['Выезд замерщика на адрес','Монтаж под ключ (бригада + крепёж + подключение)','Датчик света (авто-вкл в темноте)','Демонтаж старой вывески','Электромонтажные работы (щиток, розетка, автомат)','Согласование с администрацией города'] },
+    ],
+
+    // ===== Ветка: Вывески (по брифу клиента «Квиз вывески») =====
+    // Шаги 3–5 показываются условно — в зависимости от типа вывески (шаг 1, мультивыбор).
+    signs: [
+      { key:'signType', type:'multi', q:'Тип вывески', sub:'Самое главное. Можно выбрать один или несколько вариантов.',
+        options:['Панель-кронштейн (на двух трубах, перпендикулярно фасаду)','Лайтбокс (световой короб с лицом из баннера / акрила)','Фасадная табличка / Режим работы (на дверь / окно)','Нестандарт / Свой вариант (опишите в комментарии)'] },
+      { key:'size', q:'Размер вывески?', other:true, otherLabel:'Свой размер', otherPlaceholder:'Ширина × Высота, см',
+        options:['До 20 см (маленькая)','20–40 см (средняя)','40–80 см (крупная)','80–150 см (большая)','Свыше 150 см (крупногабарит)'] },
+      { key:'shape', q:'Форма?', other:true, otherLabel:'Свой вариант',
+        options:['Прямоугольная','Квадратная','Круглая / Овальная','Фигурная (по контуру букв / логотипа)'] },
+      // — Световые вывески (Лайтбокс) —
+      { key:'lightGlow', q:'Тип свечения', sub:'Для световой вывески (лайтбокс).', when:a=>quizHasType(a,'Лайтбокс'),
+        options:['Лицевое (свет изнутри на лицо)','Торцевое / Боковое (свечение по контуру)','Контражур (свет на стену вокруг вывески)','Комбинированное (лицо + торец)'] },
+      { key:'lightColor', q:'Цвет свечения', when:a=>quizHasType(a,'Лайтбокс'), other:true, otherLabel:'Другой цвет',
+        options:['Тёплый белый (~3500K)','Холодный белый (~6500K)','Нейтральный белый (~4000K)','Красный / Синий / Зелёный'] },
+      { key:'lightControl', q:'Управление светом', when:a=>quizHasType(a,'Лайтбокс'),
+        options:['Простое включение (вкл / выкл)','Диммер (регулировка яркости)','Микроконтроллер (эффекты: бегущая волна, мерцание)','Фотореле (автовключение в темноте)'] },
+      // — Несветовые вывески (Фасадная табличка) —
+      { key:'plateMaterial', q:'Материал основы', sub:'Для несветовой вывески / таблички.', when:a=>quizHasType(a,'Фасадная табличка'),
+        options:['ПВХ 3–5 мм (бюджетный, для интерьера)','Акриловое стекло (глянец / матовый)','Алюминиевый композит (для улицы)'] },
+      { key:'platePaint', q:'Окраска', when:a=>quizHasType(a,'Фасадная табличка'), other:true, otherLabel:'Свой вариант',
+        options:['Без окраски (цвет материала)','Покраска в цвет (по каталогу RAL)','Покрытие «под золото / серебро / медь»'] },
+      { key:'plateMount', q:'Тип крепления', when:a=>quizHasType(a,'Фасадная табличка'),
+        options:['На клей (гладкая стена, маленький вес)','На винты / сквозной монтаж (надёжно)','На монтажный профиль (для крупных вывесок)'] },
+      // — Панель-кронштейн —
+      { key:'panelFormat', q:'Формат панели', sub:'Панель-кронштейн: вылет от стены 50–150 см.', when:a=>quizHasType(a,'Панель-кронштейн'),
+        options:['Прямоугольная (классика)','Скруглённые углы (современный стиль)','Фигурная (по брендбуку)'] },
+      { key:'panelLight', q:'Подсветка панели', when:a=>quizHasType(a,'Панель-кронштейн'),
+        options:['Без подсветки','Внутренняя подсветка лица (как лайтбокс)'] },
+      { key:'panelSides', q:'Двусторонность', when:a=>quizHasType(a,'Панель-кронштейн'),
+        options:['Односторонняя (вид только спереди)','Двусторонняя (вид с обеих сторон)'] },
+      // — Общие шаги —
+      { key:'placement', q:'Место установки', sub:'Для всех типов.',
+        options:['Внутри помещения (витрина, холл)','Снаружи под козырьком (защита от дождя)','Снаружи, открытый фасад (полная герметизация)','На высоте выше 5 м (нужна автовышка)'] },
+      { key:'access', q:'Можно ли подъехать к месту на газели / автовышке?',
+        options:['Да, свободный подъезд','Нет, пешеходная зона / двор без заезда','Не знаю, нужно уточнение'] },
+      { key:'deadline', q:'Срочность',
+        options:['Стандарт (14–21 день)','Ускоренно (7–10 дней)','Срочно (3–5 дней)','Прямо сейчас (1–2 дня)','Не срочно, ищу лучшую цену'] },
+      { key:'layout', q:'Готовность дизайн-макета',
+        options:['Да, вектор (AI / PDF / CDR / EPS)','Да, растровый макет (JPG / PNG) — нужна трассировка','Да, набросок от руки / фото похожей вывески','Нет, нужна разработка дизайна (оплачивается отдельно)'] },
+      { key:'extras', type:'multi', optional:true, q:'Дополнительные услуги', sub:'Можно выбрать несколько.',
+        options:['Дизайн-проект (с нуля, 2–3 варианта)','Выезд замерщика на адрес','Монтаж под ключ (бригада + крепёж + подключение)','Демонтаж старой вывески','Электромонтажные работы (щиток, розетка, автомат)','Согласование с администрацией города','Гарантийное обслуживание (расширенная гарантия)'] },
+    ],
+
+    // ===== Ветка: 3D-печать (по брифу клиента «3д печать», Bambu Lab H2S / FDM) =====
+    print3d: [
+      { key:'service', q:'Что нужно?', sub:'FDM-печать на Bambu Lab H2S, инженерные пластики.',
+        options:['Печать по моей модели (STL / STEP / 3MF готовы)','Печать + 3D-моделирование (создать с нуля или доработать)','3D-сканирование + печать (есть физический образец)','Консультация (помощь с выбором технологии и материала)'] },
+      { key:'precision', q:'Требования к точности?',
+        options:['Стандартная (±0,2–0,4 мм) — прототипы, бытовые детали','Высокая (±0,1 мм) — функциональные узлы'] },
+      { key:'qty', q:'Необходимое количество?',
+        options:['1 шт. (прототип / единичное изделие)','2–10 шт. (малая серия)','10–50 шт. (серия)','50+ шт. (крупная серия — отдельный расчёт)'] },
+      { key:'material', q:'Материал?', sub:'Базовые — проще и дешевле; инженерные — для нагруженных деталей.',
+        options:['PLA — стандартный, для макетов и декора','PETG — прочный, гибкий, химически стойкий','ABS — ударопрочный, для корпусов (нужен подогрев камеры)','ASA — как ABS, но устойчив к УФ (для улицы)','PA (нейлон) — износостойкий, для шестерён и механизмов'] },
+      { key:'color', q:'Цвет?', other:true, otherLabel:'Свой вариант (RAL / Pantone)',
+        options:['Белый','Чёрный','Серый'] },
+      { key:'layer', q:'Высота слоя (детализация)?',
+        options:['0,08–0,12 мм — максимальная детализация (долго)','0,12–0,20 мм — стандартное качество (оптимально)','0,20–0,28 мм — быстрая печать (черновик)'] },
+      { key:'infill', q:'Плотность заполнения?',
+        options:['10–20% — декор, лёгкие детали','30–50% — стандартные функциональные детали','60–80% — нагруженные детали','100% — сплошная (максимум прочности)'] },
+      { key:'supports', q:'Поддержки (supports)?',
+        options:['Не нужны (модель оптимизирована)','Нужны — удаляю сам (следы останутся)','Нужны — с удалением и финишной обработкой (доп. услуга)'] },
+      { key:'post', type:'multi', optional:true, q:'Пост-обработка', sub:'Дополнительные услуги — можно несколько.',
+        options:['Удаление поддержек','Шлифовка (грубая / мелкая)','Грунтовка + покраска','Сборка из нескольких деталей','Пайка / вклеивание крепежа (вставки, гайки)'] },
+      { key:'deadline', q:'Срочность?',
+        options:['Обычно (7–14 дней)','Ускоренно (3–7 дней) — доплата 30%','Срочно (1–3 дня) — доплата 50–70%','Конвейер (регулярные заказы — отдельные условия)'] },
+    ],
   },
 };
+
+// Хелпер для условных шагов ветки «Вывески»: выбран ли тип вывески (мультивыбор)
+function quizHasType(answers, prefix){
+  const v = answers && answers.signType;
+  return Array.isArray(v) && v.some(x => typeof x === 'string' && x.startsWith(prefix));
+}
 
 // ——— Analytics (window.dataLayer / ym / gtag, тихо деградирует) ———
 function qtrack(event, payload){
@@ -3092,8 +3222,22 @@ function labelForKey(k){
     purpose:'Назначение', material:'Материал', where:'Место', qty:'Количество', content:'Контент',
     substrate:'Основание', surface:'Поверхность', priority:'Приоритет', layout:'Макет',
     city:'Город', status:'Текущий статус', need:'Что нужно', object:'Тип объекта', urgency:'Срочность',
-    area:'Зона', conditions:'Условия эксплуатации' };
+    area:'Зона', conditions:'Условия эксплуатации',
+    // Объёмные буквы
+    text:'Текст', height:'Высота букв', glow:'Тип свечения', glowColor:'Цвет свечения', extras:'Доп. услуги',
+    // Вывески
+    signType:'Тип вывески', shape:'Форма', lightGlow:'Тип свечения', lightColor:'Цвет свечения', lightControl:'Управление светом',
+    plateMaterial:'Материал основы', platePaint:'Окраска', plateMount:'Крепление',
+    panelFormat:'Формат панели', panelLight:'Подсветка', panelSides:'Двусторонность', access:'Подъезд к месту',
+    // 3D-печать
+    service:'Услуга', precision:'Точность', color:'Цвет', layer:'Высота слоя', infill:'Заполнение', supports:'Поддержки', post:'Пост-обработка' };
   return map[k] || k;
+}
+// Форматирование ответа для сводки: массив (мультивыбор) → через запятую, объект (поля ввода) → через точку
+function formatAnswerVal(v){
+  if(Array.isArray(v)) return v.join(', ');
+  if(v && typeof v === 'object') return Object.values(v).filter(Boolean).join(' · ');
+  return (v == null) ? '' : String(v);
 }
 function formatRuPhone(v){
   let d = (v||'').replace(/\D/g,'');
@@ -3159,13 +3303,17 @@ function mountQuiz(root, opts = {}){
     if(!state.branch) return [];
     return QUIZ_CONFIG.branches[state.branch] || [];
   }
+  // Активные шаги ветки с учётом условий (when) — условные шаги показываются только при подходящих ответах
+  function activeSteps(){
+    return getSteps().filter(s => !s.when || s.when(state.answers));
+  }
   // Индексация шагов в UI:
   // - свободный квиз: 0 = выбор услуги, 1..N = шаги ветки, N+1 = контакты, N+2 = success
   // - locked квиз:    0..N-1 = шаги ветки, N = контакты, N+1 = success
   function uiStepIndex(){ return state.step; }
   function totalForProgress(){
-    // количество «реальных» экранов до success
-    const branchLen = getSteps().length;
+    // количество «реальных» экранов до success (учитываем только активные шаги ветки)
+    const branchLen = activeSteps().length;
     return (lockService ? 0 : 1) + branchLen + 1; // +1 контакты
   }
   function humanStep(){
@@ -3183,7 +3331,8 @@ function mountQuiz(root, opts = {}){
     const dirClass = state.direction === 'back' ? ' back' : '';
 
     // Сдвиг индексов для locked режима: «шаг 0» локд-квиза = первый шаг ветки
-    const branchSteps = getSteps();
+    // Используем активные шаги — условные (when) показываются только при подходящих ответах
+    const branchSteps = activeSteps();
     const firstBranchIdx = lockService ? 0 : 1;
     const lastBranchIdx  = firstBranchIdx + branchSteps.length - 1;
     const contactIdx     = lastBranchIdx + 1;
@@ -3229,28 +3378,97 @@ function mountQuiz(root, opts = {}){
       if(raw.dynamic){
         step = Object.assign({}, raw, raw.byService[state.service] || Object.values(raw.byService)[0]);
       }
-      stage.innerHTML = `
-        <div class="qstep${dirClass}">
-          <div class="qstep__eyebrow">Шаг ${humanStep()} · ${state.service}</div>
-          <div class="qstep__q">${step.q}</div>
-          <div class="qopts${step.options.length<=4?' cols-2':(step.options.length>6?' cols-3':'')}">
+      const stype = step.type || 'single';
+      const ans = state.answers[step.key];
+      // Кнопка «Далее» нужна для мультивыбора, полей ввода и шагов со «своим вариантом»
+      const needsButton = (stype !== 'single') || step.other;
+
+      // — Тело шага в зависимости от типа —
+      let body = '';
+      if(stype === 'text'){
+        body = `<div class="qfields">
+          ${(step.fields||[]).map(f=>`
+            <div class="qform__row full">
+              <label class="qform__label">${f.label||''}</label>
+              <input class="qform__field qtext-input" data-field="${escAttr(f.name)}" placeholder="${escAttr(f.placeholder||'')}" value="${escAttr((ans&&typeof ans==='object'&&ans[f.name])||'')}">
+            </div>`).join('')}
+        </div>`;
+      } else {
+        const otherVal = (stype==='single' && step.other && typeof ans==='string' && !step.options.includes(ans)) ? ans : '';
+        const isActive = (o)=> stype==='multi' ? (Array.isArray(ans) && ans.includes(o)) : (ans===o);
+        body = `
+          <div class="qopts${stype==='multi'?' qopts--multi':''}${step.options.length<=4?' cols-2':(step.options.length>6?' cols-3':'')}">
             ${step.options.map(o=>`
-              <button class="qopt${state.answers[step.key]===o?' active':''}" data-val="${escAttr(o)}">
+              <button class="qopt${isActive(o)?' active':''}" data-val="${escAttr(o)}">
                 <span class="qopt__mark"></span><span>${o}</span>
               </button>`).join('')}
           </div>
+          ${step.other ? `<div class="qother">
+            <label class="qother__label">${step.otherLabel||'Свой вариант'}</label>
+            <input class="qform__field qother-input" placeholder="${escAttr(step.otherPlaceholder||'Укажите свой вариант')}" value="${escAttr(otherVal)}">
+          </div>` : ''}`;
+      }
+
+      stage.innerHTML = `
+        <div class="qstep${dirClass}">
+          <div class="qstep__eyebrow">Шаг ${humanStep()} · ${escHtml(state.service||'')}</div>
+          <div class="qstep__q">${step.q}</div>
+          ${step.sub ? `<div class="qstep__sub">${step.sub}</div>` : ''}
+          ${body}
+          ${needsButton ? `<div class="qstep__next"><button type="button" class="btn btn-primary qnext">Далее →</button></div>` : ''}
           ${renderNav(lockService && branchPos===0)}
         </div>`;
-      stage.querySelectorAll('.qopt').forEach(b=>{
-        b.addEventListener('click',()=>{
-          const val = b.dataset.val;
-          state.answers[step.key] = val;
-          stage.querySelectorAll('.qopt').forEach(x=>x.classList.remove('active'));
-          b.classList.add('active');
-          qtrack('quiz_step', { step: humanStep(), key: step.key, value: val, branch: state.branch });
-          setTimeout(()=>goto(state.step+1, 'forward'), 220);
+
+      const opts = stage.querySelectorAll('.qopt');
+      if(stype === 'multi'){
+        opts.forEach(b=>{
+          b.addEventListener('click',()=>{
+            const val = b.dataset.val;
+            let arr = Array.isArray(state.answers[step.key]) ? state.answers[step.key].slice() : [];
+            if(arr.includes(val)) arr = arr.filter(x=>x!==val); else arr.push(val);
+            state.answers[step.key] = arr;
+            b.classList.toggle('active');
+          });
+        });
+      } else if(stype === 'single'){
+        opts.forEach(b=>{
+          b.addEventListener('click',()=>{
+            const val = b.dataset.val;
+            state.answers[step.key] = val;
+            opts.forEach(x=>x.classList.remove('active'));
+            b.classList.add('active');
+            const oi = stage.querySelector('.qother-input'); if(oi) oi.value = '';
+            qtrack('quiz_step', { step: humanStep(), key: step.key, value: val, branch: state.branch });
+            // Автопереход только для простого одиночного выбора (без поля «свой вариант»)
+            if(!step.other) setTimeout(()=>goto(state.step+1, 'forward'), 220);
+          });
+        });
+      }
+      // Поле «свой вариант» (для single + other)
+      const otherInput = stage.querySelector('.qother-input');
+      if(otherInput){
+        otherInput.addEventListener('input',()=>{
+          const v = otherInput.value.trim();
+          state.answers[step.key] = v || undefined;
+          opts.forEach(x=>x.classList.remove('active'));
+        });
+      }
+      // Поля свободного ввода (type: text)
+      stage.querySelectorAll('.qtext-input').forEach(inp=>{
+        inp.addEventListener('input',()=>{
+          const obj = (state.answers[step.key] && typeof state.answers[step.key]==='object') ? state.answers[step.key] : {};
+          obj[inp.dataset.field] = inp.value;
+          state.answers[step.key] = obj;
         });
       });
+      // Кнопка «Далее» для мультивыбора / ввода / «своего варианта»
+      const nextBtn = stage.querySelector('.qnext');
+      if(nextBtn){
+        nextBtn.addEventListener('click',()=>{
+          qtrack('quiz_step', { step: humanStep(), key: step.key, value: state.answers[step.key], branch: state.branch });
+          goto(state.step+1, 'forward');
+        });
+      }
       updateProgress();
       bindBack();
       return;
@@ -3307,7 +3525,10 @@ function mountQuiz(root, opts = {}){
     if(state.step === successIdx){
       const summary = [];
       summary.push(['Услуга', state.service]);
-      Object.entries(state.answers).forEach(([k,v])=>summary.push([labelForKey(k), v]));
+      Object.entries(state.answers).forEach(([k,v])=>{
+        const fv = formatAnswerVal(v);
+        if(fv) summary.push([labelForKey(k), fv]);
+      });
       summary.push(['Связь', state.contact.phone + (state.contact.messenger?' · '+state.contact.messenger:'')]);
       stage.innerHTML = `
         <div class="qstep qsuccess">
